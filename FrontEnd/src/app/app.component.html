@@ -1,0 +1,18 @@
+<h1>Tank Details</h1>
+  <ul>
+    <li *ngFor="let tank of tanks">
+      <h2>{{tank.Avg_Quality}}    {{tank.Real_Time_Quality}}    {{tank.NIR_Reading}}</h2>
+     
+    </li>
+  </ul>
+
+
+<hr>
+<div>
+    <form >
+        Username<input type="text" [(ngModel)]="loginUserData.Username" [ngModelOptions]="{standalone: true}"/><br>
+        Password<input type="text" [(ngModel)]="loginUserData.Password" [ngModelOptions]="{standalone: true}"/><br>
+        <button (click)="createlogin()" type="button">submit</button>
+      </form>
+
+</div>
