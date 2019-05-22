@@ -10,7 +10,9 @@ import { ApiService } from './api.service';
   providers: [ApiService]
 })
 export class AppComponent {
-  tanks = [{id:'', Avg_Quality:'', Real_Time_Quality:'',NIR_Reading:''}]
+  tanks = [{id:'', Paraffin:'', Olefins:'', Aromatics:'', Napthene:'',INIP_Ratio:'',Density:'',
+              Sulfur:'', IBP:'', FBP:'',Paraffin_R:'',Olefins_R:'',Density_R:'',Paraffin_NIR:'',
+              Olefins_NIR:'',Density_NIR:'',Level:'',Weight:''}]
   loginUserData = [{id:'',Username:'',Password:''}]
 
   constructor(private api: ApiService){

@@ -8,8 +8,8 @@ from djangoapp.api import views
 
 urlpatterns = [
 
-    path('tanks/', views.getTanks),
-    path('login/', views.createlogin)
+   # path('tanks/', views.getTanks),
+   # path('login/', views.createlogin)
 
 
 ]
