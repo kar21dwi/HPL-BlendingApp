@@ -225,49 +225,45 @@ class Output_Parameter_UserDefined(models.Model):
     #one to one relation with the input_Parameter_UserDefined Class
     input_Parameter_UserDefined = models.OneToOneField(Input_Parameter_UserDefined,on_delete = models.CASCADE)
 
-#New_Naphtha_Summary Class
-class New_Naphtha_Summary(models.Model):
-    Opening_Stock = models.IntegerField()
-    Source = models.CharField(max_length = 50)
-    PCN_NCU = models.IntegerField()
-    PCN_CPP = models.IntegerField()
-    FGN_CPP = models.IntegerField()
-    CBFS_CPP = models.IntegerField()
-    #Fields--from singlas
-    Date = models.DateField()
-    Vessel_Name = models.CharField(max_length=50)
-    Supply_Quantity = models.IntegerField()
-    #one to one relation with the tanks_Overall_Status Class
-    tanks_Overall_Status = models.OneToOneField(Tanks_Overall_Status,on_delete = models.CASCADE)
-
 
 #New_Naphtha Class
 class New_Naphtha(models.Model):
     Transport_Type= models.CharField(max_length = 50)
-    Ship_Name= models.CharField(max_length = 50)
-    Supplier= models.CharField(max_length = 50)
     Date_Transfer_From = models.DateField()
     Date_Transfer_To = models.DateField()
     HOJ = models.IntegerField()
     Load_Port= models.CharField(max_length = 50)
     BL_Quantity = models.FloatField()
     Shore_Quantity = models.FloatField()
-    #Calculated Fields
-    Shortage_Quantity = models.FloatField()
-    Remaining_Stock_Calculate = models.FloatField()
-    #one to one relation with the new_Naphtha_Summary Class
-    new_Naphtha_Summary = models.OneToOneField(New_Naphtha_Summary,on_delete = models.CASCADE)
+    Opening_Stock = models.IntegerField(null=True,blank=True)
+    Source = models.CharField(max_length = 50)
+    PCN_NCU = models.IntegerField(null=True,blank=True)
+    PCN_CPP = models.IntegerField(null=True,blank=True)
+    FGN_CPP = models.IntegerField(null=True,blank=True)
+    CBFS_CPP = models.IntegerField(null=True,blank=True)
+    Vessel_Name = models.CharField(max_length=50)
+    #Calculated Fields 
+    Shortage_Quantity = models.FloatField(null=True,blank=True) 
+    #one to one relation with the tanks_Overall_Status Class
+    tanks_Overall_Status = models.OneToOneField(Tanks_Overall_Status,on_delete = models.CASCADE)
     #Shortage_Calculate():
     #Remaining_Stock_Calculate():
     #New_Avg_Quality():
 
-#Receipt_Tank Class
-class Receipt_Tank(models.Model):
-    Tank_No_1  = models.FloatField(default=0)
-    Tank_No_2  = models.FloatField(default=0)
-    Tank_No_3  = models.FloatField(default=0)
-    Tank_No_4  = models.FloatField(default=0)
-    Tank_No_5  = models.FloatField(default=0)
+
+#New_Naphtha_Quality_Lab Class
+class New_Naphtha_Quality_Lab(models.Model):
+    Paraffin = models.FloatField() 
+    Olefins = models.FloatField()
+    Aromatics = models.FloatField()
+    Naphthene = models.FloatField()
+    IN_IP_Ratio = models.FloatField()
+    Density = models.FloatField()
+    IBP = models.FloatField(null=True,blank=True)
+    FBP = models.FloatField(null=True,blank=True)
+    Sulfur = models.FloatField(null=True,blank=True)
+    Colour = models.FloatField()
+    RVP = models.FloatField(null=True,blank=True)
     #one to one relation with the new_Naphtha Class
     new_Naphtha = models.OneToOneField(New_Naphtha,on_delete = models.CASCADE)
 
@@ -287,22 +283,17 @@ class New_Naphtha_Quality_Supplier(models.Model):
     #one to one relation with the new_Naphtha Class
     new_Naphtha = models.OneToOneField(New_Naphtha,on_delete = models.CASCADE)
 
-
-#New_Naphtha_Quality_Lab Class
-class New_Naphtha_Quality_Lab(models.Model):
-    Paraffin = models.FloatField() 
-    Olefins = models.FloatField()
-    Aromatics = models.FloatField()
-    Naphthene = models.FloatField()
-    IN_IP_Ratio = models.FloatField()
-    Density = models.FloatField()
-    IBP = models.FloatField(null=True,blank=True)
-    FBP = models.FloatField(null=True,blank=True)
-    Sulfur = models.FloatField(null=True,blank=True)
-    Colour = models.FloatField()
-    RVP = models.FloatField(null=True,blank=True)
+#Receipt_Tank Class
+class Receipt_Tank(models.Model):
+    Tank_No_1  = models.FloatField(default=0)
+    Tank_No_2  = models.FloatField(default=0)
+    Tank_No_3  = models.FloatField(default=0)
+    Tank_No_4  = models.FloatField(default=0)
+    Tank_No_5  = models.FloatField(default=0)
     #one to one relation with the new_Naphtha Class
     new_Naphtha = models.OneToOneField(New_Naphtha,on_delete = models.CASCADE)
+
+
 
 #Naphtha_Plan_All_Months
 class Naphtha_Plan_All_Months(models.Model):
