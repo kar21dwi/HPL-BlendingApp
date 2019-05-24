@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-#from djangoapp.api.models import Blending, Tanks_Overall, Average_Quality
+from djangoapp.api.models import Tanks_Overall_Status,Tank,Quality_Avg 
 
 
 '''
@@ -41,3 +41,27 @@ def save_total(sender, instance, **kwargs):
        Blending.objects.filter(pk=instance.id).update(olefin_blended=ob)
        Blending.objects.filter(pk=instance.id).update(aromatics_blended=ab)
    '''
+@receiver(post_save, sender=Tanks_Overall_Status)
+def save_total(sender, instance, **kwargs):
+    suctiontank = instance.Suction_Tank_No_RN
+    blendingtank = instance.Blending_Tank_No_RN
+    print ("********************************************")
+    print (suctiontank)
+    print ("********************************************")
+
+    old_obj = Tanks_Overall_Status.objects.filter(pk=(instance.id - 4)).get()
+    old_tank = Tank.objects.filter(tanks_Overall_Status = old_obj , Tank_No=1).get()
+    old_level = Tank.objects.filter(tanks_Overall_Status = old_obj , Tank_No=1).get().Level
+
+    old_density_quaity_avg = Quality_Avg.objects.filter(tank= old_tank).get().Density
+
+
+    if  suctiontank==1 or blendingtank==1:
+        new_level = old_level - 100
+    else:
+        new_level = old_level
+
+    
+    new_weight = old_density_quaity_avg*new_level*3.14*8400*8400*10
+
+    Tank.objects.create(Level = new_level, Weight = new_weight, Tank_No =1,tanks_Overall_Status= instance)

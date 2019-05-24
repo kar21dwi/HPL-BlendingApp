@@ -1,6 +1,5 @@
 from django.db import models
-from django.db.models.signals import pre_save, post_save
-from django.dispatch import receiver
+
 #from django.contrib.auth import get_user_model
 
 #Define All classes 
@@ -289,7 +288,7 @@ class Output_Comparision(models.Model):
     Benzene_Predicted = models.FloatField()
     BD_Predicted = models.FloatField()
     output_Parameter_Running = models.OneToOneField(Output_Parameter_Running,on_delete =models.CASCADE)
-    
+
 #New_Naphtha Class
 class New_Naphtha(models.Model):
     Transport_Type= models.CharField(max_length = 50)
