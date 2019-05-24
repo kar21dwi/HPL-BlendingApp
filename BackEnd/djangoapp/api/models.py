@@ -12,6 +12,29 @@ class Tanks_Overall_Status(models.Model):
     Blend_Ratio_RN= models.FloatField()
     Date_Time =models.DateTimeField()
 
+#Next_Hour_Selection Class
+class Next_Hour_Selection(models.Model):
+    U_D = models.BooleanField()
+    B_F = models.BooleanField()
+    P_M = models.BooleanField()
+    R_N = models.BooleanField()
+    #one to many relation with the Tank_Over_All_Status Class
+    tanks_Overall_Status = models.OneToOneField(Tanks_Overall_Status,on_delete =models.CASCADE)
+
+#Model_Output_Parameter_Running
+class Model_Output_Parameter_Running(models.Model):
+    Ethylene_RN_MO = models.FloatField()
+    Propylene_RN_MO = models.FloatField()
+    RPG_RN_MO = models.FloatField()
+    C4_Mix_RN_MO = models.FloatField()
+    Fuel_Gas_RN_MO = models.FloatField()
+    Benzene_RN_MO = models.FloatField()
+    BD_RN_MO = models.FloatField()
+    #one to many relation with the Next_Hour_Selection Class
+    next_Hour_Selection = models.OneToOneField(Next_Hour_Selection,on_delete =models.CASCADE)
+
+
+
 #Tank Class
 class Tank(models.Model):
     Tank_No = models.IntegerField()
@@ -19,6 +42,8 @@ class Tank(models.Model):
     Weight = models.FloatField()
     #one to many relation with the Tank_Over_All Status Class
     tanks_Overall_Status = models.ForeignKey(Tanks_Overall_Status,on_delete =models.CASCADE)
+    #Calculated Field
+    #Weight,
 
 #Quality_Avg Class
 class Quality_Avg(models.Model):
@@ -225,7 +250,46 @@ class Output_Parameter_UserDefined(models.Model):
     #one to one relation with the input_Parameter_UserDefined Class
     input_Parameter_UserDefined = models.OneToOneField(Input_Parameter_UserDefined,on_delete = models.CASCADE)
 
+#Output_Comparision
+class Output_Comparision(models.Model):
+    Total_Load = models.FloatField()
+    Naphtha_Load = models.FloatField()
+    LPG_Load = models.FloatField()
+    C5_Load = models.FloatField()
+    C6_Load = models.FloatField()
+    Naphtha_Heater = models.IntegerField()
+    COT = models.FloatField()
+    GF_PDI = models.FloatField()
+    Suc_Pressure = models.FloatField()
+    Paraffin = models.FloatField()
+    Olefins = models.FloatField() 
+    Aromatics = models.FloatField()
+    Naphthene = models.FloatField()
+    IN_IP_Ratio = models.FloatField()
+    Density = models.FloatField()
+    IBP = models.FloatField(null=True,blank=True)
+    FBP = models.FloatField(null=True,blank=True)
+    Suction_Tank_No = models.IntegerField()
+    Blending_Tank_No = models.IntegerField()
+    Blend_Ratio = models.FloatField()
 
+    Ethylene_Actual = models.FloatField()
+    Propylene_Actual = models.FloatField()
+    RPG_Actual = models.FloatField()
+    C4_Mix_Actual = models.FloatField()
+    Fuel_Gas_Actual = models.FloatField()
+    Benzene_Actual = models.FloatField()
+    BD_Actual = models.FloatField()
+
+    Ethylene_Predicted = models.FloatField()
+    Propylene_Predicted = models.FloatField()
+    RPG_Predicted = models.FloatField()
+    C4_Mix_Predicted = models.FloatField()
+    Fuel_Gas_Predicted = models.FloatField()
+    Benzene_Predicted = models.FloatField()
+    BD_Predicted = models.FloatField()
+    output_Parameter_Running = models.OneToOneField(Output_Parameter_Running,on_delete =models.CASCADE)
+    
 #New_Naphtha Class
 class New_Naphtha(models.Model):
     Transport_Type= models.CharField(max_length = 50)
