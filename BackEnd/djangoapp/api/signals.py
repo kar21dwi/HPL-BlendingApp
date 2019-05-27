@@ -49,7 +49,13 @@ def save_total(sender, instance, **kwargs):
     print (suctiontank)
     print ("********************************************")
 
-    old_obj = Tanks_Overall_Status.objects.filter(pk=(instance.id - 4)).get()
+    old_obj = Tanks_Overall_Status.objects.all().order_by('-id')[1]
+
+    print ("********************************************")
+    print (old_obj.id)
+    print ("********************************************")
+
+    #old_obj = Tanks_Overall_Status.objects.filter(pk=(instance.id - 4)).get()
     old_tank = Tank.objects.filter(tanks_Overall_Status = old_obj , Tank_No=1).get()
     old_level = Tank.objects.filter(tanks_Overall_Status = old_obj , Tank_No=1).get().Level
 
@@ -65,3 +71,9 @@ def save_total(sender, instance, **kwargs):
     new_weight = old_density_quaity_avg*new_level*3.14*8400*8400*10
 
     Tank.objects.create(Level = new_level, Weight = new_weight, Tank_No =1,tanks_Overall_Status= instance)
+
+@receiver(post_save, sender=Tank)
+def save_avg_quality(sender, instance, **kwargs):
+    print ("****************After Saving Tank****************************")
+    print (instance.Level)
+    print ("********************************************")

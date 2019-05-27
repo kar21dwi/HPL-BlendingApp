@@ -7,6 +7,7 @@ from djangoapp.api import views
 
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('djangoapp.api.urls')),

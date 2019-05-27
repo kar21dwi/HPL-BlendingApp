@@ -6,10 +6,13 @@ from django.db import models
 
 #Tanks_Overall_Status Class
 class Tanks_Overall_Status(models.Model):
+    Date_Time =models.DateTimeField()
     Suction_Tank_No_RN= models.IntegerField()
     Blending_Tank_No_RN= models.IntegerField()
     Blend_Ratio_RN= models.FloatField()
-    Date_Time =models.DateTimeField()
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Tanks_Overall_Status"
 
 #Next_Hour_Selection Class
 class Next_Hour_Selection(models.Model):
@@ -19,6 +22,9 @@ class Next_Hour_Selection(models.Model):
     R_N = models.BooleanField()
     #one to many relation with the Tank_Over_All_Status Class
     tanks_Overall_Status = models.OneToOneField(Tanks_Overall_Status,on_delete =models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Next_Hour_Selection"
 
 #Model_Output_Parameter_Running
 class Model_Output_Parameter_Running(models.Model):
@@ -31,18 +37,23 @@ class Model_Output_Parameter_Running(models.Model):
     BD_RN_MO = models.FloatField()
     #one to many relation with the Next_Hour_Selection Class
     next_Hour_Selection = models.OneToOneField(Next_Hour_Selection,on_delete =models.CASCADE)
-
-
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Model_Output_Parameter_Running"
 
 #Tank Class
 class Tank(models.Model):
     Tank_No = models.IntegerField()
     Level = models.FloatField()
     Weight = models.FloatField()
+    Receiving_Naphtha = models.BooleanField()
     #one to many relation with the Tank_Over_All Status Class
     tanks_Overall_Status = models.ForeignKey(Tanks_Overall_Status,on_delete =models.CASCADE)
     #Calculated Field
     #Weight,
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Tank"
 
 #Quality_Avg Class
 class Quality_Avg(models.Model):
@@ -59,6 +70,9 @@ class Quality_Avg(models.Model):
     RVP= models.FloatField(null=True,blank=True)
     #one to one relation with the Tank Class
     tank = models.OneToOneField(Tank , on_delete = models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Quality_Avg"    
 
 #Quality_Real Class
 class Quality_Real(models.Model):
@@ -68,6 +82,9 @@ class Quality_Real(models.Model):
     IN_IP_Ratio_Real= models.FloatField()
     #one to one relation with the Tank Class
     tank= models.OneToOneField(Tank,on_delete =models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Quality_Real"
 
 #Quality_NIR_Actual Class
 class Quality_NIR_Actual(models.Model):
@@ -77,7 +94,9 @@ class Quality_NIR_Actual(models.Model):
     IN_IP_Ratio_NIR= models.FloatField()
     #one to one relation with the Tank_Over_All Status Class
     tanks_Overall_Status = models.OneToOneField(Tanks_Overall_Status,on_delete = models.CASCADE)
-    
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Quality_NIR_Actual"
 
 #Quality_NIR_Pred Class
 class Quality_NIR_Pred(models.Model):
@@ -87,6 +106,9 @@ class Quality_NIR_Pred(models.Model):
     IN_IP_Ratio_NIR_Pred= models.FloatField()
     #one to one relation with the Tank_Over_All Status Class
     tanks_Overall_Status=  models.OneToOneField(Tanks_Overall_Status,on_delete = models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Quality_NIR_Pred"
 
 #Plant_Constraints Class
 class Plant_Constraints(models.Model):
@@ -99,6 +121,9 @@ class Plant_Constraints(models.Model):
     Max_BD= models.FloatField()
     #one to one relation with the Tank_Over_All Status Class
     tanks_Overall_Status= models.OneToOneField(Tanks_Overall_Status,on_delete = models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Plant_Constraints"
 
 #Input_Parameter_Running Class
 class Input_Parameter_Running(models.Model):
@@ -123,6 +148,9 @@ class Input_Parameter_Running(models.Model):
     #one to one relation with the Tank_Over_All Status Class
     tanks_Overall_Status= models.OneToOneField(Tanks_Overall_Status,on_delete = models.CASCADE)
     #Load_Sum():, Blending_Avg():
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Input_Parameter_Running"
 
  #Input_Parameter_BestFit Class
 class Input_Parameter_BestFit(models.Model):
@@ -148,6 +176,9 @@ class Input_Parameter_BestFit(models.Model):
     #one to one relation with the Plant_Constraints Class
     plant_Constraints = models.OneToOneField(Plant_Constraints,on_delete = models.CASCADE)
     #Yield_Opt_Model(): + Plant Constraints
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Input_Parameter_BestFit"
 
 #Input_Parameter_ProfitMax Class
 class Input_Parameter_ProfitMax(models.Model):
@@ -173,6 +204,9 @@ class Input_Parameter_ProfitMax(models.Model):
     #one to one relation with the Tank_Over_All Status Class
     tanks_Overall_Status= models.OneToOneField(Tanks_Overall_Status,on_delete = models.CASCADE)
     #Yield_Opt_Model(): + LP_ProfitMax
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Input_Parameter_ProfitMax"
 
 #Input_Parameter_UserDefined Class
 class Input_Parameter_UserDefined(models.Model):
@@ -189,17 +223,20 @@ class Input_Parameter_UserDefined(models.Model):
     Suc_Pressure_UD = models.FloatField()
 
     #Claculated Fields
-    Paraffin_UD = models.FloatField()
-    Olefins_UD = models.FloatField()
-    Aromatics_UD = models.FloatField()
-    Naphthene_UD = models.FloatField()
-    IN_IP_Ratio_UD = models.FloatField()
-    Density_UD = models.FloatField()
+    Paraffin_UD = models.FloatField(null=True,blank=True)
+    Olefins_UD = models.FloatField(null=True,blank=True)
+    Aromatics_UD = models.FloatField(null=True,blank=True)
+    Naphthene_UD = models.FloatField(null=True,blank=True)
+    IN_IP_Ratio_UD = models.FloatField(null=True,blank=True)
+    Density_UD = models.FloatField(null=True,blank=True)
     IBP_UD = models.FloatField(null=True,blank=True)
     FBP_UD = models.FloatField(null=True,blank=True)
     #one to one relation with the Quality_Real Class
     quality_Real = models.OneToOneField(Quality_Real,on_delete = models.CASCADE)
     #Blending_Avg():
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Input_Parameter_UserDefined"
 
 #Output_Parameter_Running Class
 class Output_Parameter_Running(models.Model):
@@ -212,6 +249,9 @@ class Output_Parameter_Running(models.Model):
     BD_RN = models.FloatField()
     #one to one relation with the Quality_Real Class
     input_Parameter_Running = models.OneToOneField(Input_Parameter_Running,on_delete = models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Output_Parameter_Running"
 
 #Output_Parameter_BestFit
 class Output_Parameter_BestFit(models.Model):
@@ -224,6 +264,9 @@ class Output_Parameter_BestFit(models.Model):
     BD_BF = models.FloatField()
     #one to one relation with the input_Parameter_BestFit Class
     input_Parameter_BestFit = models.OneToOneField(Input_Parameter_BestFit,on_delete = models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Output_Parameter_BestFit"
 
 #Output_Parameter_ProfitMax Class
 class Output_Parameter_ProfitMax(models.Model):
@@ -236,6 +279,9 @@ class Output_Parameter_ProfitMax(models.Model):
     BD_PM = models.FloatField()
     #one to one relation with the input_Parameter_ProfitMax Class
     input_Parameter_ProfitMax = models.OneToOneField(Input_Parameter_ProfitMax,on_delete = models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Output_Parameter_ProfitMax"
 
 #Output_Parameter_UserDefined
 class Output_Parameter_UserDefined(models.Model):
@@ -248,6 +294,9 @@ class Output_Parameter_UserDefined(models.Model):
     BD_UD = models.FloatField()
     #one to one relation with the input_Parameter_UserDefined Class
     input_Parameter_UserDefined = models.OneToOneField(Input_Parameter_UserDefined,on_delete = models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Output_Parameter_UserDefined"
 
 #Output_Comparision
 class Output_Comparision(models.Model):
@@ -288,6 +337,9 @@ class Output_Comparision(models.Model):
     Benzene_Predicted = models.FloatField()
     BD_Predicted = models.FloatField()
     output_Parameter_Running = models.OneToOneField(Output_Parameter_Running,on_delete =models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Output_Comparision"
 
 #New_Naphtha Class
 class New_Naphtha(models.Model):
@@ -312,7 +364,9 @@ class New_Naphtha(models.Model):
     #Shortage_Calculate():
     #Remaining_Stock_Calculate():
     #New_Avg_Quality():
-
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "New_Naphtha"
 
 #New_Naphtha_Quality_Lab Class
 class New_Naphtha_Quality_Lab(models.Model):
@@ -329,6 +383,9 @@ class New_Naphtha_Quality_Lab(models.Model):
     RVP = models.FloatField(null=True,blank=True)
     #one to one relation with the new_Naphtha Class
     new_Naphtha = models.OneToOneField(New_Naphtha,on_delete = models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "New_Naphtha_Quality_Lab"
 
 #New_Naphtha_Quality_Supplier
 class New_Naphtha_Quality_Supplier(models.Model):
@@ -345,22 +402,34 @@ class New_Naphtha_Quality_Supplier(models.Model):
     RVP = models.FloatField(null=True,blank=True)
     #one to one relation with the new_Naphtha Class
     new_Naphtha = models.OneToOneField(New_Naphtha,on_delete = models.CASCADE)
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "New_Naphtha_Quality_Supplier"
 
 #Receipt_Tank Class
 class Receipt_Tank(models.Model):
     Tank_No_1  = models.FloatField(default=0)
+    Tank_No_1_Receiving = models.FloatField(default=-1)
     Tank_No_2  = models.FloatField(default=0)
+    Tank_No_2_Receiving = models.FloatField(default=-1)    
     Tank_No_3  = models.FloatField(default=0)
+    Tank_No_3_Receiving = models.FloatField(default=-1)    
     Tank_No_4  = models.FloatField(default=0)
+    Tank_No_4_Receiving = models.FloatField(default=-1)   
     Tank_No_5  = models.FloatField(default=0)
+    Tank_No_5_Receiving = models.FloatField(default=-1)   
     #one to one relation with the new_Naphtha Class
     new_Naphtha = models.OneToOneField(New_Naphtha,on_delete = models.CASCADE)
-
-
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Receipt_Tank"
 
 #Naphtha_Plan_All_Months
 class Naphtha_Plan_All_Months(models.Model):
     Month_Year = models.DateField()
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Naphtha_Plan_All_Months"
 
 #Naphtha_Plan_Single_Month
 class Naphtha_Plan_Single_Month(models.Model):
@@ -379,6 +448,9 @@ class Naphtha_Plan_Single_Month(models.Model):
     #Total_Consumption():
     #Total_Procurement():
     #Total_Stock():
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Naphtha_Plan_Single_Month"
 
 #Naphtha_Plan_Summary
 class Naphtha_Plan_Summary(models.Model):
@@ -400,17 +472,17 @@ class Naphtha_Plan_Summary(models.Model):
     Min_Stock = models.FloatField(null=True,blank=True)
     Max_Stock = models.FloatField(null=True,blank=True)
     naphtha_Plan_All_Months = models.OneToOneField(Naphtha_Plan_All_Months,on_delete = models.CASCADE)
-
-
-
-
-
+    objects = models.Manager()
+    class Meta:
+       verbose_name_plural = "Naphtha_Plan_Summary"
+       
 #Login Class
 class Login(models.Model):
     Username = models.CharField(max_length=50)
     Password = models.CharField( max_length=50)
     objects = models.Manager()
-
+    class Meta:
+       verbose_name_plural = "Login"
 
     
     
