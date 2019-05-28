@@ -7,9 +7,9 @@ from django.db import models
 #Tanks_Overall_Status Class
 class Tanks_Overall_Status(models.Model):
     Date_Time =models.DateTimeField()
-    Suction_Tank_No_RN= models.IntegerField()
-    Blending_Tank_No_RN= models.IntegerField()
-    Blend_Ratio_RN= models.FloatField()
+    Suction_Tank_No_RN= models.IntegerField(null=True,blank=True)
+    Blending_Tank_No_RN= models.IntegerField(null=True,blank=True)
+    Blend_Ratio_RN= models.FloatField(null=True,blank=True)
     objects = models.Manager()
     class Meta:
        verbose_name_plural = "Tanks_Overall_Status"
@@ -105,7 +105,7 @@ class Quality_NIR_Pred(models.Model):
     Density_NIR_Pred= models.FloatField()
     IN_IP_Ratio_NIR_Pred= models.FloatField()
     #one to one relation with the Tank_Over_All Status Class
-    tanks_Overall_Status=  models.OneToOneField(Tanks_Overall_Status,on_delete = models.CASCADE)
+    tanks_Overall_Status=  models.ForeignKey(Tanks_Overall_Status,on_delete = models.CASCADE)
     objects = models.Manager()
     class Meta:
        verbose_name_plural = "Quality_NIR_Pred"

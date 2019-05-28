@@ -2,8 +2,8 @@ from django.contrib import admin
 
 from .models import Tanks_Overall_Status,Tank,Quality_Avg,Quality_Real,Quality_NIR_Actual
 from .models import Quality_NIR_Pred,Plant_Constraints,Input_Parameter_Running,Input_Parameter_BestFit
-from .models import Input_Parameter_ProfitMax,Input_Parameter_UserDefined,Output_Parameter_Running,Output_Parameter_BestFit
-from .models import Output_Parameter_ProfitMax,Output_Parameter_UserDefined
+from .models import Input_Parameter_ProfitMax,Output_Parameter_Running,Output_Parameter_BestFit
+from .models import Output_Parameter_ProfitMax, Input_Parameter_UserDefined, Output_Parameter_UserDefined
 from .models import New_Naphtha,Receipt_Tank,New_Naphtha_Quality_Supplier,New_Naphtha_Quality_Lab
 from .models import Naphtha_Plan_All_Months,Naphtha_Plan_Single_Month,Naphtha_Plan_Summary
 from .models import Next_Hour_Selection,Model_Output_Parameter_Running,Output_Comparision
@@ -117,6 +117,7 @@ class Input_Parameter_UserDefinedAdmin(admin.ModelAdmin):
     'Aromatics_UD', 'Naphthene_UD', 'IN_IP_Ratio_UD', 'Density_UD', 'IBP_UD', 'FBP_UD', 'quality_Real')
     list_display_links = ('id', )
     search_fields = ('Suction_Tank_No_UD' , '')
+
 
 class Output_Parameter_RunningAdmin(admin.ModelAdmin):
     list_display = ('id', 'Ethylene_RN', 'Propylene_RN', 'RPG_RN', 'C4_Mix_RN', 'Fuel_Gas_RN', 'Benzene_RN', 'BD_RN',
