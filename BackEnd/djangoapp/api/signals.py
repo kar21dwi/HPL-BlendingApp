@@ -2,13 +2,16 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from djangoapp.api.models import Tanks_Overall_Status,Tank,Quality_Avg, New_Naphtha, Receipt_Tank
-from djangoapp.api.models import New_Naphtha_Quality_Lab, Quality_NIR_Actual,Plant_Constraints
-from djangoapp.api.models import Quality_NIR_Pred, Next_Hour_Selection, Input_Parameter_BestFit
-from djangoapp.api.models import Output_Parameter_BestFit, Input_Parameter_ProfitMax, Quality_Real,Output_Parameter_ProfitMax
+from djangoapp.api.models import New_Naphtha_Quality_Lab, Quality_NIR_Actual,Plant_Constraints, Output_Parameter_Running
+from djangoapp.api.models import Quality_NIR_Pred, Next_Hour_Selection, Input_Parameter_BestFit, Input_Parameter_UserDefined, Output_Parameter_UserDefined
+from djangoapp.api.models import Output_Parameter_BestFit, Input_Parameter_ProfitMax, Quality_Real,Output_Parameter_ProfitMax, Input_Parameter_Running, Model_Output_Parameter_Running
 from djangoapp.dlmodels.qualityreal import Quality_Real_Model
 from djangoapp.dlmodels.bestfit import Best_Fit_Model
+from djangoapp.dlmodels.runningmodeloutput import Running_Model_Output
 from djangoapp.dlmodels.profitmax import Profit_Max_Model
+from djangoapp.dlmodels.userdefined import User_Defined_Model
 import numpy
+import random
 
 #create all signals
 
@@ -18,10 +21,14 @@ def update_tank_overall(sender, instance, **kwargs):
 
    old_obj_next_hr = Next_Hour_Selection.objects.all().order_by('-id')[0]
    parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[1]
-   '''
+   
    if old_obj_next_hr.U_D == True:
-        #hjkhkjh
-        '''
+        userdefined = Input_Parameter_UserDefined.objects.filter(tanks_Overall_Status = parent_obj , Confirmation = True).get()
+
+        Tanks_Overall_Status.objects.filter(pk=instance.id).update(Suction_Tank_No_RN = userdefined.Suction_Tank_No_UD,
+                                            Blending_Tank_No_RN = userdefined.Blending_Tank_No_UD, 
+                                            Blend_Ratio_RN = userdefined.Blend_Ratio_UD)       
+        
    if old_obj_next_hr.B_F == True:
        bestfit = Input_Parameter_BestFit.objects.filter(plant_Constraints = Plant_Constraints.objects.filter(tanks_Overall_Status = parent_obj).get()).get()
 
@@ -34,12 +41,15 @@ def update_tank_overall(sender, instance, **kwargs):
 
         Tanks_Overall_Status.objects.filter(pk=instance.id).update(Suction_Tank_No_RN = profitmax.Suction_Tank_No_PM,
                                             Blending_Tank_No_RN = profitmax.Blending_Tank_No_PM, 
-                                            SBlend_Ratio_RN = profitmax.Blend_Ratio_PM)       
-'''
-   else:
-       old_obj_next_hr.R_N == True:
+                                            Blend_Ratio_RN = profitmax.Blend_Ratio_PM)       
+
+   if old_obj_next_hr.R_N == True:
+        
+        Tanks_Overall_Status.objects.filter(pk=instance.id).update(Suction_Tank_No_RN = parent_obj.Suction_Tank_No_RN,
+                                            Blending_Tank_No_RN = parent_obj.Blending_Tank_No_RN, 
+                                            Blend_Ratio_RN = parent_obj.Blend_Ratio_RN)   
        
-'''
+
 #Signals for Tanks Overall Status
 @receiver(post_save, sender=Tanks_Overall_Status)
 def save_tank(sender, instance, **kwargs):
@@ -314,10 +324,214 @@ def save_best_fit_output(sender, instance, **kwargs):
 
 #Output Perameters for the Profit_Max Class
 @receiver(post_save, sender = Input_Parameter_ProfitMax)
-def save_best_fit_output(sender, instance, **kwargs):
+def save_profit_max_output(sender, instance, **kwargs):
 
     output = Profit_Max_Model.profit_max_model_output(instance)
 
     Output_Parameter_ProfitMax.objects.create(Ethylene_PM = output[0], Propylene_PM = output[1], RPG_PM = output[2],
                                               Benzene_PM = output[3],C4_Mix_PM = output[4], Fuel_Gas_PM = output[5], BD_PM = output[6],
                                               input_Parameter_ProfitMax = instance)    
+
+
+#Signals for the Input parameter userdDefine Class
+@receiver(post_save, sender = Input_Parameter_UserDefined)
+def save_user_defined_input(sender, instance, **kwargs):
+
+    parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+    suctiontank = instance.Suction_Tank_No_UD
+    blendingtank = instance.Blending_Tank_No_UD
+    br = instance.Blend_Ratio_UD
+    tank_obj_s = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = suctiontank).get()
+    tank_obj_b = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = blendingtank).get()
+
+    tank_obj_s_qr = Quality_Real.objects.filter(tank = tank_obj_s).get()
+    tank_obj_b_br = Quality_Real.objects.filter(tank = tank_obj_b).get()
+
+    tank_obj_s_qa = Quality_Avg.objects.filter(tank = tank_obj_s).get()
+    tank_obj_b_ba = Quality_Avg.objects.filter(tank = tank_obj_b).get()
+
+    paraffin = tank_obj_s_qr.Paraffin_Real*br + tank_obj_b_br.Paraffin_Real*(1-br)
+    aromatics = tank_obj_s_qr.Aromatics_Real*br + tank_obj_b_br.Aromatics_Real*(1-br)
+    density = tank_obj_s_qr.Density_Real*br + tank_obj_b_br.Density_Real*(1-br)
+    inipratio = tank_obj_s_qr.IN_IP_Ratio_Real*br + tank_obj_b_br.IN_IP_Ratio_Real*(1-br)
+
+    olefins = tank_obj_s_qa.Olefins*br + tank_obj_b_ba.Olefins*(1-br)
+    naphthene = tank_obj_s_qa.Naphthene*br + tank_obj_b_ba.Naphthene*(1-br)
+    ibp = tank_obj_s_qa.IBP*br + tank_obj_b_ba.IBP*(1-br)
+    fbp = tank_obj_s_qa.FBP*br + tank_obj_b_ba.FBP*(1-br)
+
+    Input_Parameter_UserDefined.objects.filter(pk=instance.id).update(Paraffin_UD = paraffin, 
+                                               Olefins_UD = olefins,Aromatics_UD = aromatics, 
+                                               Naphthene_UD = naphthene,
+                                               Density_UD = density, IBP_UD = ibp, FBP_UD = fbp, 
+                                               tanks_Overall_Status = parent_obj)  
+
+
+#Input Perameter for the User Defined Class
+@receiver(post_save, sender = Input_Parameter_UserDefined)
+def save_user_defined_output(sender, instance, **kwargs):
+
+    if instance.Confirmation == False:
+
+        parent_obj = Input_Parameter_UserDefined.objects.all().order_by('-id')[0]
+    
+        output = User_Defined_Model.user_defined_model_output(parent_obj)
+
+        Output_Parameter_UserDefined.objects.create(Ethylene_UD= output[0], Propylene_UD = output[1], RPG_UD = output[2],
+                                                    Benzene_UD = output[3],C4_Mix_UD = output[4], Fuel_Gas_UD = output[5], BD_UD = output[6],
+                                                    input_Parameter_UserDefined = instance) 
+
+
+#signals for the update next hour selection
+@receiver(post_save, sender = Input_Parameter_UserDefined)
+def update_next_hr_selection(sender, instance, **kwargs):
+
+    if instance.Confirmation == True:
+
+        parent_obj = Next_Hour_Selection.objects.all().order_by('-id')[0]
+
+        Next_Hour_Selection.objects.filter(pk=parent_obj.id).update(U_D = True, R_N = False,
+                                                                    B_F = False, P_M = False)
+
+
+#signalsfor the Input_Parameter_Running
+@receiver(post_save, sender = Next_Hour_Selection)
+def save_input_parameter_running(sender, instance, **kwargs):
+    if not (Input_Parameter_Running.objects.filter(tanks_Overall_Status = instance.tanks_Overall_Status).exists()):
+
+        parent_obj = instance.tanks_Overall_Status
+        previoushr = Next_Hour_Selection.objects.all().order_by('-id')[1]
+    
+        if previoushr.B_F == True:
+
+            bf = Input_Parameter_BestFit.objects.all().order_by('-id')[1]
+            totalload = bf.Naphtha_Load_BF + bf.LPG_Load_BF + bf.C5_Load_BF + bf.C6_Load_BF
+            Input_Parameter_Running.objects.create(IN_IP_Ratio_RN = bf.IN_IP_Ratio_BF,
+                                                Naphtha_Load_RN = bf.Naphtha_Load_BF, LPG_Load_RN = bf.LPG_Load_BF, 
+                                                C5_Load_RN = bf.C5_Load_BF, C6_Load_RN = bf.C6_Load_BF,
+                                                Naphtha_Heater_RN = bf.Naphtha_Heater_BF, COT_RN = bf.COT_BF, 
+                                                GF_PDI_RN = bf.GF_PDI_BF, Suc_Pressure_RN = bf.Suc_Pressure_BF, 
+                                                Total_Load_RN = totalload, Paraffin_RN = bf.Paraffin_BF, Olefins_RN = bf.Olefins_BF, 
+                                                Aromatics_RN = bf.Aromatics_BF, Naphthene_RN = bf.Naphthene_BF,
+                                                Density_RN = bf.Density_BF,IBP_RN = bf.IBP_BF,FBP_RN = bf.FBP_BF, 
+                                                tanks_Overall_Status = parent_obj)
+        
+        if previoushr.P_M == True:
+
+            pm = Input_Parameter_ProfitMax.objects.all().order_by('-id')[1]
+            totalload = pm.Naphtha_Load_PM + pm.LPG_Load_PM + pm.C5_Load_PM + pm.C6_Load_PM
+            Input_Parameter_Running.objects.create(IN_IP_Ratio_RN = pm.IN_IP_Ratio_PM,
+                                                Naphtha_Load_RN = pm.Naphtha_Load_PM, LPG_Load_RN = pm.LPG_Load_PM, 
+                                                C5_Load_RN = pm.C5_Load_PM, C6_Load_RN = pm.C6_Load_PM,
+                                                Naphtha_Heater_RN = pm.Naphtha_Heater_PM, COT_RN = pm.COT_PM, 
+                                                GF_PDI_RN = pm.GF_PDI_PM, Suc_Pressure_RN = pm.Suc_Pressure_PM,
+                                                Total_Load_RN = totalload, Paraffin_RN = pm.Paraffin_PM, Olefins_RN = pm.Olefins_PM, 
+                                                Aromatics_RN = pm.Aromatics_PM, Naphthene_RN = pm.Naphthene_PM,
+                                                Density_RN = pm.Density_PM, IBP_RN = pm.IBP_PM, FBP_RN = pm.FBP_PM, 
+                                                tanks_Overall_Status = parent_obj)
+
+            
+        if previoushr.U_D == True:
+
+            tankoverall = Tanks_Overall_Status.objects.all().order_by('-id')[1]
+            ud = Input_Parameter_UserDefined.objects.filter(confirmation = True, tanks_Overall_Status = tankoverall).get()
+            totalload = ud.Naphtha_Load_UD + ud.LPG_Load_UD + ud.C5_Load_UD + ud.C6_Load_UD
+            Input_Parameter_Running.objects.create(IN_IP_Ratio_RN = ud.IN_IP_Ratio_UD,
+                                                   Naphtha_Load_RN = ud.Naphtha_Load_UD, LPG_Load_RN = ud.LPG_Load_UD, 
+                                                   C5_Load_RN = ud.C5_Load_UD, C6_Load_RN = ud.C6_Load_UD,
+                                                   Naphtha_Heater_RN = ud.Naphtha_Heater_UD, COT_RN = ud.COT_UD, 
+                                                   GF_PDI_RN = ud.GF_PDI_UD, Suc_Pressure_RN = ud.Suc_Pressure_UD,
+                                                   Total_Load_RN = totalload, Paraffin_RN = ud.Paraffin_UD, Olefins_RN = ud.Olefins_UD, 
+                                                   Aromatics_RN = ud.Aromatics_UD, Naphthene_RN = ud.Naphthene_UD,
+                                                   Density_RN = ud.Density_UD, IBP_RN = ud.IBP_UD, FBP_RN = ud.FBP_ud, 
+                                                tanks_Overall_Status = parent_obj)
+
+        if previoushr.R_N == True:
+        
+            rn = Input_Parameter_Running.objects.all().order_by('-id')[0]
+            totalload = rn.Naphtha_Load_RN + rn.LPG_Load_RN + rn.C5_Load_RN + rn.C6_Load_RN
+            parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+            #   oldoverallstatus = Tanks_Overall_Status.objects.all().order_by('-id')[1]
+
+            suctiontank = parent_obj.Suction_Tank_No_RN
+            blendingtank = parent_obj.Blending_Tank_No_RN
+            br = parent_obj.Blend_Ratio_RN
+
+            tank_obj_s = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = suctiontank).get()
+            tank_obj_b = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = blendingtank).get()
+
+            tank_obj_s_qr = Quality_Real.objects.filter(tank = tank_obj_s).get()
+            tank_obj_b_br = Quality_Real.objects.filter(tank = tank_obj_b).get()
+
+            tank_obj_s_qa = Quality_Avg.objects.filter(tank = tank_obj_s).get()
+            tank_obj_b_ba = Quality_Avg.objects.filter(tank = tank_obj_b).get()
+
+            paraffin = tank_obj_s_qr.Paraffin_Real*br + tank_obj_b_br.Paraffin_Real*(1-br)
+            aromatics = tank_obj_s_qr.Aromatics_Real*br + tank_obj_b_br.Aromatics_Real*(1-br)
+            density = tank_obj_s_qr.Density_Real*br + tank_obj_b_br.Density_Real*(1-br)
+            inipratio = tank_obj_s_qr.IN_IP_Ratio_Real*br + tank_obj_b_br.IN_IP_Ratio_Real*(1-br)
+
+            olefins = tank_obj_s_qa.Olefins*br + tank_obj_b_ba.Olefins*(1-br)
+            naphthene = tank_obj_s_qa.Naphthene*br + tank_obj_b_ba.Naphthene*(1-br)
+            ibp = tank_obj_s_qa.IBP*br + tank_obj_b_ba.IBP*(1-br)
+            fbp = tank_obj_s_qa.FBP*br + tank_obj_b_ba.FBP*(1-br)            
+
+            Input_Parameter_Running.objects.create(IN_IP_Ratio_RN = inipratio,
+                                                   Naphtha_Load_RN = rn.Naphtha_Load_RN, LPG_Load_RN = rn.LPG_Load_RN, 
+                                                   C5_Load_RN = rn.C5_Load_RN, C6_Load_RN = rn.C6_Load_RN,
+                                                   Naphtha_Heater_RN = rn.Naphtha_Heater_RN, COT_RN = rn.COT_RN, 
+                                                   GF_PDI_RN = rn.GF_PDI_RN, Suc_Pressure_RN = rn.Suc_Pressure_RN,
+                                                   Total_Load_RN = totalload, Paraffin_RN = paraffin, Olefins_RN = aromatics, 
+                                                   Aromatics_RN = aromatics, Naphthene_RN = naphthene,
+                                                   Density_RN = density, IBP_RN = ibp, FBP_RN = fbp, 
+                                                   tanks_Overall_Status = parent_obj)
+
+
+#signals for the output parameter running
+@receiver(post_save, sender = Input_Parameter_Running)
+def save_output_parameter_running(sender, instance, **kwargs):
+
+    output = [0] * 7
+    output = random.sample(range(10, 100), 7)
+
+    Output_Parameter_Running.objects.create(Ethylene_RN = output[0], Propylene_RN = output[1], RPG_RN = output[2],
+                                            Benzene_RN = output[3], C4_Mix_RN = output[4], Fuel_Gas_RN = output[5],
+                                            BD_RN = output[6], input_Parameter_Running = instance)      
+
+
+
+
+#Output Perameters for the Running model 
+@receiver(post_save, sender = Next_Hour_Selection)
+def save_model_output_parameter_running(sender, instance, **kwargs):
+
+    if not (Model_Output_Parameter_Running.objects.filter(next_Hour_Selection = instance).exists()):
+
+        old_obj = Next_Hour_Selection.objects.all().order_by('-id')[1]
+
+        if old_obj.R_N == True:
+
+            output = Running_Model_Output.running_model_output(instance)
+
+            Model_Output_Parameter_Running.objects.create(Ethylene_RN_MO = output[0], Propylene_RN_MO = output[1], RPG_RN_MO = output[2],
+                                                        Benzene_RN_MO = output[3], C4_Mix_RN_MO = output[4], Fuel_Gas_RN_MO = output[5], BD_RN_MO = output[6],
+                                                        next_Hour_Selection = old_obj)  
+
+
+#Output Perameters for the 
+@receiver(post_save, sender = Output_Parameter_Running)
+def output_comparasion(sender, instance, **kwargs):
+
+    parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[3]
+    nexthr_old_obj = Next_Hour_Selection.objects.filter().get(tanks_Overall_Status = parent_obj)
+
+    if nexthr_old_obj.B_F == True:
+    
+        plantconstraints = Plant_Constraints.objects.filter(tanks_Overall_Status = parent_obj).get()
+        inputbf = Input_Parameter_BestFit.objects.filter(plant_Constraints = plantconstraints).get()
+
+        inputparameter = Input_Parameter_Running.objects.all().order_by('-id')[2]
+        modeloutput = Output_Parameter_BestFit.objects.filter(input_Parameter_BestFit = inputbf).get()
+        actualoutput = instance
+    
+    #if nexthr_old_obj.P_M == True:

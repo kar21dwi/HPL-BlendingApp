@@ -2,6 +2,7 @@ from djangoapp.api.models import Tanks_Overall_Status,Tank,Quality_Avg, New_Naph
 from djangoapp.api.models import New_Naphtha_Quality_Lab, Quality_NIR_Actual,Plant_Constraints
 
 import numpy
+import random
 
 
 class Quality_Real_Model():
@@ -28,4 +29,7 @@ class Quality_Real_Model():
         # 
         # 
         
+        for i in range(0,5):
+            output[i] = random.sample(range(10, 100), 4)
+
         return output

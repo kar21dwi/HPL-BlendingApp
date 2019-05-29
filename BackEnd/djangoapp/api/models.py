@@ -231,8 +231,9 @@ class Input_Parameter_UserDefined(models.Model):
     Density_UD = models.FloatField(null=True,blank=True)
     IBP_UD = models.FloatField(null=True,blank=True)
     FBP_UD = models.FloatField(null=True,blank=True)
+    Confirmation = models.BooleanField(default = False)
     #one to one relation with the Quality_Real Class
-    quality_Real = models.OneToOneField(Quality_Real,on_delete = models.CASCADE)
+    tanks_Overall_Status = models.ForeignKey(Tanks_Overall_Status, null=True,blank=True, on_delete = models.CASCADE)
     #Blending_Avg():
     objects = models.Manager()
     class Meta:
@@ -480,6 +481,7 @@ class Naphtha_Plan_Summary(models.Model):
 class Login(models.Model):
     Username = models.CharField(max_length=50)
     Password = models.CharField( max_length=50)
+    test = models.CharField(null=True,blank=True, max_length=50)
     objects = models.Manager()
     class Meta:
        verbose_name_plural = "Login"

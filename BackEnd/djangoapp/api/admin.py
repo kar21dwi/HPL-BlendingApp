@@ -111,10 +111,10 @@ class Input_Parameter_ProfitMaxAdmin(admin.ModelAdmin):
 class Input_Parameter_UserDefinedAdmin(admin.ModelAdmin):
     list_display = ('id', 'Suction_Tank_No_UD', 'Blending_Tank_No_UD', 'Blend_Ratio_UD', 'Naphtha_Load_UD', 'LPG_Load_UD',
     'C5_Load_UD', 'C6_Load_UD', 'Naphtha_Heater_UD', 'COT_UD', 'GF_PDI_UD', 'Suc_Pressure_UD', 'Paraffin_UD', 'Olefins_UD',
-    'Aromatics_UD', 'Naphthene_UD', 'IN_IP_Ratio_UD', 'Density_UD', 'IBP_UD', 'FBP_UD', 'quality_Real')
+    'Aromatics_UD', 'Naphthene_UD', 'IN_IP_Ratio_UD', 'Density_UD', 'IBP_UD', 'FBP_UD', 'Confirmation', 'tanks_Overall_Status')
     list_editable = ('Suction_Tank_No_UD', 'Blending_Tank_No_UD', 'Blend_Ratio_UD', 'Naphtha_Load_UD', 'LPG_Load_UD',
     'C5_Load_UD', 'C6_Load_UD', 'Naphtha_Heater_UD', 'COT_UD', 'GF_PDI_UD', 'Suc_Pressure_UD', 'Paraffin_UD', 'Olefins_UD',
-    'Aromatics_UD', 'Naphthene_UD', 'IN_IP_Ratio_UD', 'Density_UD', 'IBP_UD', 'FBP_UD', 'quality_Real')
+    'Aromatics_UD', 'Naphthene_UD', 'IN_IP_Ratio_UD', 'Density_UD', 'IBP_UD', 'FBP_UD', 'Confirmation', 'tanks_Overall_Status')
     list_display_links = ('id', )
     search_fields = ('Suction_Tank_No_UD' , '')
 
@@ -224,8 +224,8 @@ class Naphtha_Plan_SummaryAdmin(admin.ModelAdmin):
     search_fields = ('Consumption_Total' , '')
 
 class LoginAdmin(admin.ModelAdmin):
-    list_display = ('id', 'Username', 'Password')
-    list_editable = ('Username', 'Password')
+    list_display = ('id', 'Username', 'Password','test')
+    list_editable = ('Username', 'Password','test')
     list_display_links = ('id', )
     search_fields = ('Username' , '')
 

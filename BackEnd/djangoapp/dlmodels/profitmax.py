@@ -4,6 +4,7 @@ from djangoapp.api.models import New_Naphtha_Quality_Lab, Quality_NIR_Actual,Pla
 import numpy
 import random
 
+
 class Profit_Max_Model():
     def profit_max_model_recommendations(instance):
         level = [0] * 5
@@ -29,6 +30,9 @@ class Profit_Max_Model():
         recommendations[0] = 4
         recommendations[1] = 5
         recommendations[2] = .75
+
+        for i in range(3,19):
+            recommendations[i] = random.randint(10,50)
 
         return recommendations
 

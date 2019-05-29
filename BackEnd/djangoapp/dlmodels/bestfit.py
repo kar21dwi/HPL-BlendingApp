@@ -39,6 +39,9 @@ class Best_Fit_Model():
         recommendations[1] = 3
         recommendations[2] = .8
 
+        for i in range(3,19):
+            recommendations[i] = random.randint(10,50)
+
         return recommendations
 
 
