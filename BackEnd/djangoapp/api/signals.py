@@ -2,9 +2,9 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from djangoapp.api.models import Tanks_Overall_Status,Tank,Quality_Avg, New_Naphtha, Receipt_Tank
-from djangoapp.api.models import New_Naphtha_Quality_Lab, Quality_NIR_Actual,Plant_Constraints, Output_Parameter_Running
-from djangoapp.api.models import Quality_NIR_Pred, Next_Hour_Selection, Input_Parameter_BestFit, Input_Parameter_UserDefined, Output_Parameter_UserDefined
-from djangoapp.api.models import Output_Parameter_BestFit, Input_Parameter_ProfitMax, Quality_Real,Output_Parameter_ProfitMax, Input_Parameter_Running, Model_Output_Parameter_Running
+from djangoapp.api.models import New_Naphtha_Quality_Lab, Quality_NIR_Actual,Plant_Constraints, Output_Parameter_Running, Output_Comparision
+from djangoapp.api.models import Quality_NIR_Pred, Next_Hour_Selection, Input_Parameter_BestFit, Input_Parameter_UserDefined, Output_Parameter_UserDefined, Naphtha_Plan_Single_Month, Naphtha_Plan_All_Months
+from djangoapp.api.models import Output_Parameter_BestFit, Input_Parameter_ProfitMax, Quality_Real,Output_Parameter_ProfitMax, Input_Parameter_Running, Model_Output_Parameter_Running, Naphtha_Plan_Summary
 from djangoapp.dlmodels.qualityreal import Quality_Real_Model
 from djangoapp.dlmodels.bestfit import Best_Fit_Model
 from djangoapp.dlmodels.runningmodeloutput import Running_Model_Output
@@ -12,6 +12,8 @@ from djangoapp.dlmodels.profitmax import Profit_Max_Model
 from djangoapp.dlmodels.userdefined import User_Defined_Model
 import numpy
 import random
+import datetime
+
 
 #create all signals
 
@@ -434,7 +436,7 @@ def save_input_parameter_running(sender, instance, **kwargs):
         if previoushr.U_D == True:
 
             tankoverall = Tanks_Overall_Status.objects.all().order_by('-id')[1]
-            ud = Input_Parameter_UserDefined.objects.filter(confirmation = True, tanks_Overall_Status = tankoverall).get()
+            ud = Input_Parameter_UserDefined.objects.filter(Confirmation = True, tanks_Overall_Status = tankoverall).get()
             totalload = ud.Naphtha_Load_UD + ud.LPG_Load_UD + ud.C5_Load_UD + ud.C6_Load_UD
             Input_Parameter_Running.objects.create(IN_IP_Ratio_RN = ud.IN_IP_Ratio_UD,
                                                    Naphtha_Load_RN = ud.Naphtha_Load_UD, LPG_Load_RN = ud.LPG_Load_UD, 
@@ -443,8 +445,8 @@ def save_input_parameter_running(sender, instance, **kwargs):
                                                    GF_PDI_RN = ud.GF_PDI_UD, Suc_Pressure_RN = ud.Suc_Pressure_UD,
                                                    Total_Load_RN = totalload, Paraffin_RN = ud.Paraffin_UD, Olefins_RN = ud.Olefins_UD, 
                                                    Aromatics_RN = ud.Aromatics_UD, Naphthene_RN = ud.Naphthene_UD,
-                                                   Density_RN = ud.Density_UD, IBP_RN = ud.IBP_UD, FBP_RN = ud.FBP_ud, 
-                                                tanks_Overall_Status = parent_obj)
+                                                   Density_RN = ud.Density_UD, IBP_RN = ud.IBP_UD, FBP_RN = ud.FBP_UD, 
+                                                   tanks_Overall_Status = parent_obj)
 
         if previoushr.R_N == True:
         
@@ -495,8 +497,8 @@ def save_output_parameter_running(sender, instance, **kwargs):
     output = random.sample(range(10, 100), 7)
 
     Output_Parameter_Running.objects.create(Ethylene_RN = output[0], Propylene_RN = output[1], RPG_RN = output[2],
-                                            Benzene_RN = output[3], C4_Mix_RN = output[4], Fuel_Gas_RN = output[5],
-                                            BD_RN = output[6], input_Parameter_Running = instance)      
+                                            Benzene_RN = output[3], C4_Mix_RN = output[4], Fuel_Gas_RN = output[5], BD_RN = output[6],
+                                            input_Parameter_Running = instance)      
 
 
 
@@ -505,24 +507,24 @@ def save_output_parameter_running(sender, instance, **kwargs):
 @receiver(post_save, sender = Next_Hour_Selection)
 def save_model_output_parameter_running(sender, instance, **kwargs):
 
-    if not (Model_Output_Parameter_Running.objects.filter(next_Hour_Selection = instance).exists()):
-
-        old_obj = Next_Hour_Selection.objects.all().order_by('-id')[1]
+    old_obj = Next_Hour_Selection.objects.all().order_by('-id')[1]
+    if not (Model_Output_Parameter_Running.objects.filter(next_Hour_Selection = instance).exists() or Model_Output_Parameter_Running.objects.filter(next_Hour_Selection = old_obj).exists()):
 
         if old_obj.R_N == True:
 
             output = Running_Model_Output.running_model_output(instance)
 
             Model_Output_Parameter_Running.objects.create(Ethylene_RN_MO = output[0], Propylene_RN_MO = output[1], RPG_RN_MO = output[2],
-                                                        Benzene_RN_MO = output[3], C4_Mix_RN_MO = output[4], Fuel_Gas_RN_MO = output[5], BD_RN_MO = output[6],
-                                                        next_Hour_Selection = old_obj)  
+                                                          Benzene_RN_MO = output[3], C4_Mix_RN_MO = output[4], Fuel_Gas_RN_MO = output[5], BD_RN_MO = output[6],
+                                                          next_Hour_Selection = old_obj)  
 
 
-#Output Perameters for the 
+#Output Perameters for the output comparasion class
 @receiver(post_save, sender = Output_Parameter_Running)
-def output_comparasion(sender, instance, **kwargs):
+def save_output_comparasion(sender, instance, **kwargs):
 
     parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[3]
+    parent_obj_next = Tanks_Overall_Status.objects.all().order_by('-id')[2]
     nexthr_old_obj = Next_Hour_Selection.objects.filter().get(tanks_Overall_Status = parent_obj)
 
     if nexthr_old_obj.B_F == True:
@@ -533,5 +535,204 @@ def output_comparasion(sender, instance, **kwargs):
         inputparameter = Input_Parameter_Running.objects.all().order_by('-id')[2]
         modeloutput = Output_Parameter_BestFit.objects.filter(input_Parameter_BestFit = inputbf).get()
         actualoutput = instance
+
+        output = [0] * 7
+
+        output[0] = modeloutput.Ethylene_BF
+        output[1] = modeloutput.Propylene_BF
+        output[2] = modeloutput.RPG_BF
+        output[3] = modeloutput.C4_Mix_BF
+        output[4] = modeloutput.Fuel_Gas_BF
+        output[5] = modeloutput.Benzene_BF
+        output[6] = modeloutput.BD_BF
     
-    #if nexthr_old_obj.P_M == True:
+    if nexthr_old_obj.P_M == True:
+
+        inputpm = Input_Parameter_ProfitMax.objects.filter(tanks_Overall_Status = parent_obj).get()
+
+        inputparameter = Input_Parameter_Running.objects.all().order_by('-id')[2]
+        modeloutput = Output_Parameter_ProfitMax.objects.filter(input_Parameter_ProfitMax = inputpm).get()
+        actualoutput = instance
+
+        output = [0] * 7
+
+        output[0] = modeloutput.Ethylene_PM
+        output[1] = modeloutput.Propylene_PM
+        output[2] = modeloutput.RPG_PM
+        output[3] = modeloutput.C4_Mix_PM
+        output[4] = modeloutput.Fuel_Gas_PM
+        output[5] = modeloutput.Benzene_PM
+        output[6] = modeloutput.BD_PM
+
+    if nexthr_old_obj.U_D == True:
+    
+        inputud = Input_Parameter_UserDefined.objects.filter(tanks_Overall_Status = parent_obj, Confirmation = True).get()
+
+        inputparameter = Input_Parameter_Running.objects.all().order_by('-id')[2]
+        modeloutput = Output_Parameter_UserDefined.objects.filter(input_Parameter_UserDefined = inputud).get()
+        actualoutput = instance
+
+        output = [0] * 7
+
+        output[0] = modeloutput.Ethylene_UD
+        output[1] = modeloutput.Propylene_UD
+        output[2] = modeloutput.RPG_UD
+        output[3] = modeloutput.C4_Mix_UD
+        output[4] = modeloutput.Fuel_Gas_UD
+        output[5] = modeloutput.Benzene_UD
+        output[6] = modeloutput.BD_UD
+
+    if nexthr_old_obj.R_N == True:
+        
+        inputrn = Input_Parameter_Running.objects.filter(tanks_Overall_Status = parent_obj).get()
+
+        inputparameter = Input_Parameter_Running.objects.all().order_by('-id')[2]
+       
+        modeloutput = Model_Output_Parameter_Running.objects.filter(next_Hour_Selection = nexthr_old_obj).get()
+        actualoutput = instance
+
+        output = [0] * 7
+
+        output[0] = modeloutput.Ethylene_RN_MO
+        output[1] = modeloutput.Propylene_RN_MO
+        output[2] = modeloutput.RPG_RN_MO
+        output[3] = modeloutput.C4_Mix_RN_MO
+        output[4] = modeloutput.Fuel_Gas_RN_MO
+        output[5] = modeloutput.Benzene_RN_MO
+        output[6] = modeloutput.BD_RN_MO
+
+    Output_Comparision.objects.create(Total_Load = inputparameter.Total_Load_RN, Naphtha_Load = inputparameter.Naphtha_Load_RN , 
+                                      LPG_Load = inputparameter.LPG_Load_RN, C5_Load = inputparameter.C5_Load_RN, C6_Load = inputparameter.C6_Load_RN,
+                                      Naphtha_Heater = inputparameter.Naphtha_Heater_RN , COT = inputparameter.COT_RN,
+                                      GF_PDI = inputparameter.GF_PDI_RN, Suc_Pressure = inputparameter.Suc_Pressure_RN, Paraffin = inputparameter.Paraffin_RN, 
+                                      Olefins = inputparameter.Olefins_RN, Aromatics = inputparameter.Aromatics_RN, 
+                                      Naphthene = inputparameter.Naphthene_RN, Density = inputparameter.Density_RN, 
+                                      IBP = inputparameter.IBP_RN, FBP = inputparameter.FBP_RN, IN_IP_Ratio = inputparameter.IN_IP_Ratio_RN,
+                                      Suction_Tank_No = parent_obj_next.Suction_Tank_No_RN, Blending_Tank_No = parent_obj_next.Blending_Tank_No_RN, 
+                                      Blend_Ratio = parent_obj_next.Blend_Ratio_RN, Ethylene_Actual = actualoutput.Ethylene_RN,
+                                      Propylene_Actual = actualoutput.Propylene_RN, RPG_Actual = actualoutput.RPG_RN,
+                                      C4_Mix_Actual = actualoutput.C4_Mix_RN, Fuel_Gas_Actual = actualoutput.Fuel_Gas_RN, 
+                                      Benzene_Actual = actualoutput.Benzene_RN, BD_Actual = actualoutput.BD_RN,
+                                      Ethylene_Predicted = output[0], Propylene_Predicted = output[1] , RPG_Predicted =  output[2],
+                                      C4_Mix_Predicted = output[3],  Fuel_Gas_Predicted = output[4],  Benzene_Predicted = output[5],
+                                      BD_Predicted = output[6], output_Parameter_Running = instance )
+
+
+#Output Perameters for the output comparasion class
+@receiver(post_save, sender = Naphtha_Plan_Single_Month)
+def save_output_comparasion(sender, instance, **kwargs):
+
+
+
+    date = instance.Date 
+    date = date.strftime("%Y-%m-%d")
+    month = datetime.datetime.strptime(date, "%Y-%m-%d").month
+    year = datetime.datetime.strptime(date, "%Y-%m-%d").year
+
+
+
+    array = Naphtha_Plan_All_Months.objects.all()
+
+    flag = True
+    for i in range(0,len(array)):
+        M = datetime.datetime.strptime(array[i].Month_Year.strftime("%Y-%m-%d"), "%Y-%m-%d").month
+        Y = datetime.datetime.strptime(array[i].Month_Year.strftime("%Y-%m-%d"), "%Y-%m-%d").year
+        if M == month and Y == year:
+            flag = False
+
+    if flag:
+
+        Naphtha_Plan_All_Months.objects.create( Month_Year = date)
+
+    array = Naphtha_Plan_All_Months.objects.all()
+    for i in range(0,len(array)):
+        M = datetime.datetime.strptime(array[i].Month_Year.strftime("%Y-%m-%d"), "%Y-%m-%d").month
+        Y = datetime.datetime.strptime(array[i].Month_Year.strftime("%Y-%m-%d"), "%Y-%m-%d").year
+        if M == month and Y == year: 
+
+            Naphtha_Plan_Single_Month.objects.filter(pk=instance.id).update(Actual_NCU_TPD = 24*instance.Actual_NCU_TPH, 
+                                                Budget_NCU_TPD = 24*instance.Budget_NCU_TPH,
+                                                naphtha_Plan_All_Months = array[i])        
+
+##Summary
+
+    instance = Naphtha_Plan_Single_Month.objects.all().order_by('-id')[0]
+
+    if (Naphtha_Plan_Summary.objects.filter(naphtha_Plan_All_Months = instance.naphtha_Plan_All_Months).exists()):
+
+        
+        obj = Naphtha_Plan_Summary.objects.filter(naphtha_Plan_All_Months = instance.naphtha_Plan_All_Months).get()
+        consumptionncu = obj.Consumption_NCU + instance.Actual_NCU_TPD
+        consumptioncpp = obj.Consumption_CPP + instance.Actual_CPP_TPD
+        consumptiontotal = consumptionncu + consumptioncpp
+        procurement_ADNOC = 0; procurement_IOC = 0; procurement_BPCL = 0; procurement_HPCL = 0; procurement_KPC = 0; procurement_SPOT = 0
+        if instance.Source == "ADNOC":
+            procurement_ADNOC = obj.Procurement_ADNOC + instance.Quantity
+        if instance.Source == "IOC":
+            procurement_IOC = obj.Procurement_IOC + instance.Quantity
+        if instance.Source == "BPCL":
+            procurement_BPCL = obj.Procurement_BPCL + instance.Quantity
+        if instance.Source == "HPCL":
+            procurement_HPCL = obj.Procurement_HPCL + instance.Quantity
+        if instance.Source == "KPC":
+            procurement_KPC = obj.Procurement_KPC + instance.Quantity
+        if instance.Source == "SPOT":
+            procurement_SPOT = obj.Procurement_SPOT + instance.Quantity
+        procurementtotal = procurement_ADNOC + procurement_IOC + procurement_BPCL + procurement_HPCL + procurement_KPC +procurement_SPOT
+            #
+            
+        arraythismonth = Naphtha_Plan_Single_Month.objects.filter(naphtha_Plan_All_Months = instance.naphtha_Plan_All_Months)
+        days = len(arraythismonth)
+        stock = [0] * days
+        for i in range(0,days):
+            stock[i] = arraythismonth[i].Total_Stock  
+
+        mini = min(stock)
+        maxa = max(stock)
+            #
+        avgstock = obj.Avg_Stock + instance.Total_Stock/days
+        Max_Stock = maxa
+        Min_Stock = mini
+
+        opening_stock = arraythismonth[0].Total_Stock
+        closing_stock = arraythismonth[days-1].Total_Stock
+            
+        Naphtha_Plan_Summary.objects.filter(pk=obj.id).update(Consumption_Total = consumptiontotal, 
+                                            Consumption_NCU  = consumptionncu, Consumption_CPP = consumptioncpp, 
+                                            Procurement_Total = procurementtotal, Procurement_ADNOC = procurement_ADNOC,
+                                            Procurement_IOC = procurement_IOC,  Procurement_BPCL = procurement_BPCL,
+                                            Procurement_HPCL = procurement_HPCL, Procurement_KPC = procurement_KPC,  
+                                            Procurement_SPOT = procurement_SPOT, Opening_Stock = opening_stock,
+                                            Closing_Stock = closing_stock, Avg_Stock = avgstock,  Min_Stock = Min_Stock,  
+                                            Max_Stock = Max_Stock) 
+
+    else:
+
+        consumptiontotal = instance.Actual_NCU_TPD +  instance.Actual_CPP_TPD
+        procurement_ADNOC = 0; procurement_IOC = 0; procurement_BPCL = 0; procurement_HPCL = 0; procurement_KPC = 0; procurement_SPOT = 0
+        if instance.Source == "ADNOC":
+            procurement_ADNOC = instance.Quantity
+        if instance.Source == "IOC":
+            procurement_IOC = instance.Quantity
+        if instance.Source == "BPCL":
+            procurement_BPCL = instance.Quantity
+        if instance.Source == "HPCL":
+            procurement_HPCL = instance.Quantity
+        if instance.Source == "KPC":
+            procurement_KPC = instance.Quantity
+        if instance.Source == "SPOT":
+            procurement_SPOT = instance.Quantity
+
+        procurementtotal = procurement_ADNOC + procurement_IOC + procurement_BPCL + procurement_HPCL + procurement_KPC +procurement_SPOT
+        
+        
+        Naphtha_Plan_Summary.objects.create(Consumption_Total = consumptiontotal, Consumption_NCU  = instance.Actual_NCU_TPD, Consumption_CPP = instance.Actual_CPP_TPD, 
+                                            Procurement_Total = procurementtotal, Procurement_ADNOC = procurement_ADNOC,
+                                            Procurement_IOC = procurement_IOC,  Procurement_BPCL = procurement_BPCL,
+                                            Procurement_HPCL = procurement_HPCL, Procurement_KPC = procurement_KPC,  
+                                            Procurement_SPOT = procurement_SPOT, Opening_Stock = instance.Total_Stock,
+                                            Closing_Stock = instance.Total_Stock, Avg_Stock = instance.Total_Stock,
+                                            Min_Stock = instance.Total_Stock, Max_Stock = instance.Total_Stock, 
+                                            naphtha_Plan_All_Months = instance.naphtha_Plan_All_Months) 
+
+     

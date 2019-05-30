@@ -207,18 +207,18 @@ class Naphtha_Plan_All_MonthsAdmin(admin.ModelAdmin):
 
 class Naphtha_Plan_Single_MonthAdmin(admin.ModelAdmin):
     list_display = ('id', 'Date', 'Total_Stock', 'Usable_Stock', 'Source', 'Quantity', 'Actual_NCU_TPH', 'Budget_NCU_TPH',
-    'Actual_CPP_TPD', 'Budget_CPP_TPD', 'Draft_Level', 'naphtha_Plan_All_Months')
+    'Actual_CPP_TPD', 'Budget_CPP_TPD', 'Draft_Level', 'Actual_NCU_TPD', 'Budget_NCU_TPD', 'naphtha_Plan_All_Months')
     list_editable = ('Date', 'Total_Stock', 'Usable_Stock', 'Source', 'Quantity', 'Actual_NCU_TPH', 'Budget_NCU_TPH',
-    'Actual_CPP_TPD', 'Budget_CPP_TPD', 'Draft_Level', 'naphtha_Plan_All_Months')
+    'Actual_CPP_TPD', 'Budget_CPP_TPD', 'Draft_Level', 'Actual_NCU_TPD', 'Budget_NCU_TPD', 'naphtha_Plan_All_Months')
     list_display_links = ('id', )
     search_fields = ('Date' , '')
 
 class Naphtha_Plan_SummaryAdmin(admin.ModelAdmin):
     list_display = ('id', 'Consumption_Total', 'Consumption_NCU', 'Consumption_CPP', 'Procurement_Total', 'Procurement_ADNOC',
-    'Procurement_IOC', 'Procurement_BPCL', 'Procurement_HPCL', 'Procurement_KPC', 'Procurement_SPOT', 'Total_Stock',
+    'Procurement_IOC', 'Procurement_BPCL', 'Procurement_HPCL', 'Procurement_KPC', 'Procurement_SPOT',
     'Opening_Stock', 'Closing_Stock', 'Avg_Stock', 'Min_Stock', 'Max_Stock', 'naphtha_Plan_All_Months')
     list_editable = ('Consumption_Total', 'Consumption_NCU', 'Consumption_CPP', 'Procurement_Total', 'Procurement_ADNOC',
-    'Procurement_IOC', 'Procurement_BPCL', 'Procurement_HPCL', 'Procurement_KPC', 'Procurement_SPOT', 'Total_Stock',
+    'Procurement_IOC', 'Procurement_BPCL', 'Procurement_HPCL', 'Procurement_KPC', 'Procurement_SPOT',
     'Opening_Stock', 'Closing_Stock', 'Avg_Stock', 'Min_Stock', 'Max_Stock', 'naphtha_Plan_All_Months')
     list_display_links = ('id', )
     search_fields = ('Consumption_Total' , '')

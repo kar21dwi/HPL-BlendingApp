@@ -314,7 +314,7 @@ class Output_Comparision(models.Model):
     Olefins = models.FloatField() 
     Aromatics = models.FloatField()
     Naphthene = models.FloatField()
-    IN_IP_Ratio = models.FloatField()
+    IN_IP_Ratio = models.FloatField(null=True,blank=True)
     Density = models.FloatField()
     IBP = models.FloatField(null=True,blank=True)
     FBP = models.FloatField(null=True,blank=True)
@@ -439,14 +439,17 @@ class Naphtha_Plan_Single_Month(models.Model):
     Usable_Stock = models.IntegerField()
     Source= models.CharField(max_length = 50)
     Quantity = models.IntegerField()
-    Actual_NCU_TPH = models.IntegerField()
-    Budget_NCU_TPH = models.IntegerField()
-    Actual_CPP_TPD = models.IntegerField()
-    Budget_CPP_TPD = models.IntegerField()
+    Actual_NCU_TPH = models.IntegerField(default = 238) 
+    Budget_NCU_TPH = models.IntegerField(default = 238)
+    Actual_CPP_TPD = models.IntegerField(default = 228)
+    Budget_CPP_TPD = models.IntegerField(default = 228)
     Draft_Level = models.IntegerField()
     #Foreignkey relation with the naphtha_Plan_All_Months
-    naphtha_Plan_All_Months = models.ForeignKey(Naphtha_Plan_All_Months,on_delete =models.CASCADE)
+    naphtha_Plan_All_Months = models.ForeignKey(Naphtha_Plan_All_Months,null=True,blank=True, on_delete =models.CASCADE)
     #Total_Consumption():
+    #calculated_Field
+    Actual_NCU_TPD = models.IntegerField(null=True,blank=True) 
+    Budget_NCU_TPD = models.IntegerField(null=True,blank=True)
     #Total_Procurement():
     #Total_Stock():
     objects = models.Manager()
@@ -466,7 +469,6 @@ class Naphtha_Plan_Summary(models.Model):
     Procurement_HPCL = models.FloatField(null=True,blank=True)
     Procurement_KPC = models.FloatField(null=True,blank=True)
     Procurement_SPOT = models.FloatField(null=True,blank=True)
-    Total_Stock = models.FloatField(null=True,blank=True)
     Opening_Stock = models.FloatField(null=True,blank=True)
     Closing_Stock = models.FloatField(null=True,blank=True)
     Avg_Stock = models.FloatField(null=True,blank=True)
