@@ -16,8 +16,9 @@ export class AppComponent {
   loginUserData = [{id:'',Username:'',Password:''}]
 
   constructor(private api: ApiService){
-    this.getTanks();
+  //  this.getTanks();
   }
+  /*
   getTanks = ()=>{
     this.api.getAllTanks().subscribe(
       data => {
@@ -45,5 +46,8 @@ export class AppComponent {
   login(){
 
     //this.Auth.getUserDetails(usename,password) 
-    console.log(this.loginUserData)}
+    console.log(this.loginUserData)
+  }
+
+  */
 }

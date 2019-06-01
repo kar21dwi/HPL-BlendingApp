@@ -9,7 +9,10 @@ from django.urls import reverse
 
 urlpatterns = [
 
-   # path('tanks/', views.getTanks),
+   path('suctionblending/', views.getSuctionBlending),
+   path('qualityavg/<tankno>/', views.getQualityAvg) 
+
+
    # path('login/', views.createlogin)
 
 

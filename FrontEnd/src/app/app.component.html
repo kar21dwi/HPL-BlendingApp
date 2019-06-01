@@ -1,21 +1,6 @@
-<h1>Tank Details</h1>
-  <ul>
-    <li *ngFor="let tank of tanks">
-    <h4>Paraffin:{{tank.Paraffin}}, Olefins: {{tank.Olefins}}, Aromatics: {{tank.Aromatics}},Napthene: {{tank.Napthene}}, INIP_Ratio :{{tank.INIP_Ratio}},
-     Density: {{tank.Density}}, Sulfur: {{tank.Sulfur}}, IBP: {{tank.IBP}}, FBP: {{tank.FBP}}, Paraffin_R: {{tank.Paraffin_R}},
-     Olefins_R: {{tank.Olefins_R}}, Density_R: {{tank.Density_R}}, Paraffin_NIR: {{tank.Paraffin_NIR}}, Olefins_NIR:{{tank.Olefins_NIR}},
-     Density_NIR: {{tank.Density_NIR}}, Level:{{tank.Level}}, Weight: {{tank.Weight}}</h4>
-    
-    </li>
-  </ul>
-
-
+<h1>FrontEnd</h1> <br> 
 <hr>
-<div>
-    <form >
-        Username<input type="text" [(ngModel)]="loginUserData.Username" [ngModelOptions]="{standalone: true}"/><br>
-        Password<input type="text" [(ngModel)]="loginUserData.Password" [ngModelOptions]="{standalone: true}"/><br>
-        <button (click)="createlogin()" type="button">submit</button>
-      </form>
+<app-alltanks> </app-alltanks>
+<hr>
+<app-inputparameters></app-inputparameters>
 
-</div>
