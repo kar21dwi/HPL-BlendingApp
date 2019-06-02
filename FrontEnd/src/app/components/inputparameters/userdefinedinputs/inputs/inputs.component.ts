@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-inputs',
@@ -6,10 +7,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inputs.component.css']
 })
 export class InputsComponent implements OnInit {
+  inputparameter = 0;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
   }
+  getselectedtanks = () => {
+    this.api.PostUserDefinedInputs().subscribe(
+      data => {
+        this.inputparameter = data;
+      },
+      error => {
+          console.log(error)
+      }
+    )
 
+
+}
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-bestfitquality',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BestfitqualityComponent implements OnInit {
 
-  constructor() { }
+  bestfitblendedquality = 0;
+
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
+  }
+  getblendquality = () => {
+
   }
 
 }

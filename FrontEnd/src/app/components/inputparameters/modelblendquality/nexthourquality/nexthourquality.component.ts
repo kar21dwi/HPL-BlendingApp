@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-nexthourquality',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nexthourquality.component.css']
 })
 export class NexthourqualityComponent implements OnInit {
+  nexthourblendedquality = 0;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
+  }
+  getblendquality = () => {
+
   }
 
 }

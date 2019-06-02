@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-modelinputscomparion',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modelinputscomparion.component.css']
 })
 export class ModelinputscomparionComponent implements OnInit {
+  childcomponents = 0;
 
-  constructor() { }
+  constructor(private api: ApiService) { 
+    this.modelchildcomponents();
+  }
 
   ngOnInit() {
+  }
+  modelchildcomponents = () => {
+    this.api.getchildcomponents.subscribe(x => {
+      this.childcomponents = x;
+    }
+
+    )
+
   }
 
 }

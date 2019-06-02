@@ -11,6 +11,9 @@ export class ApiService {
   private getselectionsource = new BehaviorSubject<any>(0);
   public getselection = this.getselectionsource.asObservable();
 
+  private getmodelchildsource = new BehaviorSubject<any>(0);
+  public getchildcomponents = this.getmodelchildsource.asObservable();
+
   baseurl = "http://127.0.0.1:8000";
   httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
 
@@ -45,9 +48,49 @@ export class ApiService {
     return this.http.get(this.baseurl + '/clickedtank/'  + tankno + '/',
     {headers: this.httpHeaders})
   }
+  PostUserDefinedInputs() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/userdefinedinputs/' ,
+    {headers: this.httpHeaders})
+  }
+  GetRunningInput() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/runninginput/',
+    {headers: this.httpHeaders})
+  }
+  GetProfitMaxInput() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/profitmaxinput/',
+    {headers: this.httpHeaders})
+  }
+  GetBestFitInput() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/bestfitinput/',
+    {headers: this.httpHeaders})
+  }
+  GetNextHourInput() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/nesthourinput/',
+    {headers: this.httpHeaders})
+  }
+  GetNirActual() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/nirmodel/',
+    {headers: this.httpHeaders})
+  }
+  GetNirModel() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/nirmodel/',
+    {headers: this.httpHeaders})
+  }
+
 
   sendSelection(message : any){
     this.getselectionsource.next(message);
+  }
+
+  sendModelChildC(messages : any){
+    this.getmodelchildsource.next(messages);
   }
   
 
