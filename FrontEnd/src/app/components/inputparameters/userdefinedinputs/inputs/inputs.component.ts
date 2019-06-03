@@ -16,8 +16,6 @@ export class InputsComponent implements OnInit {
   @Input() blendingtank : any;
 
   constructor(private api: ApiService) { 
-    this.api.sendBlendRatio(this.blendratio);
-
 
   }
 
@@ -38,4 +36,11 @@ export class InputsComponent implements OnInit {
 simulate = () =>{
 
 }
+
+transferblendratio = () => {
+
+  this.api.sendBlendRatio(this.blendratio);
+
+}
+
 }
