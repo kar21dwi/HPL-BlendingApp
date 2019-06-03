@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-profitmaxquality',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profitmaxquality.component.css']
 })
 export class ProfitmaxqualityComponent implements OnInit {
+  profitmaxblendedquality = 0;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
+  }
+  getblendquality = () => {
+
   }
 
 }

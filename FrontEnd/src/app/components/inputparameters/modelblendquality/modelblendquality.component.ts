@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-modelblendquality',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modelblendquality.component.css']
 })
 export class ModelblendqualityComponent implements OnInit {
+  nirblendquality = 0;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
   }
+
+nirchildblendcomponents = () => {
+
+}
 
 }

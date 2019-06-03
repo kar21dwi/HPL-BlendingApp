@@ -14,6 +14,10 @@ export class InputparametersComponent implements OnInit {
   }
   giveinputs = () => {
 
-}
+  }
+  givechildcomponents = () => {
+    
+  }
+
 
 }
