@@ -1,3 +1,9 @@
-<p>
-  login works!
-</p>
+<h3>
+  login
+</h3>
+
+<form (ngSubmit)="getcredentialscheck()">
+    <input type="text" name="Username" [(ngModel)]="username" placeholder="Username"><br>
+    <input type="text" name="Password" [(ngModel)]="password" placeholder="Password"><br>
+    <input type="submit" value="login">
+</form>

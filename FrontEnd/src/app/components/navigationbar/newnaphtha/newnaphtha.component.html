@@ -1,3 +1,24 @@
-<p>
-  newnaphtha works!
-</p>
+<h3>
+  newnaphtha
+</h3>
+<button (click)="getthismonthdetail()">this month detail</button> <br><br>
+
+<ng-container *ngFor="let obj of thismonthplan; index as i">
+  <li>
+     {{ obj }}
+  </li>
+</ng-container>
+
+<form (ngSubmit)="getanymonthdetail()">
+  <input type="text" name="from date" (click)="showcalender1()" [(ngModel)]="fromdate" placeholder="from date"><br>
+  <input type="text" name="to date" (click)="showcalender2()" [(ngModel)]="todate" placeholder="to date"><br>
+  <input type="submit" value="given range detail">
+</form>
+
+<ng-container *ngIf="flag1 == true && flag2 == false">
+  <ngb-datepicker #dp [(ngModel)]="model" (select)="onFromDateSelect($event)" ></ngb-datepicker>
+</ng-container>
+
+<ng-container *ngIf="flag2 == true && flag1 == false">
+    <ngb-datepicker #dp [(ngModel)]="model" (select)="onToDateSelect($event)" ></ngb-datepicker>
+  </ng-container>

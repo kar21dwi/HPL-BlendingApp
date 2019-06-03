@@ -1,3 +1,17 @@
-<p>
-  inputoutput works!
-</p>
+<h3>
+  inputoutput
+</h3>
+
+<form (ngSubmit)="getinputoutput()">
+  <input type="text" name="from date" (click)="showcalender1()" [(ngModel)]="fromdate" placeholder="from date"><br>
+  <input type="text" name="to date" (click)="showcalender2()" [(ngModel)]="todate" placeholder="to date"><br>
+  <input type="submit" value="input output for given range">
+</form>
+
+<ng-container *ngIf="flag1 == true && flag2 == false">
+  <ngb-datepicker #dp [(ngModel)]="model" (select)="onFromDateSelect($event)" ></ngb-datepicker>
+</ng-container>
+
+<ng-container *ngIf="flag2 == true && flag1 == false">
+    <ngb-datepicker #dp [(ngModel)]="model" (select)="onToDateSelect($event)" ></ngb-datepicker>
+  </ng-container>
