@@ -21,6 +21,35 @@ export class ApiService {
 
   }
 
+  GetQualityQuantity(fromdate, todate): Observable<any>{
+
+    return this.http.get(this.baseurl + '/qualityquantity/' + fromdate + '/' + todate + '/',
+     {headers: this.httpHeaders})
+  }
+
+  GetCredentialsCheck(username, password): Observable<any>{
+
+    return this.http.get(this.baseurl + '/credentialscheck/' + username + '/' + password + '/',
+     {headers: this.httpHeaders})
+  }
+
+  GetInputOutput(fromdate, todate): Observable<any>{
+
+    return this.http.get(this.baseurl + '/inputoutput/' + fromdate + '/' + todate + '/',
+     {headers: this.httpHeaders})
+  }
+
+  GetThisMonthDetail(): Observable<any>{
+
+    return this.http.get(this.baseurl + '/thismonthdetail/', {headers: this.httpHeaders})
+  }
+  
+  GetAnyMonthDetail(fromdate, todate): Observable<any>{
+
+    return this.http.get(this.baseurl + '/anymonthdetail/' + fromdate + '/' + todate + '/',
+     {headers: this.httpHeaders})
+  } 
+
   GetComingMonthPlan(): Observable<any>{
 
     return this.http.get(this.baseurl + '/comingmonthplan/', {headers: this.httpHeaders})
