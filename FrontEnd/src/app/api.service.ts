@@ -18,6 +18,17 @@ export class ApiService {
 
   }
 
+  GetComingMonthPlan(): Observable<any>{
+
+    return this.http.get(this.baseurl + '/comingmonthplan/', {headers: this.httpHeaders})
+  }
+
+  GetAnyMonthPlan(fromdate, todate): Observable<any>{
+
+    return this.http.get(this.baseurl + '/anymonthplan/' + fromdate + '/' + todate + '/',
+     {headers: this.httpHeaders})
+  }
+
   GetSuctionBlending() : Observable<any>{
 
     return this.http.get(this.baseurl + '/suctionblending/', {headers: this.httpHeaders})

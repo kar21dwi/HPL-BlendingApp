@@ -45,6 +45,8 @@ import { BestfitqualityComponent } from './components/inputparameters/modelblend
 import { NexthourqualityComponent } from './components/inputparameters/modelblendquality/nexthourquality/nexthourquality.component';
 import { NirblendqualityComponent } from './components/inputparameters/blendcomparison/nirblendquality/nirblendquality.component';
 import { ModelnirblendqualityComponent } from './components/inputparameters/blendcomparison/modelnirblendquality/modelnirblendquality.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -100,7 +102,8 @@ import { ModelnirblendqualityComponent } from './components/inputparameters/blen
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -620,7 +620,7 @@ def save_output_comparasion(sender, instance, **kwargs):
 
 #Output Perameters for the output comparasion class
 @receiver(post_save, sender = Naphtha_Plan_Single_Month)
-def save_output_comparasion(sender, instance, **kwargs):
+def save_naphtha_plan(sender, instance, **kwargs):
 
 
 
