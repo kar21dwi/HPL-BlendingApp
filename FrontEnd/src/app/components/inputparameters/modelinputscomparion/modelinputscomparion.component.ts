@@ -15,13 +15,10 @@ export class ModelinputscomparionComponent implements OnInit {
 
   ngOnInit() {
   }
-  modelchildcomponents = () => {
-    this.api.getchildcomponents.subscribe(x => {
-      this.childcomponents = x;
-    }
+  modelchildcomponents = () => {}
 
-    )
+    
 
-  }
+  
 
 }

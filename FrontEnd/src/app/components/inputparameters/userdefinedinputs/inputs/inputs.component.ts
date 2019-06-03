@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { ApiService } from 'src/app/api.service';
 })
 export class InputsComponent implements OnInit {
   inputparameter = 0;
+  @Input() suctiontank : any;
+  @Input() blendingtank : any;
 
   constructor(private api: ApiService) { }
 

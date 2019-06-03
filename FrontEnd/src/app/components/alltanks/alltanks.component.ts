@@ -42,6 +42,7 @@ export class AlltanksComponent implements OnInit {
     this.api.GetReceivingNaphtha().subscribe(
       data => {
         this.receivednaphtha = data;
+        console.table(this.receivednaphtha)
       },
       error => {
           console.log(error)
@@ -52,6 +53,7 @@ export class AlltanksComponent implements OnInit {
     this.api.GetAllTanks().subscribe(
       data => {
         this.alltankslevels = data;
+        console.table(this.alltankslevels)
       },
       error => {
           console.log(error)

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-inputparameters',
@@ -6,14 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inputparameters.component.css']
 })
 export class InputparametersComponent implements OnInit {
-  givechildcomponents = 0;
+  //givechildcomponents = 0;
+   nextclicked= false;
 
-  constructor() {
+  constructor(private api: ApiService) {
    }
 
   ngOnInit() {
   }
   giveinputs = () => {
+    if(this.nextclicked == false) {
+      this.nextclicked = true;
+    }
 
   }
   givechild = () => {

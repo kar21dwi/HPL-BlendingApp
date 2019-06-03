@@ -1,7 +1,7 @@
 <h3> tankno4 </h3>
 
-<button (click)="gettankinfo()">tankinfo No 4</button> <br>
+<button [disabled]="buttondisable()" (click)="gettankinfo()">tankinfo No 4</button> <br>
 
 {{ qualityreal }} <br>
 {{ alltanks }} <br>
-{{ qualityavg[0] }} <br>
+{{ qualityavg }} <br>
