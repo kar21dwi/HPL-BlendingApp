@@ -11,8 +11,15 @@ export class ApiService {
   private getselectionsource = new BehaviorSubject<any>(0);
   public getselection = this.getselectionsource.asObservable();
 
-  private getmodelchildsource = new BehaviorSubject<any>(0);
-  public getchildcomponents = this.getmodelchildsource.asObservable();
+  private getselectioncountsource = new BehaviorSubject<any>(0);
+  public getselectioncount = this.getselectioncountsource.asObservable();
+
+  private getblendratiosource = new BehaviorSubject<any>(0);
+  public getblendratio = this.getblendratiosource.asObservable();
+
+ // private getmodelchildsource = new BehaviorSubject<any>(0);
+  //public getchildcomponents = this.getmodelchildsource.asObservable();
+
 
   baseurl = "http://127.0.0.1:8000";
   httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
@@ -71,7 +78,7 @@ export class ApiService {
   }
   GetAllTanks() : Observable<any>{
 
-    return this.http.get(this.baseurl + '/getAllTanks/', {headers: this.httpHeaders})
+    return this.http.get(this.baseurl + '/alltanks/', {headers: this.httpHeaders})
   }
   GetQualityAvg(tankno) : Observable<any>{
 
@@ -153,10 +160,14 @@ export class ApiService {
   sendSelection(message : any){
     this.getselectionsource.next(message);
   }
-
-  sendModelChildC(messages : any){
-    this.getmodelchildsource.next(messages);
+  sendSelectionCount(message : any){
+    this.getselectioncountsource.next(message);
   }
+  sendBlendRatio(message : any){
+    this.getblendratiosource.next(message);
+  }
+
+ 
   
 
 }

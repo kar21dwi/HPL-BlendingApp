@@ -13,7 +13,8 @@ from django.http import HttpResponse
 import json
 import ast
 from datetime import datetime
-from .models import Tanks_Overall_Status, Tank, Quality_Avg, Naphtha_Plan_All_Months, Naphtha_Plan_Single_Month
+from .models import Tanks_Overall_Status, Tank, Quality_Avg
+from .models import Naphtha_Plan_All_Months, Naphtha_Plan_Single_Month, Quality_Real
 # new line
 
 
@@ -45,6 +46,32 @@ def getSuctionBlending(request):
 
       return JsonResponse(parent_obj[0], safe = False, status=status.HTTP_201_CREATED)
 
+@csrf_exempt
+def getReceivingNaphtha(request):
+      
+      parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+
+      tank = Tank.objects.filter(tanks_Overall_Status = parent_obj)
+      recevingtanks = []
+      for i in range(0,len(tank)):
+            if tank[i].Receiving_Naphtha == True:
+                  recevingtanks.append(tank[i].Tank_No)
+
+      #recevingtanks = list(recevingtanks.values())
+
+      return JsonResponse(recevingtanks, safe = False, status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+def getAllTanks(request):
+      
+      parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+
+      tank = Tank.objects.filter(tanks_Overall_Status = parent_obj)
+      tanklevels = []
+      for i in range(0,len(tank)):
+            tanklevels.append(tank[i].Level)
+
+      return JsonResponse(tanklevels, safe = False, status=status.HTTP_201_CREATED)
 
 
 @csrf_exempt
@@ -58,8 +85,32 @@ def getQualityAvg(request, tankno):
       
       print ("*****************" + str(quality_avg[0]) + "******************")
 
-      return JsonResponse(quality_avg , safe = False, status=status.HTTP_201_CREATED)
+      return JsonResponse(quality_avg[0] , safe = False, status=status.HTTP_201_CREATED)
 
+@csrf_exempt
+def getQualityReal(request, tankno):
+      
+      parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+      tank = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = tankno).get()
+      quality_real = Quality_Real.objects.filter(tank = tank)
+
+      quality_real = list(quality_real.values())
+      
+      #print ("*****************" + str(quality_avg[0]) + "******************")
+
+      return JsonResponse(quality_real[0] , safe = False, status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+def getClickedTank(request, tankno):
+      
+      parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+      tank = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = tankno)
+
+      tank = list(tank.values())
+      
+      #print ("*****************" + str(quality_avg[0]) + "******************")
+
+      return JsonResponse(tank[0] , safe = False, status=status.HTTP_201_CREATED)
 
 @csrf_exempt
 def getComingMonthPlan(request):
