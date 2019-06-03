@@ -10,7 +10,10 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from django.http import HttpResponse
-from .models import Tanks_Overall_Status, Tank, Quality_Avg
+import json
+import ast
+from datetime import datetime
+from .models import Tanks_Overall_Status, Tank, Quality_Avg, Naphtha_Plan_All_Months, Naphtha_Plan_Single_Month
 # new line
 
 
@@ -56,3 +59,50 @@ def getQualityAvg(request, tankno):
       print ("*****************" + str(quality_avg[0]) + "******************")
 
       return JsonResponse(quality_avg , safe = False, status=status.HTTP_201_CREATED)
+
+
+@csrf_exempt
+def getComingMonthPlan(request):
+      
+      parent_obj = Naphtha_Plan_All_Months.objects.all().order_by('-id')[0]
+      
+      monthplan = Naphtha_Plan_Single_Month.objects.filter(naphtha_Plan_All_Months = parent_obj)
+
+      monthplan = list(monthplan.values())
+      
+      print ("*****************" + str(monthplan) + "******************")
+
+      return JsonResponse(monthplan , safe = False, status=status.HTTP_201_CREATED)
+
+
+@csrf_exempt
+def getAnyMonthPlan(request, fromdate, todate):
+
+      parent_obj = Naphtha_Plan_All_Months.objects.all().order_by('-id')[0]
+      
+      monthplan = Naphtha_Plan_Single_Month.objects.filter(naphtha_Plan_All_Months = parent_obj)
+
+      monthplan = list(monthplan.values())
+
+      fromdate = datetime.strptime(fromdate, "%Y-%m-%d")
+      todate = datetime.strptime(todate, "%Y-%m-%d")
+
+      frommonth = fromdate.month
+      fromyear = fromdate.year
+      tomonth = todate.month
+      toyear = todate.year
+      
+      array = Naphtha_Plan_All_Months.objects.all()
+
+      plan = []
+
+      for i in range(0,len(array)):
+            M = datetime.strptime(array[i].Month_Year.strftime("%Y-%m-%d"), "%Y-%m-%d").month
+            Y = datetime.strptime(array[i].Month_Year.strftime("%Y-%m-%d"), "%Y-%m-%d").year
+            if M >= frommonth and Y >= fromyear and M <= tomonth and Y <= toyear:
+                  arraymonth = Naphtha_Plan_Single_Month.objects.filter(naphtha_Plan_All_Months = array[i])
+                 # for k in range(0,len(arraymonth)):
+                  plan.append(list(arraymonth.values()))
+                  
+      
+      return JsonResponse(plan, safe = False, status=status.HTTP_201_CREATED)           

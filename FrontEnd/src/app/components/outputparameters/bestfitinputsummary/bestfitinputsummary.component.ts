@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bestfitinputsummary.component.css']
 })
 export class BestfitinputsummaryComponent implements OnInit {
-
+  datafrombestfit = 0;
+  
   constructor() { }
 
   ngOnInit() {
+  }
+  getbestfitinput = () => {
+
   }
 
 }

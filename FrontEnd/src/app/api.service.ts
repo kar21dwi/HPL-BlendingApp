@@ -21,6 +21,17 @@ export class ApiService {
 
   }
 
+  GetComingMonthPlan(): Observable<any>{
+
+    return this.http.get(this.baseurl + '/comingmonthplan/', {headers: this.httpHeaders})
+  }
+
+  GetAnyMonthPlan(fromdate, todate): Observable<any>{
+
+    return this.http.get(this.baseurl + '/anymonthplan/' + fromdate + '/' + todate + '/',
+     {headers: this.httpHeaders})
+  }
+
   GetSuctionBlending() : Observable<any>{
 
     return this.http.get(this.baseurl + '/suctionblending/', {headers: this.httpHeaders})
@@ -81,6 +92,31 @@ export class ApiService {
   GetNirModel() : Observable<any>{
 
     return this.http.get(this.baseurl + '/nirmodel/',
+    {headers: this.httpHeaders})
+  }
+  GetUserDefinedOutput() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/userdefinedoutput/',
+    {headers: this.httpHeaders})
+  }
+  GetRunningOutput() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/runningoutput/',
+    {headers: this.httpHeaders})
+  }
+  GetProfitMaxOutput() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/profitmaxoutput/',
+    {headers: this.httpHeaders})
+  }
+  GetBestFitOutput() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/bestfitoutput/',
+    {headers: this.httpHeaders})
+  }
+  GetNextHourOutput() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/nexthouroutput/',
     {headers: this.httpHeaders})
   }
 

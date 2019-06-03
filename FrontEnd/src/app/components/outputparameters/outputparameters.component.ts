@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./outputparameters.component.css']
 })
 export class OutputparametersComponent implements OnInit {
+  displaychildcomponents = 0;
 
   constructor() { }
 
   ngOnInit() {
+  }
+  displaychildcom = () => {
+
+  }
+  simulateoutput = () => {
+
   }
 
 }

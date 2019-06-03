@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./userdefinedinputsummary.component.css']
 })
 export class UserdefinedinputsummaryComponent implements OnInit {
+  udinputsummary = 0;
+  blendquality = 0;
+
 
   constructor() { }
 
   ngOnInit() {
+  }
+  getinput = () => {
+
+  }
+  getblendquality = () => {
+
   }
 
 }

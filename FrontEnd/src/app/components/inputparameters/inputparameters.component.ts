@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inputparameters.component.css']
 })
 export class InputparametersComponent implements OnInit {
+  givechildcomponents = 0;
 
   constructor() {
    }
@@ -15,9 +16,10 @@ export class InputparametersComponent implements OnInit {
   giveinputs = () => {
 
   }
-  givechildcomponents = () => {
-    
+  givechild = () => {
+
   }
+  
 
 
 }

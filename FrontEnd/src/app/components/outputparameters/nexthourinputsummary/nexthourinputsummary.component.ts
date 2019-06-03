@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nexthourinputsummary.component.css']
 })
 export class NexthourinputsummaryComponent implements OnInit {
+  datafromnexthour = 0;
 
   constructor() { }
 
   ngOnInit() {
   }
+  getnexthourinput = () => {
+
+  }
+
 
 }

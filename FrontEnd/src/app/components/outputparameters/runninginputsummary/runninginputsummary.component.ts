@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./runninginputsummary.component.css']
 })
 export class RunninginputsummaryComponent implements OnInit {
+  dataandblendquality = 0;
 
   constructor() { }
 
   ngOnInit() {
   }
+  getrunninginput = () => {
+
+  }
+  
 
 }

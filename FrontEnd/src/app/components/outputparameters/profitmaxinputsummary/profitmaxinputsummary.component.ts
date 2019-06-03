@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profitmaxinputsummary.component.css']
 })
 export class ProfitmaxinputsummaryComponent implements OnInit {
+  datafromprofitmax = 0;
 
   constructor() { }
 
   ngOnInit() {
+  }
+  getprofitmaxinput = () => {
+
   }
 
 }
