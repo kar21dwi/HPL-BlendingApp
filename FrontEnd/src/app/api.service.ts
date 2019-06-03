@@ -14,6 +14,9 @@ export class ApiService {
   private getselectioncountsource = new BehaviorSubject<any>(0);
   public getselectioncount = this.getselectioncountsource.asObservable();
 
+  private getblendratiosource = new BehaviorSubject<any>(0);
+  public getblendratio = this.getblendratiosource.asObservable();
+
  // private getmodelchildsource = new BehaviorSubject<any>(0);
   //public getchildcomponents = this.getmodelchildsource.asObservable();
 
@@ -159,6 +162,9 @@ export class ApiService {
   }
   sendSelectionCount(message : any){
     this.getselectioncountsource.next(message);
+  }
+  sendBlendRatio(message : any){
+    this.getblendratiosource.next(message);
   }
 
  

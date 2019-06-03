@@ -8,10 +8,18 @@ import { ApiService } from 'src/app/api.service';
 })
 export class InputsComponent implements OnInit {
   inputparameter = 0;
+  blendratio ;
+  naphthaload ;
+
+
   @Input() suctiontank : any;
   @Input() blendingtank : any;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) { 
+    this.api.sendBlendRatio(this.blendratio);
+
+
+  }
 
   ngOnInit() {
   }
@@ -25,6 +33,9 @@ export class InputsComponent implements OnInit {
       }
     )
 
+
+}
+simulate = () =>{
 
 }
 }

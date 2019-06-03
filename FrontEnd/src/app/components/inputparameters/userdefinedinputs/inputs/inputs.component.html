@@ -2,3 +2,11 @@
 <h3>1.1.1 input</h3>
 <button (click)="giveinputs()">sbtank</button> <br>
 {{suctiontank}}, {{blendingtank}}
+
+<form (ngSubmit)="simulate()">
+    <input type="text" name="SuctionTank" [(ngModel)]="suctiontank"><br>
+    <input type="text" name="BlendingTank" [(ngModel)]="blendingtank"><br>
+    <input type="text" name="BlendRatio" [(ngModel)]="blendratio"><br>
+    <input type="text" name="NapthaLoad" [(ngModel)]="naphthaload"><br>
+    <input type="submit" value="Simulate">
+</form>
