@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  flag = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  mainpage() {
+    
+    if (this.flag == false)
+    {
+     this.flag = true;
+    }
+    else
+    {
+     this.flag = false; 
+    }
+
   }
 
 }
