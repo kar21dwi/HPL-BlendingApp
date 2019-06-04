@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -8,14 +8,16 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ModelinputscomparionComponent implements OnInit {
   childcomponents = 0;
+  @Input() nextclicked : boolean;
 
   constructor(private api: ApiService) { 
-    this.modelchildcomponents();
   }
 
   ngOnInit() {
   }
-  modelchildcomponents = () => {}
+  givechildcomponents = () => {
+    console.log(this.nextclicked)
+  }
 
     
 

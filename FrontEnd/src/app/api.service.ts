@@ -17,6 +17,27 @@ export class ApiService {
   private getblendratiosource = new BehaviorSubject<any>(0);
   public getblendratio = this.getblendratiosource.asObservable();
 
+  private getrunninginputsource = new BehaviorSubject<any>(0);
+  public getrunninginput = this.getrunninginputsource.asObservable();
+
+  private getprofitmaxinputsource = new BehaviorSubject<any>(0);
+  public getprofitmaxinput = this.getprofitmaxinputsource.asObservable();
+
+  private getbestfitinputsource = new BehaviorSubject<any>(0);
+  public getbestfitinput = this.getbestfitinputsource.asObservable();
+
+  private getnexthourinputsource = new BehaviorSubject<any>(0);
+  public getnexthourinput = this.getnexthourinputsource.asObservable();
+
+  private receivedvaluesource = new BehaviorSubject<any>(0);
+  public receivedvalue = this.receivedvaluesource.asObservable();
+
+  private getuserinputssource = new BehaviorSubject<any>(0);
+  public getuserinputs = this.getuserinputssource.asObservable();
+
+  private getuserqualitysource = new BehaviorSubject<any>(0);
+  public getuserquality = this.getuserqualitysource.asObservable();
+
  // private getmodelchildsource = new BehaviorSubject<any>(0);
   //public getchildcomponents = this.getmodelchildsource.asObservable();
 
@@ -95,10 +116,9 @@ export class ApiService {
     return this.http.get(this.baseurl + '/clickedtank/'  + tankno + '/',
     {headers: this.httpHeaders})
   }
-  PostUserDefinedInputs() : Observable<any>{
+  PostUserDefinedInputs(inputud) : Observable<any>{
 
-    return this.http.get(this.baseurl + '/userdefinedinputs/' ,
-    {headers: this.httpHeaders})
+    return this.http.post(this.baseurl + '/userdefinedinputs/' , inputud, {headers: this.httpHeaders});
   }
   GetRunningInput() : Observable<any>{
 
@@ -117,12 +137,12 @@ export class ApiService {
   }
   GetNextHourInput() : Observable<any>{
 
-    return this.http.get(this.baseurl + '/nesthourinput/',
+    return this.http.get(this.baseurl + '/nexthourinput/',
     {headers: this.httpHeaders})
   }
   GetNirActual() : Observable<any>{
 
-    return this.http.get(this.baseurl + '/nirmodel/',
+    return this.http.get(this.baseurl + '/niractual/',
     {headers: this.httpHeaders})
   }
   GetNirModel() : Observable<any>{
@@ -165,6 +185,27 @@ export class ApiService {
   }
   sendBlendRatio(message : any){
     this.getblendratiosource.next(message);
+  }
+  sendRunningInput(message : any){
+    this.getrunninginputsource.next(message);
+  }
+  sendProfitMaxInput(message : any){
+    this.getprofitmaxinputsource.next(message);
+  }
+  sendBestFitInput(message : any){
+    this.getbestfitinputsource.next(message);
+  }
+  sendNextHourInput(message : any){
+    this.getnexthourinputsource.next(message);
+  }
+  Receivedvalue(message : any){
+    this.receivedvaluesource.next(message);
+  }
+  sendUserInput(message : any){
+    this.getuserinputssource.next(message);
+  }
+  sendUserQuality(message : any){
+    this.getuserqualitysource.next(message);
   }
 
  
