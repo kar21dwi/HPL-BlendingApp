@@ -17,13 +17,34 @@ export class MonthlyplanningComponent implements OnInit {
   model: NgbDateStruct;
   flag1 = false;
   flag2 = false;
+  outsideclick1 = false;
+  outsideclick2 = false;
 
-  constructor(private api: ApiService, private calendar: NgbCalendar, private parserFormatter: NgbDateParserFormatter) { }
 
-  ngOnInit() {
-     
+  constructor(private api: ApiService, private calendar: NgbCalendar, private parserFormatter: NgbDateParserFormatter) { 
+    
+    
   }
 
+  ngOnInit() {
+    
+  }
+
+  onClickedOutside1(e: Event) {
+    if(this.flag1 && !(this.outsideclick1)) {
+       this.outsideclick1 = true;
+    }
+
+  }
+
+  onClickedOutside2(e: Event) {
+    if(this.flag2 && !(this.outsideclick2)) {
+       this.outsideclick2 = true;
+    }
+
+  }
+
+  
   getcomingmonthplan = () => {
    this.api.GetComingMonthPlan().subscribe(
     data => {
@@ -55,6 +76,7 @@ export class MonthlyplanningComponent implements OnInit {
      this.fromdate = this.parserFormatter.format($event);
      console.log(this.fromdate);
      this.flag1 = false;
+        
      
    }
 
@@ -67,15 +89,19 @@ export class MonthlyplanningComponent implements OnInit {
   }
 
   showcalender1(){
-
+    
     this.flag1 = true;
     this.flag2 = false;
+    this.outsideclick1 = false;
+    
   }
 
   showcalender2(){
 
     this.flag2 = true;
     this.flag1 = false;
+    this.outsideclick2 = false;
   }
 
+ 
 }

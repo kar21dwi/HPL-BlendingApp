@@ -11,18 +11,21 @@
 </ng-container>
 
 <form (ngSubmit)="getanymonthplan()">
-  <input type="text" name="from date" (click)="showcalender1()" [(ngModel)]="fromdate" placeholder="from date"><br>
-  <input type="text" name="to date" (click)="showcalender2()" [(ngModel)]="todate" placeholder="to date"><br>
+  <input class="firstfield" type="text" name="from date" (click)="showcalender1()" [(ngModel)]="fromdate" placeholder="from date"><br>
+  <input class="secondfield" type="text" name="to date" (click)="showcalender2()" [(ngModel)]="todate" placeholder="to date"><br>
   <input type="submit" value="given range plan">
 </form>
-
-<ng-container *ngIf="flag1 == true && flag2 == false">
-  <ngb-datepicker #dp [(ngModel)]="model" (select)="onFromDateSelect($event)" ></ngb-datepicker>
+<div style="width: 30%;" (clickOutside)="onClickedOutside1($event)" [exclude]="'.firstfield'">
+<ng-container *ngIf="flag1 == true && flag2 == false && outsideclick1 == false">
+  <ngb-datepicker #dp  [(ngModel)]="model" (select)="onFromDateSelect($event)" ></ngb-datepicker>
 </ng-container>
+</div>
 
-<ng-container *ngIf="flag2 == true && flag1 == false">
+<div style="width: 30%;" (clickOutside)="onClickedOutside2($event)" [exclude]="'.secondfield'">
+<ng-container *ngIf="flag2 == true && flag1 == false && outsideclick2 == false">
     <ngb-datepicker #dp [(ngModel)]="model" (select)="onToDateSelect($event)" ></ngb-datepicker>
-  </ng-container>
+</ng-container>
+</div>
 
 
  

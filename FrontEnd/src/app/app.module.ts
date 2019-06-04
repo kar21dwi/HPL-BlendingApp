@@ -46,6 +46,7 @@ import { NexthourqualityComponent } from './components/inputparameters/modelblen
 import { NirblendqualityComponent } from './components/inputparameters/blendcomparison/nirblendquality/nirblendquality.component';
 import { ModelnirblendqualityComponent } from './components/inputparameters/blendcomparison/modelnirblendquality/modelnirblendquality.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ClickOutsideModule } from 'ng4-click-outside';
 
 
 
@@ -103,7 +104,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ClickOutsideModule
   ],
   providers: [],
   bootstrap: [AppComponent]
