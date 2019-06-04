@@ -30,16 +30,17 @@ export class RunningqualityComponent implements OnInit,AfterContentChecked {
   }
   ngAfterContentChecked(){
    
-
-    this.api.receivedvalue.subscribe(x => {
+    if (this.check){
+        this.api.receivedvalue.subscribe(x => {
 
         this.receivedflag = x
         this.getblendquality();
 
-        console.table(this.receivedflag)
       } 
-        )
-      }
+     )
+   }
+    
+  }
 
 
     
