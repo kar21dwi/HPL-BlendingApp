@@ -38,8 +38,8 @@ export class UserdefinedinputsComponent implements OnInit, AfterContentChecked {
   
 
   transferselection = () => {
-    console.log(this.nextclicked)
-    if(this.nextclicked == true){
+    
+    if(this.nextclicked == true && this.check){
       this.suctiontankfinal = this.suctiontank;
       this.blendingtankfinal = this.blendingtank;
       console.log(this.nextclicked)

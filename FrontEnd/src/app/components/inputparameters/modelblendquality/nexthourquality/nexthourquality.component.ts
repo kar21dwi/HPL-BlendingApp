@@ -8,8 +8,15 @@ import { ApiService } from 'src/app/api.service';
 })
 export class NexthourqualityComponent implements OnInit {
   nexthourblendedquality = 0;
+  nexthourquality = 0;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) { 
+    this.api.getnexthourinput.subscribe(x => {
+      this.nexthourquality = x
+      console.table(this.nexthourquality)
+        }
+        )
+  }
 
   ngOnInit() {
   }

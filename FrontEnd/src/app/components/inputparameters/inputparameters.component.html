@@ -1,8 +1,8 @@
 <h2>1. inputparameters</h2> <br>
 <button (click)="givechild()">givechildcomponents</button> <br>
-<button (click)="giveinputs()">Next</button> <br>
+<button class="btn btn-primary" (click)="giveinputs()">Next</button> <br>
 <app-userdefinedinputs [nextclicked]="nextclicked"></app-userdefinedinputs>
-<app-modelinputscomparion></app-modelinputscomparion> <br>
-<app-modelblendquality></app-modelblendquality> <br>
-<app-blendcomparison></app-blendcomparison> <br>
+<app-modelinputscomparion [nextclicked]="nextclicked"></app-modelinputscomparion> <br>
+<app-modelblendquality [nextclicked]="nextclicked"></app-modelblendquality> <br>
+<app-blendcomparison [nextclicked]="nextclicked"></app-blendcomparison> <br>
 

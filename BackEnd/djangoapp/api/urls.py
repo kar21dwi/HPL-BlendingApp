@@ -15,6 +15,13 @@ urlpatterns = [
    path('qualityavg/<tankno>/', views.getQualityAvg), 
    path('qualityreal/<tankno>/', views.getQualityReal),
    path('clickedtank/<tankno>/', views.getClickedTank),
+   path('runninginput/', views.getRunningInput),
+   path('profitmaxinput/', views.getProfitMaxInput),
+   path('bestfitinput/', views.getBestFitInput),
+   path('nexthourinput/', views.getNextHourInput),
+   path('niractual/', views.getNirActual),
+   path('nirmodel/', views.getNirModel),
+   path('userdefinedinputs/', views.postUserDefinedInputs),
    path('comingmonthplan/', views.getComingMonthPlan),
    path('anymonthplan/<fromdate>/<todate>/', views.getAnyMonthPlan),
 

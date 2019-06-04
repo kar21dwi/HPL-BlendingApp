@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, AfterContentChecked } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -6,18 +6,26 @@ import { ApiService } from 'src/app/api.service';
   templateUrl: './nirblendquality.component.html',
   styleUrls: ['./nirblendquality.component.css']
 })
-export class NirblendqualityComponent implements OnInit {
-  nirmodel = 0;
+export class NirblendqualityComponent implements OnInit, AfterContentChecked {
+  niractual = 0;
+  @Input() nextclicked : boolean;
+  check = true;
 
   constructor(private api: ApiService) { }
 
   ngOnInit() {
   }
-  getnirmodel = () => {
-    this.api.GetNirModel().subscribe(
+  ngAfterContentChecked(){
+    this.getniractual();
+  }
+
+  getniractual = () => {
+    if(this.nextclicked == true && this.check){
+      this.check = false;
+    this.api.GetNirActual().subscribe(
       data => {
-        this.nirmodel = data;
-        console.table(this.nirmodel)
+        this.niractual = data;
+        console.table(this.niractual)
       },
       error => {
           console.log(error)
@@ -26,4 +34,5 @@ export class NirblendqualityComponent implements OnInit {
 
   }
 
+}
 }
