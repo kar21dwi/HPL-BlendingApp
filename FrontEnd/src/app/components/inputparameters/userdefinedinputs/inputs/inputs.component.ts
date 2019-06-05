@@ -1,10 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
-export enum KEY_CODE {
-  TAB = 9,
-}
-
 @Component({
   selector: 'app-inputs',
   templateUrl: './inputs.component.html',
@@ -26,19 +22,19 @@ export class InputsComponent implements OnInit {
                     Naphtha_Load_UD:'', LPG_Load_UD:'',C5_Load_UD:'', C6_Load_UD: '', Naphtha_Heater_UD: '',
                     COT_UD: '',GF_PDI_UD: '',Suc_Pressure_UD: ''};
 
-  }
-
-  @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
-        
-    if (event.keyCode === KEY_CODE.TAB) {
-      if (this.blendratio){
-        this.transferblendratio();
+     this.api.tabpressstatus.subscribe(x => {
+      if (x){
+       this.transferblendratio(); 
       }
-    }
+     }
+    )    
+                    
+
   }
 
+ 
   ngOnInit() {
+     
   }
   getselectedtanks = () => {
     

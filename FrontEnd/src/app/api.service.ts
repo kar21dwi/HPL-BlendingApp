@@ -41,6 +41,9 @@ export class ApiService {
   private simulatebuttonstatus = new BehaviorSubject<any>(0);
   public simulatebutton = this.simulatebuttonstatus.asObservable();
 
+  private tabpressstatussource = new BehaviorSubject<any>(0);
+  public tabpressstatus = this.tabpressstatussource.asObservable();
+
 
  // private getmodelchildsource = new BehaviorSubject<any>(0);
   //public getchildcomponents = this.getmodelchildsource.asObservable();
@@ -218,6 +221,9 @@ export class ApiService {
   }
   sendSimulateButton(message : any){
     this.simulatebuttonstatus.next(message);
+  }
+  sendTabPressStatus(message : any){
+    this.tabpressstatussource.next(message);
   }
 
  
