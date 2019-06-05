@@ -364,7 +364,7 @@ def save_user_defined_input(sender, instance, **kwargs):
 
     Input_Parameter_UserDefined.objects.filter(pk=instance.id).update(Paraffin_UD = paraffin, 
                                                Olefins_UD = olefins,Aromatics_UD = aromatics, 
-                                               Naphthene_UD = naphthene,
+                                               Naphthene_UD = naphthene, IN_IP_Ratio_UD = inipratio,
                                                Density_UD = density, IBP_UD = ibp, FBP_UD = fbp, 
                                                tanks_Overall_Status = parent_obj)  
 
@@ -388,10 +388,8 @@ def save_user_defined_output(sender, instance, **kwargs):
 @receiver(post_save, sender = Input_Parameter_UserDefined)
 def update_next_hr_selection(sender, instance, **kwargs):
 
-    parent_obj = Input_Parameter_UserDefined.objects.all().order_by('-id')[0]
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0" + str(parent_obj.Confirmation) + "654444446446" + str(instance))
-    if parent_obj.Confirmation == True:
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0" + str(parent_obj) + "654444446446" + str(instance))
+    if instance.Confirmation == True:
+        
         parent_obj = Next_Hour_Selection.objects.all().order_by('-id')[0]
 
         Next_Hour_Selection.objects.filter(pk=parent_obj.id).update(U_D = True, R_N = False,
@@ -485,7 +483,7 @@ def save_input_parameter_running(sender, instance, **kwargs):
                                                    C5_Load_RN = rn.C5_Load_RN, C6_Load_RN = rn.C6_Load_RN,
                                                    Naphtha_Heater_RN = rn.Naphtha_Heater_RN, COT_RN = rn.COT_RN, 
                                                    GF_PDI_RN = rn.GF_PDI_RN, Suc_Pressure_RN = rn.Suc_Pressure_RN,
-                                                   Total_Load_RN = totalload, Paraffin_RN = paraffin, Olefins_RN = aromatics, 
+                                                   Total_Load_RN = totalload, Paraffin_RN = paraffin, Olefins_RN = olefins, 
                                                    Aromatics_RN = aromatics, Naphthene_RN = naphthene,
                                                    Density_RN = density, IBP_RN = ibp, FBP_RN = fbp, 
                                                    tanks_Overall_Status = parent_obj)

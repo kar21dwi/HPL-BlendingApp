@@ -445,9 +445,11 @@ def updateNextHourSelection(request, selection):
       
       if selection == 'userdefined':
             parent_obj = Input_Parameter_UserDefined.objects.all().order_by('-id')[0]
-            Input_Parameter_UserDefined.objects.filter(pk=parent_obj.id).update(Confirmation = True)
-            parent_obj = Next_Hour_Selection.objects.all().order_by('-id')[0]
-            Next_Hour_Selection.objects.filter(pk=parent_obj.id).update(U_D = True, B_F = False, P_M = False, R_N = False)
+            obj = Input_Parameter_UserDefined.objects.filter(pk=parent_obj.id).get()
+            obj.Confirmation = True
+            obj.save()
+            #parent_obj = Next_Hour_Selection.objects.all().order_by('-id')[0]
+            #Next_Hour_Selection.objects.filter(pk=parent_obj.id).update(U_D = True, B_F = False, P_M = False, R_N = False)
 
       return JsonResponse(1, safe = False, status=status.HTTP_201_CREATED)
 
