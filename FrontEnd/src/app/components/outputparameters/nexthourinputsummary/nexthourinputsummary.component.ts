@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-nexthourinputsummary',
@@ -7,8 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NexthourinputsummaryComponent implements OnInit {
   datafromnexthour = 0;
+  buttonstatus = false;
+  nexthourinput = 0;
 
-  constructor() { }
+  constructor(private api: ApiService) {
+    this.api.simulatebutton.subscribe(x => {
+      this.buttonstatus = x
+      if(this.buttonstatus){
+        this.api.getnexthourinput.subscribe(x => {
+          this.nexthourinput = x
+          console.table(this.nexthourinput)
+          
+            }
+            )
+    
+      
+      }
+        }
+        )
+   }
 
   ngOnInit() {
   }

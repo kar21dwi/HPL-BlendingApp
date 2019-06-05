@@ -8,8 +8,18 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ProfitmaxoutputComponent implements OnInit {
   profitmaxoutput = 0;
+  buttonstatus = false;
+  status;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) {
+    this.api.simulatebutton.subscribe(x => {
+      this.buttonstatus = x
+      if(this.buttonstatus){
+        this.getprofitmaxoutput();
+      }
+        }
+        )
+   }
 
   ngOnInit() {
   }
@@ -21,6 +31,14 @@ export class ProfitmaxoutputComponent implements OnInit {
       }
     )
 }
+getconfirm = ()=>{
+  this.api.PostNextHourSelection('profitmax').subscribe(
+    data => {
+      this.status = data;
+      console.table(this.status)
+    }
+  )
 
+}
 
 }

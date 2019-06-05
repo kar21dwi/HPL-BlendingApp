@@ -9,8 +9,18 @@ import { ApiService } from 'src/app/api.service';
 })
 export class BestfitoutputComponent implements OnInit {
   bestfitoutput = 0;
+  buttonstatus = false;
+  status;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) { 
+    this.api.simulatebutton.subscribe(x => {
+      this.buttonstatus = x
+      if(this.buttonstatus){
+        this.getbestfitoutput();
+      }
+        }
+        )
+  }
 
   ngOnInit() {
   }
@@ -21,5 +31,14 @@ export class BestfitoutputComponent implements OnInit {
         console.table(this.bestfitoutput)
       }
     )
+}
+getconfirm = ()=>{
+  this.api.PostNextHourSelection('bestfit').subscribe(
+    data => {
+      this.status = data;
+      console.table(this.status)
+    }
+  )
+
 }
 }

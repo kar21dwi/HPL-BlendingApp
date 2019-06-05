@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/api.service';
 export class RunninginputComponent implements OnInit, AfterContentChecked {
   runninginput: any[] = [];
   check = true;
+  buttonstatus = false;
   @Input() nextclicked : boolean;
   constructor(private api: ApiService) {
     
@@ -28,6 +29,7 @@ export class RunninginputComponent implements OnInit, AfterContentChecked {
 
     }
   getrunninginput = () => {
+    
     if(this.nextclicked == true && this.check){
       this.check =false;
       this.api.GetRunningInput().subscribe(
@@ -36,6 +38,7 @@ export class RunninginputComponent implements OnInit, AfterContentChecked {
           console.table(this.runninginput)
           this.api.sendRunningInput(this.runninginput);
           this.api.Receivedvalue(true);
+          
         },
         error => {
             console.log(error)

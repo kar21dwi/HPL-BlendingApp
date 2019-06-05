@@ -8,8 +8,18 @@ import { ApiService } from 'src/app/api.service';
 })
 export class RunningoutputComponent implements OnInit {
   runningoutput = 0;
+  buttonstatus = false;
+  status;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) {
+    this.api.simulatebutton.subscribe(x => {
+      this.buttonstatus = x
+      if(this.buttonstatus){
+        this.getrunningoutput();
+      }
+        }
+        )
+   }
 
   ngOnInit() {
   }
@@ -20,6 +30,15 @@ export class RunningoutputComponent implements OnInit {
         console.table(this.runningoutput)
       }
     )
+}
+getconfirm = ()=>{
+  this.api.PostNextHourSelection('running').subscribe(
+    data => {
+      this.status = data;
+      console.table(this.status)
+    }
+  )
+
 }
 
 }

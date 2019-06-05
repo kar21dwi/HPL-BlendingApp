@@ -11,6 +11,7 @@ export class InputsComponent implements OnInit {
   blendratio ;
   inputud ;
   naphthaload ; lpgl; c5; c6; cot; pdi; pressure; nh;
+  flag = false;
 
 
   @Input() suctiontank : any;
@@ -45,8 +46,10 @@ simulate = () =>{
 
   this.api.PostUserDefinedInputs(this.inputud).subscribe(
     data => {
+      this.flag = true;
       this.inputparameter = data;
       this.api.sendUserInput(this.inputud);
+      this.api.sendSimulateButton(this.flag)
     },
     error => {
         console.log(error)

@@ -22,6 +22,12 @@ urlpatterns = [
    path('niractual/', views.getNirActual),
    path('nirmodel/', views.getNirModel),
    path('userdefinedinputs/', views.postUserDefinedInputs),
+   path('userdefinedoutput/', views.getUserDefinedOutput),
+   path('runningoutput/', views.getRunningOutput),
+   path('profitmaxoutput/', views.getProfiitMaxOutput),
+   path('bestfitoutput/', views.getBestFitOutput),
+   path('nexthouroutput/', views.getNextHourOutput),
+   path('nexthourselectionupdate/<selection>/', views.updateNextHourSelection),
    path('comingmonthplan/', views.getComingMonthPlan),
    path('anymonthplan/<fromdate>/<todate>/', views.getAnyMonthPlan),
 

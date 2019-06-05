@@ -38,6 +38,10 @@ export class ApiService {
   private getuserqualitysource = new BehaviorSubject<any>(0);
   public getuserquality = this.getuserqualitysource.asObservable();
 
+  private simulatebuttonstatus = new BehaviorSubject<any>(0);
+  public simulatebutton = this.simulatebuttonstatus.asObservable();
+
+
  // private getmodelchildsource = new BehaviorSubject<any>(0);
   //public getchildcomponents = this.getmodelchildsource.asObservable();
 
@@ -175,6 +179,11 @@ export class ApiService {
     return this.http.get(this.baseurl + '/nexthouroutput/',
     {headers: this.httpHeaders})
   }
+  PostNextHourSelection(selection) : Observable<any>{
+
+    return this.http.get(this.baseurl + '/nexthourselectionupdate/' + selection + '/',
+    {headers: this.httpHeaders})
+  }
 
 
   sendSelection(message : any){
@@ -206,6 +215,9 @@ export class ApiService {
   }
   sendUserQuality(message : any){
     this.getuserqualitysource.next(message);
+  }
+  sendSimulateButton(message : any){
+    this.simulatebuttonstatus.next(message);
   }
 
  

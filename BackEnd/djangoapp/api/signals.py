@@ -388,8 +388,10 @@ def save_user_defined_output(sender, instance, **kwargs):
 @receiver(post_save, sender = Input_Parameter_UserDefined)
 def update_next_hr_selection(sender, instance, **kwargs):
 
-    if instance.Confirmation == True:
-
+    parent_obj = Input_Parameter_UserDefined.objects.all().order_by('-id')[0]
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0" + str(parent_obj.Confirmation) + "654444446446" + str(instance))
+    if parent_obj.Confirmation == True:
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0" + str(parent_obj) + "654444446446" + str(instance))
         parent_obj = Next_Hour_Selection.objects.all().order_by('-id')[0]
 
         Next_Hour_Selection.objects.filter(pk=parent_obj.id).update(U_D = True, R_N = False,

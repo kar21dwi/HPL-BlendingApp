@@ -9,8 +9,17 @@ import { ApiService } from 'src/app/api.service';
 })
 export class NexthouroutputComponent implements OnInit {
   nexthouroutput = 0;
+  buttonstatus = false;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) {
+    this.api.simulatebutton.subscribe(x => {
+      this.buttonstatus = x
+      if(this.buttonstatus){
+        this.getnexthouroutput();
+      }
+        }
+        )
+   }
 
   ngOnInit() {
   }
