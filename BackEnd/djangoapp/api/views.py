@@ -14,7 +14,7 @@ import json
 import ast
 from datetime import datetime
 from .models import Tanks_Overall_Status, Tank, Quality_Avg,Output_Parameter_UserDefined
-from .models import Input_Parameter_ProfitMax, Plant_Constraints
+from .models import Input_Parameter_ProfitMax, Plant_Constraints, New_Naphtha
 from .models import Output_Parameter_Running, Output_Parameter_ProfitMax
 from .models import  Input_Parameter_BestFit, Input_Parameter_UserDefined
 from .models import Naphtha_Plan_All_Months, Naphtha_Plan_Single_Month,Output_Parameter_BestFit
@@ -42,7 +42,6 @@ from .models import Quality_Real, Input_Parameter_Running, Next_Hour_Selection,Q
 def postUserDefinedInputs(request):
       data = JSONParser().parse(request)
       #Input_Parameter_UserDefined.save(data = data)
-      print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@***********~~~~~~~~~~~~~~~~~~~~~*")
       Input_Parameter_UserDefined.objects.create(Suction_Tank_No_UD = data['Suction_Tank_No_UD'],
                                                  Blending_Tank_No_UD = data['Blending_Tank_No_UD'], 
                                                  Blend_Ratio_UD = data['Blend_Ratio_UD'],
@@ -445,8 +444,12 @@ def updateNextHourSelection(request, selection):
       
       if selection == 'userdefined':
             parent_obj = Input_Parameter_UserDefined.objects.all().order_by('-id')[0]
+            tank_ids = Input_Parameter_UserDefined.objects.filter(tanks_Overall_Status = parent_obj.tanks_Overall_Status)
+            for i in range(0, len(tank_ids)):
+                  Input_Parameter_UserDefined.objects.filter(pk=tank_ids[i].id).update(Confirmation = False)
+                 
             obj = Input_Parameter_UserDefined.objects.filter(pk=parent_obj.id).get()
-            obj.Confirmation = True
+            obj.Confirmation = True 
             obj.save()
             #parent_obj = Next_Hour_Selection.objects.all().order_by('-id')[0]
             #Next_Hour_Selection.objects.filter(pk=parent_obj.id).update(U_D = True, B_F = False, P_M = False, R_N = False)
@@ -499,3 +502,65 @@ def getAnyMonthPlan(request, fromdate, todate):
                   
       
       return JsonResponse(plan, safe = False, status=status.HTTP_201_CREATED)           
+
+@csrf_exempt
+def getThisMonthDetail(request):
+      
+      parent = New_Naphtha.objects.all().order_by('-id')
+      currentmonth = datetime.strptime(parent[0].Date_Transfer_From.strftime("%Y-%m-%d"), "%Y-%m-%d").month
+      currentyear = datetime.strptime(parent[0].Date_Transfer_From.strftime("%Y-%m-%d"), "%Y-%m-%d").year
+      array = []
+
+      for i in range(0,len(parent)):
+            M = datetime.strptime(parent[i].Date_Transfer_From.strftime("%Y-%m-%d"), "%Y-%m-%d").month
+            Y = datetime.strptime(parent[i].Date_Transfer_From.strftime("%Y-%m-%d"), "%Y-%m-%d").year
+            if M == currentmonth and Y == currentyear:
+                  obj = New_Naphtha.objects.filter(pk = parent[i].id)
+                  array.append(list(obj.values()))
+
+      return JsonResponse(array, safe = False, status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+def getAnyMonthDetail(request, fromdate, todate):
+
+
+      fromdate = datetime.strptime(fromdate, "%Y-%m-%d")
+      todate = datetime.strptime(todate, "%Y-%m-%d")
+
+      frommonth = fromdate.month
+      fromyear = fromdate.year
+      tomonth = todate.month
+      toyear = todate.year
+      
+      array = New_Naphtha.objects.all()
+
+      plan = []
+
+      for i in range(0,len(array)):
+            M = datetime.strptime(array[i].Date_Transfer_From.strftime("%Y-%m-%d"), "%Y-%m-%d").month
+            Y = datetime.strptime(array[i].Date_Transfer_From.strftime("%Y-%m-%d"), "%Y-%m-%d").year
+            if M >= frommonth and Y >= fromyear and M <= tomonth and Y <= toyear:
+                  arraymonth = New_Naphtha.objects.filter(pk = array[i].id)
+                 # for k in range(0,len(arraymonth)):
+                  plan.append(list(arraymonth.values()))
+                  
+      
+      return JsonResponse(plan, safe = False, status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+def postNaphthaMonthPlan(request):
+
+      data = JSONParser().parse(request)
+      #date = data['Date'].strftime("%Y-%m-%d")
+      date = datetime.strptime(data['Date'], "%Y-%m-%d")
+      Naphtha_Plan_Single_Month.objects.create(Date = date,
+                                                 Total_Stock = data['Total_Stock'], 
+                                                 Usable_Stock = data['Usable_Stock'],
+                                                 Source = data['Source'], 
+                                                 Quantity = data['Quantity'],
+                                                 Actual_NCU_TPH = data['Actual_NCU_TPH'], Budget_NCU_TPH = data['Budget_NCU_TPH'], 
+                                                 Actual_CPP_TPD = data['Actual_CPP_TPD'] ,
+                                                 Budget_CPP_TPD = data['Budget_CPP_TPD'], Draft_Level = data['Draft_Level'] )
+
+
+      return JsonResponse(1, safe = False, status=status.HTTP_201_CREATED)

@@ -21,6 +21,8 @@ export class BestfitinputsummaryComponent implements OnInit {
           
             }
             )
+          
+            
     
       
       }

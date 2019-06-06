@@ -30,6 +30,9 @@ urlpatterns = [
    path('nexthourselectionupdate/<selection>/', views.updateNextHourSelection),
    path('comingmonthplan/', views.getComingMonthPlan),
    path('anymonthplan/<fromdate>/<todate>/', views.getAnyMonthPlan),
+   path('thismonthdetail/', views.getThisMonthDetail),
+   path('anymonthdetail/<fromdate>/<todate>/', views.getAnyMonthDetail),
+   path('monthplan/', views.postNaphthaMonthPlan),
 
    # path('login/', views.createlogin)
 

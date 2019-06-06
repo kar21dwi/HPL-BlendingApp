@@ -19,13 +19,18 @@ export class MonthlyplanningComponent implements OnInit {
   flag2 = false;
   outsideclick1 = false;
   outsideclick2 = false;
+  monthplan;
 
 
-  constructor(private api: ApiService, private calendar: NgbCalendar, private parserFormatter: NgbDateParserFormatter) { 
-    
-    
+  constructor(private api: ApiService, private calendar: NgbCalendar, private parserFormatter: NgbDateParserFormatter) {
+    this.monthplan = { Date: '', Total_Stock: '', Usable_Stock: '',
+    Source:'', Quantity:'',Budget_NCU_TPH:'', Actual_NCU_TPH: '', Actual_CPP_TPD: '',
+    Budget_CPP_TPD: '',Draft_Level: ''}; 
   }
-
+    
+    
+ 
+ 
   ngOnInit() {
     
   }
@@ -69,6 +74,17 @@ export class MonthlyplanningComponent implements OnInit {
      }     
     )
   
+   }
+   postmonthplan  = () => {
+    this.api.PostMonthPlan(this.monthplan).subscribe(
+     data => {
+       console.log(data);
+     
+     },
+     error => {
+         console.log(error)
+     }     
+    )
    }
 
    onFromDateSelect($event) {

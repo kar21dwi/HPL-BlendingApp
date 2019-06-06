@@ -35,6 +35,7 @@ getconfirm = ()=>{
   this.api.PostNextHourSelection('profitmax').subscribe(
     data => {
       this.status = data;
+      this.api.sendConfirmStatus(true);
       console.table(this.status)
     }
   )

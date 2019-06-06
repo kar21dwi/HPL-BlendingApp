@@ -1,4 +1,3 @@
-<h2> alltanks </h2>
 <button (click)="getsuctionblending()">sbtank</button> <br>
 {{ sbtank.Suction_Tank_No_RN }} <br>
 {{ sbtank.Blending_Tank_No_RN }} <br>
@@ -9,13 +8,17 @@
 <button (click)="getalltanks()">alltankslevels</button> <br>
 {{ alltankslevels }} <br>
 <hr>
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-2.5" ><app-tankno1></app-tankno1></div>
+    <div class="col-sm-2.5" ><app-tankno2></app-tankno2></div>
+    <div class="col-sm-2.5" ><app-tankno3></app-tankno3></div>
+    <div class="col-sm-2.5"><app-tankno4></app-tankno4> </div>
+    <div class="col-sm-2.5"><app-tankno5></app-tankno5></div>
+  </div>
+    <div class="row">
+     <app-inputparameters></app-inputparameters>
+    </div>
+</div>
 
-<app-tankno1></app-tankno1> 
-<hr>
-<app-tankno2></app-tankno2> 
-<hr>
-<app-tankno3></app-tankno3> 
-<hr>
-<app-tankno4></app-tankno4> 
-<hr>
-<app-tankno5></app-tankno5> 
+ 

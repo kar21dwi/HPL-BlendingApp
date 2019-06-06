@@ -37,6 +37,7 @@ getconfirm = ()=>{
   this.api.PostNextHourSelection('userdefined').subscribe(
     data => {
       this.status = data;
+      this.api.sendConfirmStatus(true);
       console.table(this.status)
     }
   )

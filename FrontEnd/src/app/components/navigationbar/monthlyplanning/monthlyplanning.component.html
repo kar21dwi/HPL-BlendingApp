@@ -1,14 +1,43 @@
 <h3>
   monthlyplanning 
 </h3>
-<button (click)="getcomingmonthplan()">coming month plan</button> <br><br>
+<button (click)="getcomingmonthplan()">coming month plan</button> <br>
 
-<ng-container *ngFor="let obj of comingmonthplan; index as i">
-  <li>
-     {{ obj.id }}
-     {{ obj }}
-  </li>
+<table style="width:100%">
+  <tr>
+    <th>Data</th>
+    <th>Total_Stock</th> 
+    <th>Usable_Stock</th>
+    <th>Source</th>
+    <th>Quantity</th>
+    <th>Actual_NCU_TPH</th>
+    <th>Budget_NCU_TPH</th>
+    <th>Actual_CPP_TPD</th>
+    <th>Budget_CPP_TPD</th>
+    <th>Draft_Level</th>
+    <th>Actual_NCU_TPD</th>
+    <th>Budget_NCU_TPD</th>
+  </tr>
+<ng-container *ngFor="let obj of comingmonthplan">
+  <tr>
+      <td>{{obj.Date}}</td>
+      <td>{{obj.Total_Stock}}</td>
+      <td>{{obj.Usable_Stock}}</td>
+      <td>{{obj.Source}}</td>
+      <td>{{obj.Quantity}}</td>
+      <td>{{obj.Actual_NCU_TPH}}</td>
+      <td>{{obj.Budget_NCU_TPH}}</td>
+      <td>{{obj.Actual_CPP_TPD}}</td>
+      <td>{{obj.Budget_CPP_TPD}}</td>
+      <td>{{obj.Draft_Level}}</td>
+      <td>{{obj.Budget_NCU_TPD}}</td>
+      <td>{{obj.Budget_NCU_TPD}}</td>
+  </tr>
 </ng-container>
+</table>
+  
+
+   
 
 <form (ngSubmit)="getanymonthplan()">
   <input class="firstfield" type="text" name="from date" (click)="showcalender1()" [(ngModel)]="fromdate" placeholder="from date"><br>
@@ -26,6 +55,56 @@
     <ngb-datepicker #dp [(ngModel)]="model" (select)="onToDateSelect($event)" ></ngb-datepicker>
 </ng-container>
 </div>
+
+<table style="width:100%">
+  <tr>
+    <th>Date</th>
+    <th>Total_Stock</th> 
+    <th>Usable_Stock</th>
+    <th>Source</th>
+    <th>Quantity</th>
+    <th>Actual_NCU_TPH</th>
+    <th>Budget_NCU_TPH</th>
+    <th>Actual_CPP_TPD</th>
+    <th>Budget_CPP_TPD</th>
+    <th>Draft_Level</th>
+    <th>Actual_NCU_TPD</th>
+    <th>Budget_NCU_TPD</th>
+  </tr>
+<ng-container *ngFor="let i of anymonthplan">
+   <ng-container *ngFor="let obj of i">
+  <tr>
+      <td>{{obj.Date}}</td>
+      <td>{{obj.Total_Stock}}</td>
+      <td>{{obj.Usable_Stock}}</td>
+      <td>{{obj.Source}}</td>
+      <td>{{obj.Quantity}}</td>
+      <td>{{obj.Actual_NCU_TPH}}</td>
+      <td>{{obj.Budget_NCU_TPH}}</td>
+      <td>{{obj.Actual_CPP_TPD}}</td>
+      <td>{{obj.Budget_CPP_TPD}}</td>
+      <td>{{obj.Draft_Level}}</td>
+      <td>{{obj.Budget_NCU_TPD}}</td>
+      <td>{{obj.Budget_NCU_TPD}}</td>
+  </tr>
+  </ng-container>
+</ng-container>
+</table>
+
+<form (ngSubmit)="postmonthplan()">
+  Date = <input type="date" data-date-format="YYYY MMMM DD" name="Date" [(ngModel)]="monthplan.Date"><br>
+  Total_Stock =  <input type="number" name="Total_Stock" [(ngModel)]="monthplan.Total_Stock"><br>
+  Usable_Stock =  <input type="number" name="Usable_Stock" [(ngModel)]="monthplan.Usable_Stock"><br>
+  Source =  <input type="text" name="Source" [(ngModel)]="monthplan.Source"><br>
+  Quantity = <input type="number" name="Quantity" [(ngModel)]="monthplan.Quantity"><br>
+  Actual_NCU_TPH = <input type="number" name="Actual_NCU_TPH" [(ngModel)]="monthplan.Actual_NCU_TPH"><br>
+  Budget_NCU_TPH = <input type="number" name="Budget_NCU_TPH" [(ngModel)]="monthplan.Budget_NCU_TPH"><br>
+  Actual_CPP_TPD = <input type="number" name="Actual_CPP_TPD" [(ngModel)]="monthplan.Actual_CPP_TPD"><br>
+  Budget_CPP_TPD = <input type="number" name="Budget_CPP_TPD" [(ngModel)]="monthplan.Budget_CPP_TPD"><br>
+  Draft_Level = <input type="number" name="Draft_Level" [(ngModel)]="monthplan.Draft_Level"><br>
+  
+    <input class="btn btn-success" type="submit" value="submit">
+</form>
 
 
  

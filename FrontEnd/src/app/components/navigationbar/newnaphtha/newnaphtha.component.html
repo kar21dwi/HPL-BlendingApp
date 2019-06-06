@@ -1,13 +1,47 @@
 <h3>
   newnaphtha
 </h3>
-<button (click)="getthismonthdetail()">this month detail</button> <br><br>
-
-<ng-container *ngFor="let obj of thismonthplan; index as i">
-  <li>
-     {{ obj }}
-  </li>
+<button (click)="getthismonthdetail()">this month detail</button>
+<table style="width:100%">
+  <tr>
+    <th>Transport_Type</th>
+    <th>Date_Transfer_To</th> 
+    <th>HOJ</th>
+    <th>Load_Port</th>
+    <th>BL_Quantity</th>
+    <th>Shore_Quantity</th>
+    <th>Opening_Stock</th>
+    <th>Source</th>
+    <th>PCN_NCU</th>
+    <th>PCN_CPP</th>
+    <th>FGN_CPP</th>
+    <th>CBFS_CPP</th>
+    <th>Vessel_Name</th>
+    <th>Shortage_Quantity</th>
+  </tr>
+<ng-container *ngFor="let i of thismonthplan">
+<ng-container *ngFor="let obj of i">
+  <tr>
+      <td>{{obj.Transport_Type}}</td>
+      <td>{{obj.Date_Transfer_To}}</td>
+      <td>{{obj.HOJ}}</td>
+      <td>{{obj.Load_Port}}</td>
+      <td>{{obj.BL_Quantity}}</td>
+      <td>{{obj.Shore_Quantity}}</td>
+      <td>{{obj.Opening_Stock}}</td>
+      <td>{{obj.Source}}</td>
+      <td>{{obj.PCN_NCU}}</td>
+      <td>{{obj.PCN_CPP}}</td>
+      <td>{{obj.FGN_CPP}}</td>
+      <td>{{obj.CBFS_CPP}}</td>
+      <td>{{obj.Vessel_Name}}</td>
+      <td>{{obj.Shortage_Quantity}}</td>
+  </tr>
 </ng-container>
+</ng-container>
+</table>
+
+
 
 <form (ngSubmit)="getanymonthdetail()">
   <input type="text" name="from date" (click)="showcalender1()" [(ngModel)]="fromdate" placeholder="from date"><br>
@@ -22,3 +56,78 @@
 <ng-container *ngIf="flag2 == true && flag1 == false">
     <ngb-datepicker #dp [(ngModel)]="model" (select)="onToDateSelect($event)" ></ngb-datepicker>
   </ng-container>
+  <table style="width:100%">
+  <tr>
+    <th>Transport_Type</th>
+    <th>Date_Transfer_To</th> 
+    <th>HOJ</th>
+    <th>Load_Port</th>
+    <th>BL_Quantity</th>
+    <th>Shore_Quantity</th>
+    <th>Opening_Stock</th>
+    <th>Source</th>
+    <th>PCN_NCU</th>
+    <th>PCN_CPP</th>
+    <th>FGN_CPP</th>
+    <th>CBFS_CPP</th>
+    <th>Vessel_Name</th>
+    <th>Shortage_Quantity</th>
+  </tr>
+<ng-container *ngFor="let i of anymonthdetail">
+<ng-container *ngFor="let obj of i">
+  <tr>
+      <td>{{obj.Transport_Type}}</td>
+      <td>{{obj.Date_Transfer_To}}</td>
+      <td>{{obj.HOJ}}</td>
+      <td>{{obj.Load_Port}}</td>
+      <td>{{obj.BL_Quantity}}</td>
+      <td>{{obj.Shore_Quantity}}</td>
+      <td>{{obj.Opening_Stock}}</td>
+      <td>{{obj.Source}}</td>
+      <td>{{obj.PCN_NCU}}</td>
+      <td>{{obj.PCN_CPP}}</td>
+      <td>{{obj.FGN_CPP}}</td>
+      <td>{{obj.CBFS_CPP}}</td>
+      <td>{{obj.Vessel_Name}}</td>
+      <td>{{obj.Shortage_Quantity}}</td>
+  </tr>
+</ng-container>
+</ng-container>
+</table>
+
+  
+
+
+<form (ngSubmit)="postnewnaphthadetails()">
+  Transport_Type = <input type="text"  name="Transport_Type" [(ngModel)]="newnaphtha.Transport_Type" required><br>
+  Date_Transfer_From =  <input type="date" name="Date_Transfer_From" [(ngModel)]="newnaphtha.Date_Transfer_From" required><br>
+  Date_Transfer_To =  <input type="date" name="Date_Transfer_To" [(ngModel)]="newnaphtha.HOJ" required><br>
+  HOJ =  <input type="text" name="HOJ" [(ngModel)]="newnaphtha.Source" required><br>
+  Load_Port = <input type="text" name="Load_Port" [(ngModel)]="newnaphtha.Load_Port" required><br>
+  BL_Quantity = <input type="number" name="BL_Quantity" [(ngModel)]="newnaphtha.BL_Quantity" required><br>
+  Shore_Quantity = <input type="number" name="Shore_Quantity" [(ngModel)]="newnaphtha.Shore_Quantity" required><br>
+  Opening_Stock = <input type="number" name="Opening_Stock" [(ngModel)]="newnaphtha.Opening_Stock"><br>
+  Source = <input type="text" name="Source" [(ngModel)]="newnaphtha.Source"><br required>
+  PCN_NCU = <input type="number" name="PCN_NCU" [(ngModel)]="newnaphtha.PCN_NCU"><br>
+  PCN_CPP = <input type="number" name="PCN_CPP" [(ngModel)]="newnaphtha.PCN_CPP"><br>
+  FGN_CPP = <input type="number" name="FGN_CPP" [(ngModel)]="newnaphtha.FGN_CPP"><br>
+  CBFS_CPP_NCU = <input type="number" name="CBFS_CPP_NCU" [(ngModel)]="newnaphtha.CBFS_CPP_NCU"><br>
+  Vessel_Name = <input type="text" name="Vessel_Name" [(ngModel)]="newnaphtha.Vessel_Name" required><br>
+  <br>
+
+Aromatics = <input type="number"  name="Aromatics" [(ngModel)]="newnaphtha.Aromatics"><br>
+Colour = <input type="number"  name="Colour" [(ngModel)]="newnaphtha.Colour"><br>
+Density = <input type="number"  name="Density" [(ngModel)]="newnaphtha.Density"><br>
+IN_IP_Ratio = <input type="number"  name="IN_IP_Ratio" [(ngModel)]="newnaphtha.IN_IP_Ratio"><br>
+Naphthene = <input type="number" name="Naphthene" [(ngModel)]="newnaphtha.Naphthene"><br>
+Olefins = <input type="number" name="Olefins" [(ngModel)]="newnaphtha.Olefins"><br>
+Paraffin = <input type="number" name="Paraffin" [(ngModel)]="newnaphtha.Paraffin"><br>
+RVP = <input type="number" name="RVP" [(ngModel)]="newnaphtha.RVP"><br>
+Sulfur = <input type="number" name="Sulfur" [(ngModel)]="newnaphtha.Sulfur"><br>
+FBP = <input type="number" name="FBP" [(ngModel)]="newnaphtha.FBP"><br>
+IBP = <input type="number" name="IBP" [(ngModel)]="newnaphtha.IBP"><br>
+
+  
+    <input class="btn btn-success" type="submit" value="submit">
+</form>
+  

@@ -17,8 +17,16 @@ export class NewnaphthaComponent implements OnInit {
   model: NgbDateStruct;
   flag1 = false;
   flag2 = false;
+  newnaphtha;
 
-  constructor(private api: ApiService, private calendar: NgbCalendar, private parserFormatter: NgbDateParserFormatter) { }
+  constructor(private api: ApiService, private calendar: NgbCalendar, private parserFormatter: NgbDateParserFormatter) { 
+    this.newnaphtha = { Transport_Type: '', Date_Transfer_From: '', Date_Transfer_To: '',
+    HOJ:'', Load_Port:'',BL_Quantity:'', Shore_Quantity: '', Opening_Stock: '',
+    Source: '',PCN_NCU: '',PCN_CPP: '',FGN_CPP: '',CBFS_CPP_NCU: '',Vessel_Name: '',Aromatics: '',Colour: ''
+    ,Density: '',IN_IP_Ratio: '',Naphthene: '',Olefins: '',Paraffin: '',RVP: '',Sulfur: '',FBP: '',IBP: ''};
+  }
+ 
+
 
   ngOnInit() {
   }
@@ -27,7 +35,7 @@ export class NewnaphthaComponent implements OnInit {
     this.api.GetThisMonthDetail().subscribe(
      data => {
        this.thismonthplan = data;
-       console.table(this.thismonthplan);
+       console.table(this.thismonthplan[0]);
      },
      error => {
          console.log(error)
@@ -47,6 +55,17 @@ export class NewnaphthaComponent implements OnInit {
       }     
      )
    
+    }
+
+    postnewnaphthadetails = () => {
+      this.api.PostNewNaphthaDetails(this.newnaphtha).subscribe(
+        data => {
+
+        },
+        error => {
+          console.log(error)
+        }
+      )
     }
  
     onFromDateSelect($event) {

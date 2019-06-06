@@ -1,7 +1,20 @@
-<h2>1. inputparameters</h2> <br>
-<button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="giveinputs()">Next</button> <br>
-<app-userdefinedinputs [nextclicked]="nextclicked"></app-userdefinedinputs>
-<app-modelinputscomparion [nextclicked]="nextclicked"></app-modelinputscomparion> <br>
-<app-modelblendquality [nextclicked]="nextclicked"></app-modelblendquality> <br>
-<app-blendcomparison [nextclicked]="nextclicked"></app-blendcomparison> <br>
+<hr>
+<div class="row">
+    <div class="col text-center">
+      <button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" (click)="giveinputs()">Next</button>
+    </div>
+</div>
 
+
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-2.5" >
+    <app-userdefinedinputs [nextclicked]="nextclicked"></app-userdefinedinputs>
+    <app-blendcomparison [nextclicked]="nextclicked"></app-blendcomparison>
+    </div>
+    <div class="col-sm-2.5"><app-modelinputscomparion [nextclicked]="nextclicked"></app-modelinputscomparion> </div>
+    <div class="col-sm-2.5" ><app-modelblendquality [nextclicked]="nextclicked"></app-modelblendquality></div>
+    
+    
+  </div>
+</div>

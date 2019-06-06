@@ -44,6 +44,9 @@ export class ApiService {
   private tabpressstatussource = new BehaviorSubject<any>(0);
   public tabpressstatus = this.tabpressstatussource.asObservable();
 
+  private getconfirmsource = new BehaviorSubject<any>(0);
+  public confirmstatus = this.getconfirmsource.asObservable();
+
 
  // private getmodelchildsource = new BehaviorSubject<any>(0);
   //public getchildcomponents = this.getmodelchildsource.asObservable();
@@ -127,6 +130,14 @@ export class ApiService {
 
     return this.http.post(this.baseurl + '/userdefinedinputs/' , inputud, {headers: this.httpHeaders});
   }
+  PostMonthPlan(monthplan) : Observable<any>{
+
+    return this.http.post(this.baseurl + '/monthplan/' , monthplan, {headers: this.httpHeaders});
+  }
+  PostNewNaphthaDetails(newnaphtha) : Observable<any>{
+
+    return this.http.post(this.baseurl + '/newnaphtha/' , newnaphtha, {headers: this.httpHeaders});
+  }
   GetRunningInput() : Observable<any>{
 
     return this.http.get(this.baseurl + '/runninginput/',
@@ -187,6 +198,7 @@ export class ApiService {
     return this.http.get(this.baseurl + '/nexthourselectionupdate/' + selection + '/',
     {headers: this.httpHeaders})
   }
+  
 
 
   sendSelection(message : any){
@@ -224,6 +236,9 @@ export class ApiService {
   }
   sendTabPressStatus(message : any){
     this.tabpressstatussource.next(message);
+  }
+  sendConfirmStatus(message : any){
+    this.getconfirmsource.next(message);
   }
 
  

@@ -36,9 +36,11 @@ getconfirm = ()=>{
   this.api.PostNextHourSelection('bestfit').subscribe(
     data => {
       this.status = data;
+      this.api.sendConfirmStatus(true);
       console.table(this.status)
     }
   )
+  
 
 }
 }
