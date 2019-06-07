@@ -198,6 +198,16 @@ export class ApiService {
     return this.http.get(this.baseurl + '/nexthourselectionupdate/' + selection + '/',
     {headers: this.httpHeaders})
   }
+  GetReceivedNaphtha() : Observable<any>{
+
+    return this.http.get(this.baseurl + '/receivednaphtha/',
+    {headers: this.httpHeaders})
+  }
+
+  TransferNaphthaQuantity(transfernaphtha): Observable<any>{
+
+    return this.http.post(this.baseurl + '/transfernaphthaquantity/' ,transfernaphtha, {headers: this.httpHeaders});
+  }
   
 
 

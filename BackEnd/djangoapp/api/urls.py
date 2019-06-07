@@ -33,6 +33,9 @@ urlpatterns = [
    path('thismonthdetail/', views.getThisMonthDetail),
    path('anymonthdetail/<fromdate>/<todate>/', views.getAnyMonthDetail),
    path('monthplan/', views.postNaphthaMonthPlan),
+   path('newnaphtha/', views.PostNewNaphthaDetails),
+   path('receivednaphtha/', views.GetReceivedNaphtha),
+   path('transfernaphthaquantity/', views.transferNaphthaQuantity),
 
    # path('login/', views.createlogin)
 

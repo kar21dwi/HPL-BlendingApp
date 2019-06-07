@@ -12,13 +12,14 @@ from rest_framework import status
 from django.http import HttpResponse
 import json
 import ast
+import random
 from datetime import datetime
 from .models import Tanks_Overall_Status, Tank, Quality_Avg,Output_Parameter_UserDefined
 from .models import Input_Parameter_ProfitMax, Plant_Constraints, New_Naphtha
-from .models import Output_Parameter_Running, Output_Parameter_ProfitMax
-from .models import  Input_Parameter_BestFit, Input_Parameter_UserDefined
+from .models import Output_Parameter_Running, Output_Parameter_ProfitMax, Receipt_Tank
+from .models import  Input_Parameter_BestFit, Input_Parameter_UserDefined, New_Naphtha_Quality_Supplier
 from .models import Naphtha_Plan_All_Months, Naphtha_Plan_Single_Month,Output_Parameter_BestFit
-from .models import Quality_Real, Input_Parameter_Running, Next_Hour_Selection,Quality_NIR_Actual,Quality_NIR_Pred
+from .models import Quality_Real, Input_Parameter_Running, Next_Hour_Selection,Quality_NIR_Actual,Quality_NIR_Pred, New_Naphtha_Quality_Lab
 # new line
 
 
@@ -94,29 +95,63 @@ def getAllTanks(request):
 
 @csrf_exempt
 def getQualityAvg(request, tankno):
-      
-      parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
-      tank = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = tankno).get()
-      quality_avg = Quality_Avg.objects.filter(tank = tank)
+      if tankno == '0':
+            parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+            avg_quality =[]
+            for i in range(1,6):
+                  tank = Tank.objects.filter(tanks_Overall_Status = parent_obj,Tank_No = i).get()
+                  quality_avg = Quality_Avg.objects.filter(tank = tank)
+                  quality_avg =  list(quality_avg.values()) 
+                  quality_avg = list(quality_avg[0].values())
 
-      quality_avg = list(quality_avg.values())
-      
-      print ("*****************" + str(quality_avg[0]) + "******************")
+                  avg_quality.append(quality_avg)
 
-      return JsonResponse(quality_avg[0] , safe = False, status=status.HTTP_201_CREATED)
+            return JsonResponse(avg_quality , safe = False, status=status.HTTP_201_CREATED)
+
+            
+      else:
+
+            parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+            tank = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = tankno).get()
+            quality_avg = Quality_Avg.objects.filter(tank = tank)
+
+            quality_avg = list(quality_avg.values())
+            
+            print ("*****************" + str(quality_avg[0]) + "******************")
+
+            return JsonResponse(quality_avg[0] , safe = False, status=status.HTTP_201_CREATED)
 
 @csrf_exempt
 def getQualityReal(request, tankno):
-      
-      parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
-      tank = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = tankno).get()
-      quality_real = Quality_Real.objects.filter(tank = tank)
+     
+      if tankno == '0':
+            parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+            print("##############################################################################")
+           
+            real_quality =[]
+            for i in range(1,6):
+                  tank = Tank.objects.filter(tanks_Overall_Status = parent_obj,Tank_No = i).get()
+                  quality_real = Quality_Real.objects.filter(tank = tank)
+                  quality_real =  list(quality_real.values()) 
+                  quality_real = list(quality_real[0].values())
 
-      quality_real = list(quality_real.values())
-      
-      #print ("*****************" + str(quality_avg[0]) + "******************")
+                  real_quality.append(quality_real)
 
-      return JsonResponse(quality_real[0] , safe = False, status=status.HTTP_201_CREATED)
+            return JsonResponse(real_quality , safe = False, status=status.HTTP_201_CREATED)
+
+            
+      else:
+
+      
+            parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+            tank = Tank.objects.filter(tanks_Overall_Status = parent_obj, Tank_No = tankno).get()
+            quality_real = Quality_Real.objects.filter(tank = tank)
+
+            quality_real = list(quality_real.values())
+            
+            #print ("*****************" + str(quality_avg[0]) + "******************")
+
+            return JsonResponse(quality_real[0] , safe = False, status=status.HTTP_201_CREATED)
 
 @csrf_exempt
 def getClickedTank(request, tankno):
@@ -563,4 +598,102 @@ def postNaphthaMonthPlan(request):
                                                  Budget_CPP_TPD = data['Budget_CPP_TPD'], Draft_Level = data['Draft_Level'] )
 
 
+      return JsonResponse(1, safe = False, status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+def PostNewNaphthaDetails(request):
+
+      data = JSONParser().parse(request)
+      #date = data['Date'].strftime("%Y-%m-%d")
+      parent_obj = Tanks_Overall_Status.objects.all().order_by('-id')[0]
+      
+      Date_Transfer_From = datetime.strptime(data['Date_Transfer_From'], "%Y-%m-%d")
+      Date_Transfer_To = datetime.strptime(data['Date_Transfer_To'], "%Y-%m-%d")
+      New_Naphtha.objects.create(Transport_Type = data['Transport_Type'], 
+                                 Date_Transfer_From = Date_Transfer_From,
+                                 Date_Transfer_To = Date_Transfer_To, 
+                                 HOJ = data['HOJ'],
+                                 Load_Port = data['Load_Port'], BL_Quantity = data['BL_Quantity'], 
+                                 Shore_Quantity = data['Shore_Quantity'] , Shortage_Quantity = data['BL_Quantity']-data['Shore_Quantity'],
+                                 Opening_Stock = data['Opening_Stock'], Source = data['Source'],
+                                 PCN_NCU = data['PCN_NCU'], PCN_CPP = data['PCN_CPP'],
+                                 FGN_CPP = data['FGN_CPP'], CBFS_CPP = data['CBFS_CPP'], Vessel_Name = data['Vessel_Name'],
+                                 tanks_Overall_Status = parent_obj)
+      obj = New_Naphtha.objects.all().order_by('-id')[0]
+
+      New_Naphtha_Quality_Supplier.objects.create(Aromatics = data['Aromatics'], 
+                                 Colour = data['Colour'],
+                                 Density = data['Density'], 
+                                 IN_IP_Ratio = data['IN_IP_Ratio'],
+                                 Naphthene = data['Naphthene'], Olefins = data['Olefins'], 
+                                 Paraffin = data['Paraffin'] ,
+                                 RVP = data['RVP'], Sulfur = data['Sulfur'],
+                                 FBP = data['FBP'], IBP = data['IBP'], new_Naphtha = obj)
+
+
+      New_Naphtha_Quality_Lab.objects.create(Aromatics = random.randint(10,100), 
+                              Colour = random.randint(10,100),
+                              Density = random.randint(10,100), 
+                              IN_IP_Ratio = random.randint(10,50),
+                              Naphthene = random.randint(10,50), Olefins = random.randint(10,50), 
+                              Paraffin = random.randint(10,50) ,
+                              RVP = random.randint(10,50), Sulfur = random.randint(10,50),
+                              FBP = random.randint(10,50), IBP = random.randint(10,50), new_Naphtha = obj)
+
+
+      Receipt_Tank.objects.create(Tank_No_1 = 0, Tank_No_1_Receiving = -1,
+                              Tank_No_2 = 0, Tank_No_2_Receiving = -1,Tank_No_3 = 0, Tank_No_3_Receiving = -1,
+                              Tank_No_4 = 0, Tank_No_4_Receiving = -1,Tank_No_5 = 0, Tank_No_5_Receiving = -1,
+                               new_Naphtha = obj)
+
+
+      return JsonResponse(1, safe = False, status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+def GetReceivedNaphtha(request):
+      
+      parent_obj = New_Naphtha.objects.all().order_by('-id')[0]
+      suppliedquality = New_Naphtha_Quality_Supplier.objects.filter(new_Naphtha = parent_obj)
+      labquality = New_Naphtha_Quality_Lab.objects.filter(new_Naphtha = parent_obj)
+      parent_obj = New_Naphtha.objects.filter(pk=parent_obj.id)
+
+      received = []
+      suppliedquality =  list(suppliedquality.values()) 
+      suppliedquality = list(suppliedquality[0].values())    
+      labquality =  list(labquality.values()) 
+      labquality = list(labquality[0].values()) 
+      parent_obj =  list(parent_obj.values()) 
+      parent_obj = list(parent_obj[0].values()) 
+
+      received.append(parent_obj)
+      received.append(suppliedquality)
+      received.append(labquality)
+
+      return JsonResponse(received , safe = False, status=status.HTTP_201_CREATED)
+
+
+@csrf_exempt
+def transferNaphthaQuantity(request):
+      data = JSONParser().parse(request)
+      parent_obj = Receipt_Tank.objects.all().order_by('-id')[0]
+
+      tanknoreceiving = [0] * 5
+      for i in range(0,5):
+
+            if data[i] == 0:
+                  tanknoreceiving[i] = -1
+            else:
+                  if i+1 == data[5]:
+                        tanknoreceiving[i] = 0
+                  else:
+                        tanknoreceiving[i] = 1
+
+      Receipt_Tank.objects.filter(pk= parent_obj.id).update(Tank_No_1 = data[0],
+                                                 Tank_No_2 = data[1], 
+                                                 Tank_No_3= data[2],
+                                                 Tank_No_4 = data[3], 
+                                                 Tank_No_5 = data[4],
+                                                 Tank_No_1_Receiving = tanknoreceiving[0],Tank_No_2_Receiving = tanknoreceiving[1],
+                                                 Tank_No_3_Receiving = tanknoreceiving[2],Tank_No_4_Receiving = tanknoreceiving[3],
+                                                 Tank_No_5_Receiving = tanknoreceiving[4])
       return JsonResponse(1, safe = False, status=status.HTTP_201_CREATED)
