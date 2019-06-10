@@ -3,3 +3,11 @@
     font-size: 30px;
     border-radius: 5px;
 }
+
+    
+
+.wrapper > div {
+    background: #eeeeee;
+    padding: 5em;
+    
+}
