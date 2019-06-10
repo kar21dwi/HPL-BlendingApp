@@ -15,7 +15,7 @@ import ast
 import random
 from datetime import datetime
 from .models import Tanks_Overall_Status, Tank, Quality_Avg,Output_Parameter_UserDefined
-from .models import Input_Parameter_ProfitMax, Plant_Constraints, New_Naphtha
+from .models import Input_Parameter_ProfitMax, Plant_Constraints, New_Naphtha, Output_Comparision
 from .models import Output_Parameter_Running, Output_Parameter_ProfitMax, Receipt_Tank
 from .models import  Input_Parameter_BestFit, Input_Parameter_UserDefined, New_Naphtha_Quality_Supplier
 from .models import Naphtha_Plan_All_Months, Naphtha_Plan_Single_Month,Output_Parameter_BestFit
@@ -688,12 +688,142 @@ def transferNaphthaQuantity(request):
                   else:
                         tanknoreceiving[i] = 1
 
-      Receipt_Tank.objects.filter(pk= parent_obj.id).update(Tank_No_1 = data[0],
-                                                 Tank_No_2 = data[1], 
-                                                 Tank_No_3= data[2],
-                                                 Tank_No_4 = data[3], 
-                                                 Tank_No_5 = data[4],
-                                                 Tank_No_1_Receiving = tanknoreceiving[0],Tank_No_2_Receiving = tanknoreceiving[1],
-                                                 Tank_No_3_Receiving = tanknoreceiving[2],Tank_No_4_Receiving = tanknoreceiving[3],
-                                                 Tank_No_5_Receiving = tanknoreceiving[4])
+
+      parent_obj.Tank_No_1 = data[0]
+      parent_obj.Tank_No_2 = data[1]  
+      parent_obj.Tank_No_3 = data[2]
+      parent_obj.Tank_No_4 = data[3]
+      parent_obj.Tank_No_5 = data[4]
+      parent_obj.Tank_No_1_Receiving = tanknoreceiving[0]
+      parent_obj.Tank_No_2_Receiving = tanknoreceiving[1]
+      parent_obj.Tank_No_3_Receiving = tanknoreceiving[2]
+      parent_obj.Tank_No_4_Receiving = tanknoreceiving[3]
+      parent_obj.Tank_No_5_Receiving = tanknoreceiving[4]   
+
+      parent_obj.save()
+
       return JsonResponse(1, safe = False, status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+def getInputOutput(request, fromdate, todate):
+
+
+      fromdate = datetime.strptime(fromdate, "%Y-%m-%d")
+      todate = datetime.strptime(todate, "%Y-%m-%d")
+
+      fromday = fromdate.day
+      frommonth = fromdate.month
+      fromyear = fromdate.year
+      today = todate.day
+      tomonth = todate.month
+      toyear = todate.year
+
+      
+      array = Tanks_Overall_Status.objects.all()
+    
+      inputoutput = []
+
+      for i in range(0,len(array)):
+
+            D = datetime.strptime(array[i].Date_Time.strftime("%Y-%m-%d"), "%Y-%m-%d").day
+            M = datetime.strptime(array[i].Date_Time.strftime("%Y-%m-%d"), "%Y-%m-%d").month
+            Y = datetime.strptime(array[i].Date_Time.strftime("%Y-%m-%d"), "%Y-%m-%d").year
+           
+            if D >= fromday and M >= frommonth and Y >= fromyear and D <= today and M <= tomonth and Y <= toyear:
+                  
+                  Input = Input_Parameter_Running.objects.filter(tanks_Overall_Status = array[i]).get()
+                  Output = Output_Parameter_Running.objects.filter(input_Parameter_Running = Input).get()
+                  Comparison = Output_Comparision.objects.filter(output_Parameter_Running = Output) 
+           
+                  inputoutput.append(list(Comparison.values())[0])
+                  
+      
+      return JsonResponse(inputoutput, safe = False, status=status.HTTP_201_CREATED)
+
+@csrf_exempt
+def getQualityQuantity(request, fromdate, todate):
+
+
+      fromdate = datetime.strptime(fromdate, "%Y-%m-%d")
+      todate = datetime.strptime(todate, "%Y-%m-%d")
+
+      frommonth = fromdate.month
+      fromyear = fromdate.year
+      tomonth = todate.month
+      toyear = todate.year
+      
+      array = Tanks_Overall_Status.objects.all().order_by('id')
+ 
+      qualityquantity = []
+     
+      for i in range(0,len(array)):
+
+            M = datetime.strptime(array[i].Date_Time.strftime("%Y-%m-%d"), "%Y-%m-%d").month
+            Y = datetime.strptime(array[i].Date_Time.strftime("%Y-%m-%d"), "%Y-%m-%d").year
+           
+            if M >= frommonth and Y >= fromyear and M <= tomonth and Y <= toyear:
+
+                  dayobjday = datetime.strptime(array[i].Date_Time.strftime("%Y-%m-%d"), "%Y-%m-%d").day
+
+                  flag = False
+
+                  for f in range(0,len(qualityquantity)):
+                        thisdayinlist = datetime.strptime(qualityquantity[f][0], "%Y-%m-%d").day
+                        thismonthinlist = datetime.strptime(qualityquantity[f][0], "%Y-%m-%d").month
+                        thisyearinlist = datetime.strptime(qualityquantity[f][0], "%Y-%m-%d").year
+                        if thisdayinlist == dayobjday and thismonthinlist == M and thisyearinlist == Y:
+                              flag = True
+
+                  if not flag:
+
+                        temparray = []
+
+                        for j in range(0,len(array)):
+
+                              thisday = datetime.strptime(array[j].Date_Time.strftime("%Y-%m-%d"), "%Y-%m-%d").day
+                              thismonth = datetime.strptime(array[j].Date_Time.strftime("%Y-%m-%d"), "%Y-%m-%d").month
+                              thisyear = datetime.strptime(array[j].Date_Time.strftime("%Y-%m-%d"), "%Y-%m-%d").year
+
+                              if dayobjday == thisday and M == thismonth and Y == thisyear:
+
+                                    temparray.append(array[j])
+                              
+                        tankweights = []
+                        tankquality = []
+                        tankconsumption = []
+                        tankreceipt = []
+                        dayreport = []
+
+                        for k in range(0,5):
+
+                              tankobj = Tank.objects.filter(tanks_Overall_Status = temparray[-1], Tank_No = k+1).get()
+                              tankweights.append(tankobj.Weight)
+                              quality = Quality_Avg.objects.filter(tank = tankobj)
+                              tankquality.append(list(quality.values())[0])
+
+                              if len(qualityquantity):
+                                    
+                                    weightdiff = tankobj.Weight - qualityquantity[-1][1][k]
+
+                                    if weightdiff > 0:
+                                          tankreceipt.append(weightdiff)
+                                          tankconsumption.append(0)
+                                    else:
+                                          tankconsumption.append(-1 * weightdiff)
+                                          tankreceipt.append(0)
+                              else:
+                                    tankreceipt.append(0)
+                                    tankconsumption.append(0)              
+                                    
+                        dayreport.append(temparray[-1].Date_Time.strftime("%Y-%m-%d"))                    
+                        dayreport.append(tankweights)
+                        dayreport.append(tankconsumption)
+                        dayreport.append(tankreceipt)
+                        dayreport.append(tankquality)
+
+                        qualityquantity.append(dayreport)
+                  
+            
+                  
+      
+      return JsonResponse(qualityquantity, safe = False, status=status.HTTP_201_CREATED)      

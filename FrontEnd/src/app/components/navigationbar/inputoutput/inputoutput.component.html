@@ -15,3 +15,109 @@
 <ng-container *ngIf="flag2 == true && flag1 == false">
     <ngb-datepicker #dp [(ngModel)]="model" (select)="onToDateSelect($event)" ></ngb-datepicker>
   </ng-container>
+
+<div>
+  <table style="width:100%">
+    <tr>
+      <th>Total_Load</th>
+      <th>Naphtha_Load</th> 
+      <th>LPG_Load</th> 
+      <th>C5_Load</th>
+      <th>C6_Load</th>
+      <th>Naphtha_Heater</th>
+      <th>COT</th>
+      <th>GF_PDI</th>
+      <th>Suc_Pressure</th>
+      <th>Paraffin</th>
+      <th>Olefins</th>
+      <th>Aromatics</th>
+      <th>Naphthene</th>
+      <th>IN_IP_Ratio</th>
+      <th>Density</th>
+      <th>IBP</th>
+      <th>FBP</th>
+      <th>Suction_Tank_No</th>
+      <th>Blending_Tank_No</th>
+      <th>Blend_Ratio</th>
+    </tr>
+  <ng-container *ngFor="let obj of inputoutputdetail">
+ 
+    <tr>
+        <td>{{obj.Total_Load}}</td>
+        <td>{{obj.Naphtha_Load}}</td>
+        <td>{{obj.LPG_Load}}</td>
+        <td>{{obj.C5_Load}}</td>
+        <td>{{obj.C6_Load}}</td>
+        <td>{{obj.Naphtha_Heater}}</td>
+        <td>{{obj.COT}}</td>
+        <td>{{obj.GF_PDI}}</td>
+        <td>{{obj.Suc_Pressure}}</td>
+        <td>{{obj.Paraffin}}</td>
+        <td>{{obj.Olefins}}</td>
+        <td>{{obj.Aromatics}}</td>
+        <td>{{obj.Naphthene}}</td>
+        <td>{{obj.IN_IP_Ratio}}</td>
+        <td>{{obj.Density}}</td>
+        <td>{{obj.IBP}}</td>
+        <td>{{obj.FBP}}</td>
+        <td>{{obj.Suction_Tank_No}}</td>
+        <td>{{obj.Blending_Tank_No}}</td>
+        <td>{{obj.Blend_Ratio}}</td>
+    </tr>
+  </ng-container>
+ 
+  </table>
+</div>
+<div>
+  <table style="width:100%">
+    <tr>
+      <th>Ethylene_Actual</th>
+      <th>Propylene_Actual</th> 
+      <th>RPG_Actual</th> 
+      <th>C4_Mix_Actual</th>
+      <th>Fuel_Gas_Actual</th>
+      <th>Benzene_Actual</th>
+      <th>BD_Actual</th>
+    </tr>
+  <ng-container *ngFor="let obj of inputoutputdetail">
+ 
+    <tr>
+        <td>{{obj.Ethylene_Actual}}</td>
+        <td>{{obj.Propylene_Actual}}</td>
+        <td>{{obj.RPG_Actual}}</td>
+        <td>{{obj.C4_Mix_Actual}}</td>
+        <td>{{obj.Fuel_Gas_Actual}}</td>
+        <td>{{obj.Benzene_Actual}}</td>
+        <td>{{obj.BD_Actual}}</td>
+        
+    </tr>
+  </ng-container>
+ 
+  </table>
+</div>
+<div>
+  <table style="width:100%">
+    <tr>
+      <th>Ethylene_Predicted</th>
+      <th>Propylene_Predicted</th> 
+      <th>RPG_Predicted</th> 
+      <th>C4_Mix_Predicted</th>
+      <th>Fuel_Gas_Predicted</th>
+      <th>Benzene_Predicted</th>
+      <th>BD_Predicted</th>
+    </tr>
+  <ng-container *ngFor="let obj of inputoutputdetail">
+ 
+    <tr>
+        <td>{{obj.Ethylene_Predicted}}</td>
+        <td>{{obj.Propylene_Predicted}}</td>
+        <td>{{obj.RPG_Predicted}}</td>
+        <td>{{obj.C4_Mix_Predicted}}</td>
+        <td>{{obj.Fuel_Gas_Predicted}}</td>
+        <td>{{obj.Benzene_Predicted}}</td>
+        <td>{{obj.BD_Predicted}}</td>
+    </tr>
+  </ng-container>
+ 
+  </table>
+</div>    

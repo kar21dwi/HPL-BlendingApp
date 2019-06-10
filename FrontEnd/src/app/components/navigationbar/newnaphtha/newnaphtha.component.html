@@ -135,7 +135,7 @@ IBP = <input type="number" name="IBP" [(ngModel)]="newnaphtha.IBP"><br>
     <input class="btn btn-success" type="submit" value="submit">
 </form>
 
-<div *ngIf = "flag">
+<div id = "receipttankfill" *ngIf="count == 5">
 <table style="width:100%">
   <tr>
     <th>Transport_Type</th>
@@ -327,21 +327,38 @@ Blending Tank = {{sbtank.Blending_Tank_No_RN}}<br>
 Receving Tanks = {{receivingnaphtha[0]}} ,{{receivingnaphtha[1]}}
 <br>
 <br>
-<form>
-  Tank 1 = <input type="number" (click) ="updateremainingnaphtha()" [disabled]="fielddisable1()" name="Tank 1" [(ngModel)]="transferquantity[0]" ><button class="btn btn-warning" [disabled]="buttondisable1()" (click)="firsttank(1)">Tank 1</button><br>
-  <br>
-  Tank 2 = <input type="number" (click) ="updateremainingnaphtha()" [disabled]="fielddisable2()" name="Tank 2" [(ngModel)]="transferquantity[1]" ><button class="btn btn-warning" [disabled]="buttondisable2()" (click)="firsttank(2)">Tank 2</button><br>
-  <br>
-  Tank 3 = <input type="number" (click) ="updateremainingnaphtha()" [disabled]="fielddisable3()" name="Tank 3" [(ngModel)]="transferquantity[2]"><button class="btn btn-warning" [disabled]="buttondisable3()" (click)="firsttank(3)">Tank 3</button><br>
-  <br>
-  Tank 4 = <input type="number" (click) ="updateremainingnaphtha()" [disabled]="fielddisable4()" name="Tank 4" [(ngModel)]= "transferquantity[3]"><button class="btn btn-warning" [disabled]="buttondisable4()" (click)="firsttank(4)">Tank 4</button><br>
-  <br>
-  Tank 5 = <input type="number" (click) ="updateremainingnaphtha()" [disabled]="fielddisable5()" name="Tank 5" [(ngModel)]= "transferquantity[4]"><button class="btn btn-warning" [disabled]="buttondisable5()" (click)="firsttank(5)">Tank 5</button><br>
-  
-  </form>
-  <input class="btn btn-success" (click) = "transfernaphthaquantity()" [disabled]="confirmation()" type="submit" value="confirm">
+<div appMouse>
 
-  Remaining stock = <input type="number"  name="Remaining stock" [(ngModel)]="remainingnaphtha" >
+    <form appTab id = "tankamts" class = "tankfillform">
+        Tank 1 = <input appTab id = "tank1amt" type="number" (click) ="updateremainingnaphtha()"  name="Tank 1" [(ngModel)]="transferquantity[0]" ><button id = "tank1first" class="btn btn-warning" [disabled]="true" (click)="firsttank(1)">Tank 1</button><br>
+        <br>
+        Tank 2 = <input appTab id ="tank2amt" type="number" (click) ="updateremainingnaphtha()" name="Tank 2" [(ngModel)]="transferquantity[1]" ><button id = "tank2first" class="btn btn-warning" [disabled]="true" (click)="firsttank(2)">Tank 2</button><br>
+        <br>
+        Tank 3 = <input appTab id = "tank3amt" type="number" (click) ="updateremainingnaphtha()"  name="Tank 3" [(ngModel)]="transferquantity[2]"><button id = "tank3first" class="btn btn-warning" [disabled]="true" (click)="firsttank(3)">Tank 3</button><br>
+        <br>
+        Tank 4 = <input appTab id = "tank4amt" type="number" (click) ="updateremainingnaphtha()"  name="Tank 4" [(ngModel)]= "transferquantity[3]"><button id = "tank4first" class="btn btn-warning" [disabled]="true" (click)="firsttank(4)">Tank 4</button><br>
+        <br>
+        Tank 5 = <input appTab id = "tank5amt" type="number" (click) ="updateremainingnaphtha()" name="Tank 5" [(ngModel)]= "transferquantity[4]"><button id = "tank5first" class="btn btn-warning" [disabled]="true" (click)="firsttank(5)">Tank 5</button><br>
+        
+        </form>
+      
+        <input  id = "confirmbutton" class="btn btn-success" (click) = "transfernaphthaquantity()" [disabled]="true" type="submit" value="confirm">
+      
+        Remaining stock = <input type="number" id = "remstock"  name="Remaining stock" [(ngModel)]="remainingnaphtha" >
+      
+        <input id = "totalstock" type="number" name="totalstock" [(ngModel)]= "newnaphtha.Shore_Quantity">
+    
 </div>
 
+
+
+</div>
+
+
+
+
+
+
+
   
+ 

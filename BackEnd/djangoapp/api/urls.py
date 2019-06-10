@@ -36,6 +36,8 @@ urlpatterns = [
    path('newnaphtha/', views.PostNewNaphthaDetails),
    path('receivednaphtha/', views.GetReceivedNaphtha),
    path('transfernaphthaquantity/', views.transferNaphthaQuantity),
+   path('inputoutput/<fromdate>/<todate>/', views.getInputOutput),
+   path('qualityquantity/<fromdate>/<todate>/', views.getQualityQuantity),
 
    # path('login/', views.createlogin)
 

@@ -15,3 +15,127 @@
 <ng-container *ngIf="flag2 == true && flag1 == false">
    <ngb-datepicker #dp [(ngModel)]="model" (select)="onToDateSelect($event)" ></ngb-datepicker>
 </ng-container>
+<div>
+   <table style="width:100%">
+     <tr>
+
+       <th>Date</th>
+       <th>Tank1 Weight</th>
+       <th>Tank2 Weight</th>
+       <th>Tank3 Weight</th>
+       <th>Tank4 Weight</th>
+       <th>Tank5 Weight</th>
+
+     </tr>
+   <ng-container *ngFor="let obj of qualityquantitydata">
+ 
+     <tr>
+         <td>{{obj[0]}}</td>
+         <td>{{obj[1][0]}}</td>
+         <td>{{obj[1][1]}}</td>
+         <td>{{obj[1][2]}}</td>
+         <td>{{obj[1][3]}}</td>
+         <td>{{obj[1][4]}}</td>
+     </tr>
+   </ng-container>
+
+  
+   </table>
+ </div>
+
+ <div>
+         <table style="width:100%">
+           <tr>
+      
+             <th>Date</th>
+             <th>Tank1 Consumption</th>
+             <th>Tank2 Consumption</th>
+             <th>Tank3 Consumption</th>
+             <th>Tank4 Consumption</th>
+             <th>Tank5 Consumption</th>
+      
+           </tr>
+         <ng-container *ngFor="let obj of qualityquantitydata">
+       
+           <tr>
+               <td>{{obj[0]}}</td>
+               <td>{{obj[2][0]}}</td>
+               <td>{{obj[2][1]}}</td>
+               <td>{{obj[2][2]}}</td>
+               <td>{{obj[2][3]}}</td>
+               <td>{{obj[2][4]}}</td>
+           </tr>
+         </ng-container>
+      
+        
+         </table>
+   </div>
+
+   <div>
+         <table style="width:100%">
+           <tr>
+      
+             <th>Date</th>
+             <th>Tank1 Receipt</th>
+             <th>Tank2 Receipt</th>
+             <th>Tank3 Receipt</th>
+             <th>Tank4 Receipt</th>
+             <th>Tank5 Receipt</th>
+      
+           </tr>
+         <ng-container *ngFor="let obj of qualityquantitydata">
+       
+           <tr>
+               <td>{{obj[0]}}</td>
+               <td>{{obj[3][0]}}</td>
+               <td>{{obj[3][1]}}</td>
+               <td>{{obj[3][2]}}</td>
+               <td>{{obj[3][3]}}</td>
+               <td>{{obj[3][4]}}</td>
+           </tr>
+         </ng-container>
+      
+        
+         </table>
+       </div>
+       <div>
+            <table style="width:100%">
+            <tr>
+         
+            <th>Date</th>
+            <th>Paraffin</th>
+            <th>Olefins</th>
+            <th>Aromatics</th>
+            <th>Naphthene</th>
+            <th>IN_IP_Ratio</th>
+            <th>Density</th>
+            <th>IBP</th>
+            <th>FBP</th>
+            <th>Sulfur</th>
+            <th>Colour</th>
+            <th>RVP</th>
+         
+            </tr>
+            <ng-container *ngFor="let obj of qualityquantitydata">
+               <ng-container  *ngFor="let i of obj[4]; index as k">
+               Tank No. {{k+1}}  
+              <tr>
+                 
+                  <td>{{obj[0]}}</td>
+                  <td>{{i.Paraffin}}</td>
+                  <td>{{i.Olefins}}</td>
+                  <td>{{i.Aromatics}}</td>
+                  <td>{{i.Naphthene}}</td>
+                  <td>{{i.IN_IP_Ratio}}</td>
+                  <td>{{i.Density}}</td>
+                  <td>{{i.IBP}}</td>
+                  <td>{{i.FBP}}</td>
+                  <td>{{i.Sulfur}}</td>
+                  <td>{{i.Colour}}</td>
+                  <td>{{i.RVP}}</td>
+              </tr>
+            </ng-container>
+       </ng-container>
+           
+            </table>
+          </div>

@@ -47,7 +47,7 @@ import { NirblendqualityComponent } from './components/inputparameters/blendcomp
 import { ModelnirblendqualityComponent } from './components/inputparameters/blendcomparison/modelnirblendquality/modelnirblendquality.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClickOutsideModule } from 'ng4-click-outside';
-import { TabpressDirective } from './tabpress.directive';
+import { TabpressDirective, TabDirective, MouseDirective } from './tabpress.directive';
 
 
 
@@ -99,6 +99,8 @@ import { TabpressDirective } from './tabpress.directive';
     ModelnirblendqualityComponent,
     UserdefinedinputsummaryComponent,
     TabpressDirective,
+    TabDirective,
+    MouseDirective,
     
     
   ],
