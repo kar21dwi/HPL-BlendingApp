@@ -1,0 +1,36 @@
+.container {
+	margin: 0px auto;
+	display: grid;
+	grid-template-columns: repeat(1, minmax(50px, 144.3px));
+	grid-template-rows: 153px 44px;
+	grid-template-areas: "b1" "ti";
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+}
+
+.container > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 16px;
+	color: white;
+	font-family: Open Sans;
+}
+
+#tank4info {
+	/* grid-column: 1/-1;*/
+	grid-area: ti;
+	background-color: lightgrey;
+	height: 44px;
+	transition: height .3s;
+}
+#tank4info:hover {
+	height: 159px;
+}
+
+#blank-row1 {
+	/* grid-column: 1/-1;*/
+	grid-area: b1;
+	background-color: transparent;
+}

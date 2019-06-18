@@ -48,6 +48,14 @@ import { ModelnirblendqualityComponent } from './components/inputparameters/blen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClickOutsideModule } from 'ng4-click-outside';
 import { TabpressDirective, TabDirective, MouseDirective } from './tabpress.directive';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTabsModule} from '@angular/material/tabs';
+
+
+
+
 
 
 
@@ -110,7 +118,12 @@ import { TabpressDirective, TabDirective, MouseDirective } from './tabpress.dire
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

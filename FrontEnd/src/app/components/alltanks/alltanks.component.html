@@ -1,3 +1,49 @@
+<ng-container *ngIf ="!simulationflag">
+<div class="container">
+
+<div *ngIf = "flag==1" id = "tankqualityavg"></div>
+
+<div *ngIf = "flag==2"  id = "tankqualityreal"></div>
+
+<div id = "tank1"><app-tankno1></app-tankno1></div>
+<div id = "tank2"><app-tankno2></app-tankno2></div>
+<div id ="tank3"><app-tankno3></app-tankno3></div>
+<div id ="tank4"><app-tankno4></app-tankno4></div>
+<div id ="tank5"><app-tankno5></app-tankno5></div>
+</div>
+</ng-container>
+
+
+<!-- ******************************************************************** -->
+
+<ng-container *ngIf ="simulationflag">
+<div class="container-2">
+
+<div id="tank">
+<div class="container-2-1">
+<div id= "t1"></div>
+<div id= "t2"></div>
+<div id= "t3"></div>
+<div id= "t4"></div>
+<div id= "t5"></div>
+</div>
+</div>
+<div id="data">
+<div class="container-2-2">
+<div id= "main"></div>
+<div id= "td1"></div>
+<div id= "td2"></div>
+<div id= "td3"></div>
+<div id= "td4"></div>
+<div id= "td5"></div>
+</div>
+</div>
+</div>
+
+</ng-container>
+
+
+<!--
 <button (click)="getsuctionblending()">sbtank</button> <br>
 {{ sbtank.Suction_Tank_No_RN }} <br>
 {{ sbtank.Blending_Tank_No_RN }} <br>
@@ -16,7 +62,7 @@
     <div class="col-sm-2.5"><app-tankno4></app-tankno4> </div>
     <div class="col-sm-2.5"><app-tankno5></app-tankno5></div>
   </div>
-   <!-- <div class="row">
+ <div class="row">
      <app-inputparameters></app-inputparameters>
     </div>
 </div>

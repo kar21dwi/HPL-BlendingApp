@@ -1,4 +1,19 @@
-<h3> tankno1 </h3>
+<div class="container">
+<div id = "tank1info" (click)="increaseheight()">
+<ng-container *ngIf="flag">
+<ul style= "position: relative; right: 20%">
+  <li (click)="showqualityavg()">qualityavg</li>
+  <li (click)="showqualityreal()">qualityreal</li>
+</ul>
+</ng-container>
+</div>
+
+</div>
+
+
+
+ 
+<!--<h3> tankno1 </h3>
 
 <button class="btn btn-warning" [disabled]="buttondisable()" (click)="gettankinfo()">tankinfo No 1</button> <br>
 
@@ -22,3 +37,5 @@ IBP = {{ qualityavg.IBP }} <br>
 Level = {{ alltanks.Level }} <br> 
 Receiving_Naphtha =  {{ alltanks.Receiving_Naphtha }} <br>
 Weight = {{ alltanks.Weight }} <br>
+-->
+
