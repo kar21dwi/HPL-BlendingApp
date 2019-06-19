@@ -127,42 +127,73 @@
 
 #t1 {
   grid-column: 17/26;
-  grid-row: 2/4;
+  grid-row: 3/3;
   background-color: lightgrey;
-
 }
 
 #t2 {
   grid-column: 37/46;
-  grid-row: 2/4;
+  grid-row: 3/3;
   background-color: lightgrey;
 }
 
 #t3 {
   grid-column: 57/66;
-  grid-row: 2/4;
+  grid-row: 3/3;
   background-color: lightgrey;
 }
 
 #t4 {
   grid-column: 77/86;
-  grid-row: 2/4;
+  grid-row: 3/3;
   background-color: lightgrey;
 }
 
 #t5 {
   grid-column: 97/-1;
-  grid-row: 2/4;
+  grid-row: 3/3;
   background-color: lightgrey;
 }
 
+#t1l {
+  grid-column: 17/26;
+  grid-row: 2/2;
+  background-color: #c7e7f7;
+
+}
+
+#t2l {
+  grid-column: 37/46;
+  grid-row: 2/2;
+  background-color: #c7e7f7;
+
+}
+
+#t3l {
+  grid-column: 57/66;
+  grid-row: 2/2;
+  background-color: #c7e7f7;
+
+}
+
+#t4l {
+  grid-column: 77/86;
+  grid-row: 2/2;
+  background-color: #c7e7f7;
+
+}
+
+#t5l {
+  grid-column: 97/-1;
+  grid-row: 2/2;
+  background-color: #c7e7f7;
+
+}
 
 #blank-row2 {
   grid-column: 1/-1;
   grid-row: 4/4;
   background-color: transparent;
 }
-
-
 
 /*--------------------------------------------------------------------------------------------------------*/

@@ -52,6 +52,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
+import { SimulationnavigationComponent } from './components/simulationnavigation/simulationnavigation.component';
 
 
 
@@ -109,6 +110,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     TabpressDirective,
     TabDirective,
     MouseDirective,
+    SimulationnavigationComponent,
     
     
   ],

@@ -36,6 +36,7 @@ export class AppComponent {
 	flag = 0;
 	simulationflag = false;
 	nextclickflag = false;
+	nextoutputclick = false;
 
 	constructor(private api: ApiService) {}
 
@@ -58,5 +59,9 @@ export class AppComponent {
 	}
 	nextpage() {
 		this.nextclickflag = true;
+	}
+	nextpageoutput() {
+		this.nextoutputclick = true;
+		this.api.sendnextoutputclickstatus(true);
 	}
 }

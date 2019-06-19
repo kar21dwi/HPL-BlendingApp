@@ -2,29 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
-  selector: 'app-inputparameters',
-  templateUrl: './inputparameters.component.html',
-  styleUrls: ['./inputparameters.component.css']
+	selector: 'app-inputparameters',
+	templateUrl: './inputparameters.component.html',
+	styleUrls: [ './inputparameters.component.css' ]
 })
 export class InputparametersComponent implements OnInit {
-  //givechildcomponents = 0;
-   nextclicked= false;
+	//givechildcomponents = 0;
+	nextclicked = false;
+	nextoutputclick = false;
 
-  constructor(private api: ApiService) {
-   }
+	constructor(private api: ApiService) {}
 
-  ngOnInit() {
-  }
-  giveinputs = () => {
-    if(this.nextclicked == false) {
-      this.nextclicked = true;
-    }
-
-  }
-  givechild = () => {
-
-  }
-  
-
-
+	ngOnInit() {
+		this.api.getnextoutputclickstatus.subscribe(
+			(data) => {
+				this.nextoutputclick = data;
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
+	}
+	giveinputs = () => {
+		if (this.nextclicked == false) {
+			this.nextclicked = true;
+		}
+	};
+	givechild = () => {};
 }

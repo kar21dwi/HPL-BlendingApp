@@ -1,9 +1,22 @@
-<div class="container">
+<div *ngIf="!simulationflag" class="container">
 <div id = "tank4info">
 </div>
 
 </div>
+<div *ngIf="simulationflag">
+  <div style=" display: grid; grid-template-columns: repeat(1, minmax(30px, 90px)); grid-template-rows:586px;">
+  
+    <div style="background-color: lightgray; color:#6d6d6d; text-align: center; font-size:14px;">
+      <br><br>
+      2<br><br>
+      86%<br><br>
+      16%<br><br>
+      4%<br><br>
+      0.25<br><br>
+    </div>
+  </div>
 
+</div>
 
 <!--<h3> tankno4 </h3>
 

@@ -48,6 +48,9 @@ export class ApiService {
 	private getmainpageclickconfirmationsource = new BehaviorSubject<any>(0);
 	public getmainpageclickconfirmation = this.getmainpageclickconfirmationsource.asObservable();
 
+	private getnextoutputclickstatussource = new BehaviorSubject<any>(0);
+	public getnextoutputclickstatus = this.getnextoutputclickstatussource.asObservable();
+
 	// private getmodelchildsource = new BehaviorSubject<any>(0);
 	//public getchildcomponents = this.getmodelchildsource.asObservable();
 
@@ -210,5 +213,8 @@ export class ApiService {
 	}
 	sendMainPageClickConfirmation(message: any) {
 		this.getmainpageclickconfirmationsource.next(message);
+	}
+	sendnextoutputclickstatus(message: any) {
+		this.getnextoutputclickstatussource.next(message);
 	}
 }

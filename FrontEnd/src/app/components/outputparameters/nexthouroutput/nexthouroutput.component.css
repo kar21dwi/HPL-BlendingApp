@@ -1,0 +1,49 @@
+.container {
+  margin: 0px auto;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(50px, 150px));
+  grid-template-rows: 44px 231px 40px 44px 40px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.container>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: white;
+  font-family: Open Sans;
+}
+
+
+#name {
+  grid-row: 1/1;
+  background-color: rgb(128, 125, 125);
+}
+
+#output {
+
+  grid-row: 2/2;
+  background-color: rgb(238, 232, 232);
+
+}
+
+#blank-row-1 {
+  grid-row: 3/3;
+  background-color: transparent;
+
+}
+
+#confirm {
+  grid-row: 4/4;
+  background-color: rgb(179, 202, 193);
+
+}
+
+#blank-row-2 {
+  grid-row: 3/3;
+  background-color: transparent;
+
+}

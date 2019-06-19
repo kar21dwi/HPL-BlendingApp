@@ -15,23 +15,53 @@
   </div>
 </ng-container>
 
+<!-- ***************************page-2************************************* -->
 
-<ng-container *ngIf="simulationflag">
+<ng-container *ngIf="simulationflag && !nextclickflag">
   <div class="container-2">
-    <div id="navbar-simulate"></div>
+    <div id="navbar-simulate">
+    <app-simulationnavigation></app-simulationnavigation>
+    </div>
 
-
-
-    <div *ngIf="!nextclickflag" id="tankpage-simulate">
+    <div id="tankpage-simulate">
       <app-alltanks [simulationflag]="simulationflag"></app-alltanks>
     </div>
 
-    <div *ngIf="!nextclickflag" (click)="nextpage()" id="next-page">
-
+    <div (click)="nextpage()" id="next-page">
     </div>
-
-    <p *ngIf="nextclickflag"> dsxgfhc </p>
-  </div>
+</div>
 </ng-container>
 
-<div *ngIf="nextclickflag"> dsxgfhc </div>
+<!--***********************************3rd page*******************************-->
+<ng-container *ngIf="nextclickflag && !nextoutputclick">
+  <div class="container-3">
+    <div id="navbar-simulate">
+    <app-simulationnavigation></app-simulationnavigation>
+    </div>
+
+    <div id="input-parameter">
+     <app-inputparameters></app-inputparameters>
+    </div>
+
+      <div (click)="nextpageoutput()" id="input-next-page">
+    
+    </div>
+   
+ 
+</div>
+</ng-container>
+
+
+
+<!--************************************page-4***************************-->
+<ng-container *ngIf="nextoutputclick">
+<div class="container-4">
+    <div id="navbar-simulate">
+    <app-simulationnavigation></app-simulationnavigation>
+    </div>
+
+  <div id="output-parameter">
+  <app-outputparameters></app-outputparameters>
+  </div>
+</div>
+</ng-container>

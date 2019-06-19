@@ -1,104 +1,86 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
-  selector: 'app-tankno4',
-  templateUrl: './tankno4.component.html',
-  styleUrls: ['./tankno4.component.css']
+	selector: 'app-tankno4',
+	templateUrl: './tankno4.component.html',
+	styleUrls: [ './tankno4.component.css' ]
 })
 export class Tankno4Component implements OnInit {
-  qualityavg: any[] = [];
-  qualityreal = 0;
-  alltanks = 0;
-  tankselection = false;
-  selectioncount = 0;
+	qualityavg: any[] = [];
+	qualityreal = 0;
+	alltanks = 0;
+	tankselection = false;
+	selectioncount = 0;
+	@Input() simulationflag: boolean;
 
+	constructor(private api: ApiService) {
+		this.api.getselectioncount.subscribe((x) => {
+			this.selectioncount = x;
+		});
+		this.buttondisable();
+	}
 
-  constructor(private api: ApiService) {
-    this.api.getselectioncount.subscribe(x => {
-    this.selectioncount = x
-      }
-      )
-    this.buttondisable();
-    
-  }
+	ngOnInit() {}
+	gettankinfo = () => {
+		this.getqualityavg(4);
+		this.getqualityreal(4);
+		this.getclickedtank(4);
+		this.api.sendSelection(4);
 
-  ngOnInit() {
-  }
-  gettankinfo = () => {
+		if (this.tankselection == false) {
+			this.tankselection = true;
+			this.api.getselectioncount.subscribe((x) => {
+				this.selectioncount = x;
+			});
+			this.selectioncount = this.selectioncount + 1;
+			this.api.sendSelectionCount(this.selectioncount);
+		} else {
+			this.tankselection = false;
+			this.api.getselectioncount.subscribe((x) => {
+				this.selectioncount = x;
+			});
+			this.selectioncount = this.selectioncount - 1;
+			this.api.sendSelectionCount(this.selectioncount);
+		}
+	};
 
-    this.getqualityavg(4);
-    this.getqualityreal(4);
-    this.getclickedtank(4);
-    this.api.sendSelection(4);
+	getqualityavg = (i) => {
+		this.api.GetQualityAvg(i).subscribe(
+			(data) => {
+				this.qualityavg = data;
+				console.table(this.qualityavg);
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
+	};
 
-    if (this.tankselection == false){ 
-      this.tankselection = true;
-      this.api.getselectioncount.subscribe(x => {
-      this.selectioncount = x
-      }
-      )
-       this.selectioncount = this.selectioncount + 1; 
-      this.api.sendSelectionCount(this.selectioncount);
-    }
-    else {
-    this.tankselection = false;
-      this.api.getselectioncount.subscribe(x => {
-      this.selectioncount = x
-      }
-      )
-       this.selectioncount = this.selectioncount - 1; 
-      this.api.sendSelectionCount(this.selectioncount);
-    }
-
-
-
-
-  }
-
-  getqualityavg = (i) => {
-    this.api.GetQualityAvg(i).subscribe(
-      data => {
-        this.qualityavg = data;
-        console.table(this.qualityavg)
-      },
-      error => {
-          console.log(error)
-      }
-    )
-
-  }
-
-  getqualityreal = (i) => {
-    this.api.GetQualityReal(i).subscribe(
-      data => {
-        this.qualityreal = data;
-        console.table(this.qualityreal)
-      },
-      error => {
-          console.log(error)
-      }
-    )
-  }
-  getclickedtank = (i) => {
-    this.api.GetClickedTank(i).subscribe(
-      data => {
-        this.alltanks = data;
-        console.table(this.alltanks)
-      },
-      error => {
-          console.log(error)
-      }
-    )
-  }
-  buttondisable = () =>{
-    if(this.selectioncount>=2 && this.tankselection == false)
-    return true
-    else
-    return false
-
-  }
-
-
-
+	getqualityreal = (i) => {
+		this.api.GetQualityReal(i).subscribe(
+			(data) => {
+				this.qualityreal = data;
+				console.table(this.qualityreal);
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
+	};
+	getclickedtank = (i) => {
+		this.api.GetClickedTank(i).subscribe(
+			(data) => {
+				this.alltanks = data;
+				console.table(this.alltanks);
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
+	};
+	buttondisable = () => {
+		if (this.selectioncount >= 2 && this.tankselection == false) return true;
+		else return false;
+	};
 }
