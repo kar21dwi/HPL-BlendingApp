@@ -1,35 +1,37 @@
 <ng-container *ngIf="!simulationflag">
-<div class="container" >
-    <div *ngIf = "flag" (click)="closeblurwindow()" id = "tankqualityblur"></div>
+  <div class="container">
+    <div *ngIf="flag" (click)="closeblurwindow()" id="tankqualityblur"></div>
 
-    <div id = "navbar"><app-navigationbar></app-navigationbar></div>
-    
-   <div id ="tankpage"><app-alltanks></app-alltanks> </div>
-   
-    <div (click)="simulationpage()" id = "simulate-button"></div> 
-    
-</div>
+    <div id="navbar">
+      <app-navigationbar></app-navigationbar>
+    </div>
+
+    <div id="tankpage">
+      <app-alltanks></app-alltanks>
+    </div>
+
+    <div (click)="simulationpage()" id="simulate-button"></div>
+
+  </div>
 </ng-container>
 
 
 <ng-container *ngIf="simulationflag">
-<div class="container-2" >
-     <div id = "navbar-simulate"></div>
+  <div class="container-2">
+    <div id="navbar-simulate"></div>
 
 
-    
-   <div *ngIf = "!nextclickflag" id ="tankpage-simulate"><app-alltanks [simulationflag]="simulationflag"></app-alltanks></div>
-   
-    <div  *ngIf = "!nextclickflag" (click)="nextpage()" id = "next-page">
-    
-    </div> 
- 
-   <p *ngIf = "nextclickflag" > dsxgfhc </p>  
-</div>
+
+    <div *ngIf="!nextclickflag" id="tankpage-simulate">
+      <app-alltanks [simulationflag]="simulationflag"></app-alltanks>
+    </div>
+
+    <div *ngIf="!nextclickflag" (click)="nextpage()" id="next-page">
+
+    </div>
+
+    <p *ngIf="nextclickflag"> dsxgfhc </p>
+  </div>
 </ng-container>
 
-<div *ngIf = "nextclickflag" > dsxgfhc </div>
-
-
-
-
+<div *ngIf="nextclickflag"> dsxgfhc </div>

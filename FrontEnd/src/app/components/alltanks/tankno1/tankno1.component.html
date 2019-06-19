@@ -1,18 +1,33 @@
-<div class="container">
-<div id = "tank1info" (click)="increaseheight()">
-<ng-container *ngIf="flag">
-<ul style= "position: relative; right: 20%">
-  <li (click)="showqualityavg()">qualityavg</li>
-  <li (click)="showqualityreal()">qualityreal</li>
-</ul>
-</ng-container>
-</div>
+<div *ngIf="!simulationflag" class="container">
+  <div id="tank1info" (click)="increaseheight()">
+    <ng-container *ngIf="flag">
+      <ul style="position: relative; color:#6d6d6d; right: 20%">
+        <li (click)="showqualityavg()">qualityavg</li>
+        <li (click)="showqualityreal()">qualityreal</li>
+      </ul>
+    </ng-container>
+  </div>
 
 </div>
 
+<div *ngIf="simulationflag">
+  <div style=" display: grid; grid-template-columns: repeat(1, minmax(30px, 90px)); grid-template-rows: 96px 586px;">
+    <div style="grid-row: 1/1; background-color: #c7e7f7"></div>
+    <div style="grid-row: 2/2; background-color: lightgray; color:#6d6d6d; text-align: center;">
+      <br><br>
+      2<br><br>
+      86%<br><br>
+      16%<br><br>
+      4%<br><br>
+      0.25<br><br>
+    </div>
+  </div>
+
+</div>
 
 
- 
+
+
 <!--<h3> tankno1 </h3>
 
 <button class="btn btn-warning" [disabled]="buttondisable()" (click)="gettankinfo()">tankinfo No 1</button> <br>
@@ -38,4 +53,3 @@ Level = {{ alltanks.Level }} <br>
 Receiving_Naphtha =  {{ alltanks.Receiving_Naphtha }} <br>
 Weight = {{ alltanks.Weight }} <br>
 -->
-

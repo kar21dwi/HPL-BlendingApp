@@ -14,7 +14,7 @@ export class AlltanksComponent implements OnInit {
 	@Input() simulationflag: boolean;
 
 	constructor(private api: ApiService) {
-		//this.getsuctionblending();
+		// this.getsuctionblending();
 	}
 	ngOnInit() {
 		this.api.getmainpageclickconfirmation.subscribe(

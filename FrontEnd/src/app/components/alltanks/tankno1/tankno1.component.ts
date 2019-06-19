@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class Tankno1Component implements OnInit {
 	tankselection = false;
 	selectioncount = 0;
 	flag = false;
+	@Input() simulationflag: boolean;
 
 	constructor(private api: ApiService) {
 		this.api.getselectioncount.subscribe((x) => {

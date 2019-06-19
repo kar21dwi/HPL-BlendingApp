@@ -1,44 +1,45 @@
-<ng-container *ngIf ="!simulationflag">
-<div class="container">
+<ng-container *ngIf="!simulationflag">
+  <div class="container">
 
-<div *ngIf = "flag==1" id = "tankqualityavg"></div>
+    <div *ngIf="flag==1" id="tankqualityavg"></div>
 
-<div *ngIf = "flag==2"  id = "tankqualityreal"></div>
+    <div *ngIf="flag==2" id="tankqualityreal"></div>
 
-<div id = "tank1"><app-tankno1></app-tankno1></div>
-<div id = "tank2"><app-tankno2></app-tankno2></div>
-<div id ="tank3"><app-tankno3></app-tankno3></div>
-<div id ="tank4"><app-tankno4></app-tankno4></div>
-<div id ="tank5"><app-tankno5></app-tankno5></div>
-</div>
+    <div id="tank1">
+      <app-tankno1></app-tankno1>
+    </div>
+    <div id="tank2">
+      <app-tankno2></app-tankno2>
+    </div>
+    <div id="tank3">
+      <app-tankno3></app-tankno3>
+    </div>
+    <div id="tank4">
+      <app-tankno4></app-tankno4>
+    </div>
+    <div id="tank5">
+      <app-tankno5></app-tankno5>
+    </div>
+  </div>
 </ng-container>
 
 
 <!-- ******************************************************************** -->
 
-<ng-container *ngIf ="simulationflag">
-<div class="container-2">
+<ng-container *ngIf="simulationflag">
+  <div class="container-2">
 
-<div id="tank">
-<div class="container-2-1">
-<div id= "t1"></div>
-<div id= "t2"></div>
-<div id= "t3"></div>
-<div id= "t4"></div>
-<div id= "t5"></div>
-</div>
-</div>
-<div id="data">
-<div class="container-2-2">
-<div id= "main"></div>
-<div id= "td1"></div>
-<div id= "td2"></div>
-<div id= "td3"></div>
-<div id= "td4"></div>
-<div id= "td5"></div>
-</div>
-</div>
-</div>
+    <div id="maincolumn"></div>
+
+    <div id="t1">
+      <app-tankno1 [simulationflag]="simulationflag"></app-tankno1>
+    </div>
+    <div id="t2"></div>
+    <div id="t3"></div>
+    <div id="t4"></div>
+    <div id="t5"></div>
+
+  </div>
 
 </ng-container>
 
@@ -67,5 +68,3 @@
     </div>
 </div>
 -->
-
- 
