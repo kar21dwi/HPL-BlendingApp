@@ -87,7 +87,7 @@ export class Tankno5Component implements OnInit {
 	};
 	increaseheight = () => {
 		this.flag = true;
-		$('#tank2info').toggleClass('transform-active');
+		$('#tank5info').toggleClass('transform-active');
 	};
 
 	showqualityavg = () => {
