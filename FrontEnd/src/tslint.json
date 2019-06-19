@@ -1,6 +1,16 @@
 {
-  "extends": "../tslint.json",
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+
   "rules": {
+    "member-access": [true, "no-public"],
+    "no-console": [
+      false,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
     "directive-selector": [
       true,
       "attribute",
@@ -14,4 +24,5 @@
       "kebab-case"
     ]
   }
+
 }
