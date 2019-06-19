@@ -1,13 +1,18 @@
 <div *ngIf="!simulationflag" class="container">
-<div id = "tank2info">
-</div>
-
-</div>
+  <div id="tank2info" (click)="increaseheight()">
+    <ng-container *ngIf="flag">
+      <ul style="position: relative; color:#6d6d6d; right: 20%">
+        <li (click)="showqualityavg()">qualityavg</li>
+        <li (click)="showqualityreal()">qualityreal</li>
+      </ul>
+    </ng-container>
+  </div>
+  </div>
 
 <div *ngIf="simulationflag">
-  <div style=" display: grid; grid-template-columns: repeat(1, minmax(30px, 90px)); grid-template-rows:586px;">
-
-    <div style=" background-color: lightgray; color:#6d6d6d; text-align: center; font-size:14px;">
+  <div style=" display: grid; grid-template-columns: repeat(1, minmax(30px, 90px)); grid-template-rows: 586px;">
+  
+    <div style="background-color: lightgray; color:#6d6d6d; text-align: center; font-size:14px;">
       <br><br>
       2<br><br>
       86%<br><br>

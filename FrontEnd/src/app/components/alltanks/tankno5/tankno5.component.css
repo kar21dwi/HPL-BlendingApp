@@ -1,36 +1,43 @@
 .container {
-	margin: 0px auto;
-	display: grid;
-	grid-template-columns: repeat(1, minmax(50px, 144.35px));
-	grid-template-rows: 153px 44px;
-	grid-template-areas: "b1" "ti";
-	width: 100%;
-	height: 100%;
-	justify-content: center;
+  margin: 0px auto;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(50px, 144.35px));
+  grid-template-rows: 153px 44px;
+  grid-template-areas: "b1""ti";
+  width: 100%;
+  height: 100%;
+  justify-content: center;
 }
 
-.container > div {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 16px;
-	color: white;
-	font-family: Open Sans;
+.container>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: white;
+  font-family: Open Sans;
 }
 
 #tank5info {
-	/* grid-column: 1/-1;*/
-	grid-area: ti;
-	background-color: lightgrey;
-	height: 44px;
-	transition: height .3s;
+  /* grid-column: 1/-1;*/
+  border-radius: 0px 0px 5px 5px;
+  grid-area: ti;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2.5px 2.5px 0.3px #b9b9b9;
+  height: 44px;
+  -webkit-transition: height 0.2s ease;
+  -moz-transition: height 0.2s ease;
+  -o-transition: height 0.2s ease;
+  -ms-transition: height 0.2s ease;
+  transition: height 0.2s ease;
 }
-#tank5info:hover {
-	height: 159px;
+
+#tank5info.transform-active {
+  height: 159px;
 }
 
 #blank-row1 {
-	/* grid-column: 1/-1;*/
-	grid-area: b1;
-	background-color: transparent;
+  /* grid-column: 1/-1;*/
+  grid-area: b1;
+  background-color: transparent;
 }

@@ -11,6 +11,7 @@ export class Tankno2Component implements OnInit {
 	alltanks = 0;
 	tankselection = false;
 	selectioncount = 0;
+	flag = false;
 	@Input() simulationflag: boolean;
 
 	constructor(private api: ApiService) {
@@ -82,5 +83,16 @@ export class Tankno2Component implements OnInit {
 	buttondisable = () => {
 		if (this.selectioncount >= 2 && this.tankselection == false) return true;
 		else return false;
+	};
+	increaseheight = () => {
+		this.flag = true;
+		$('#tank2info').toggleClass('transform-active');
+	};
+
+	showqualityavg = () => {
+		this.api.sendMainPageClickConfirmation(1);
+	};
+	showqualityreal = () => {
+		this.api.sendMainPageClickConfirmation(2);
 	};
 }
