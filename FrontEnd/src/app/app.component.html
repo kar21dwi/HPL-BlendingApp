@@ -33,7 +33,7 @@
 </ng-container>
 
 <!--***********************************3rd page*******************************-->
-<ng-container *ngIf="nextclickflag && !nextoutputclick">
+<ng-container *ngIf="nextclickflag && !nextoutputclick || copyflag">
   <div class="container-3">
     <div id="navbar-simulate">
     <app-simulationnavigation></app-simulationnavigation>
@@ -54,14 +54,18 @@
 
 
 <!--************************************page-4***************************-->
-<ng-container *ngIf="nextoutputclick">
+<ng-container *ngIf="nextoutputclick && !copyflag" >
 <div class="container-4">
     <div id="navbar-simulate">
     <app-simulationnavigation></app-simulationnavigation>
     </div>
 
   <div id="output-parameter">
-  <app-outputparameters></app-outputparameters>
+  <app-outputparameters (message)="receivemessage($event)" (copymessage)="receivecopymessage($event)"></app-outputparameters>
   </div>
+  
+  <div *ngIf = "confirmationflag" id = "tankqualityblur"> 
+  </div>
+  
 </div>
 </ng-container>

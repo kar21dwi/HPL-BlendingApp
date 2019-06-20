@@ -37,6 +37,8 @@ export class AppComponent {
 	simulationflag = false;
 	nextclickflag = false;
 	nextoutputclick = false;
+	confirmationflag = false;
+	copyflag: any;
 
 	constructor(private api: ApiService) {}
 
@@ -63,5 +65,14 @@ export class AppComponent {
 	nextpageoutput() {
 		this.nextoutputclick = true;
 		this.api.sendnextoutputclickstatus(true);
+	}
+	receivemessage($event) {
+		this.confirmationflag = $event;
+		console.log(this.confirmationflag);
+	}
+	receivecopymessage($event) {
+		console.log('ksjhfdkjshf');
+		this.copyflag = $event;
+		console.log(this.copyflag);
 	}
 }

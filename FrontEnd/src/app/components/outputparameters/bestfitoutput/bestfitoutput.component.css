@@ -6,6 +6,7 @@
   width: 100%;
   height: 100%;
   justify-content: center;
+
 }
 
 .container>div {
@@ -38,7 +39,7 @@
 
 #confirm {
   grid-row: 4/4;
-  background-color: rgb(179, 202, 193);
+  background-color: transparent;
 
 }
 

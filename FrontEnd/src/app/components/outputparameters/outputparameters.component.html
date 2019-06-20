@@ -39,23 +39,25 @@
 </div>
 
 <div id ="udoutputparameter">
-<app-userdefinedoutput></app-userdefinedoutput>
+<app-userdefinedoutput (message)="receivemessage($event)"></app-userdefinedoutput>
 
 </div>
 <div id ="rnoutputparameter">
-<app-runningoutput></app-runningoutput>
+<app-runningoutput (message)="receivemessage($event)"></app-runningoutput>
 
 </div>
 <div id ="bfoutputparameter">
-<app-bestfitoutput></app-bestfitoutput>
+<app-bestfitoutput (message)="receivemessage($event)" (copymessage)="receivecopymessage($event)"></app-bestfitoutput>
 </div>
 
 <div id ="pmoutputparameter">
-<app-profitmaxoutput></app-profitmaxoutput>
+<app-profitmaxoutput (message)="receivemessage($event)"></app-profitmaxoutput>
 </div>
 
 <div id ="nhoutputparameter">
 <app-nexthouroutput></app-nexthouroutput>
+</div>
+<div *ngIf = "flag" id = "outputconfirmation">
 </div>
 
 </div>

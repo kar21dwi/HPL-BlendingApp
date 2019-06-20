@@ -1,46 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
-  selector: 'app-userdefinedoutput',
-  templateUrl: './userdefinedoutput.component.html',
-  styleUrls: ['./userdefinedoutput.component.css']
+	selector: 'app-userdefinedoutput',
+	templateUrl: './userdefinedoutput.component.html',
+	styleUrls: [ './userdefinedoutput.component.css' ]
 })
 export class UserdefinedoutputComponent implements OnInit {
-  userdefinedoutput = 0;
-  buttonstatus = false;
-  status;
+	userdefinedoutput = 0;
+	buttonstatus = false;
+	status;
+	confirmflag = false;
 
-  constructor(private api: ApiService) { 
-    this.api.simulatebutton.subscribe(x => {
-      this.buttonstatus = x
-      if(this.buttonstatus){
-        this.getuserdefinedoutput();
-      }
-        }
-        )
-  }
+	@Output() message = new EventEmitter();
 
-  ngOnInit() {
-  }
-  getuserdefinedoutput = () => {
-    this.api.GetUserDefinedOutput().subscribe(data => {
-        this.userdefinedoutput = data;
-        console.table(this.userdefinedoutput)
-        
+	constructor(private api: ApiService) {
+		this.api.simulatebutton.subscribe((x) => {
+			this.buttonstatus = x;
+			if (this.buttonstatus) {
+				this.getuserdefinedoutput();
+			}
+		});
+	}
 
-      }
-    )
-    
-}
-getconfirm = ()=>{
-  this.api.PostNextHourSelection('userdefined').subscribe(
-    data => {
-      this.status = data;
-      this.api.sendConfirmStatus(true);
-      console.table(this.status)
-    }
-  )
-
-}
+	ngOnInit() {}
+	getuserdefinedoutput = () => {
+		this.api.GetUserDefinedOutput().subscribe((data) => {
+			this.userdefinedoutput = data;
+			console.table(this.userdefinedoutput);
+		});
+	};
+	getconfirm = () => {
+		this.api.PostNextHourSelection('userdefined').subscribe((data) => {
+			this.status = data;
+			this.api.sendConfirmStatus(true);
+			console.table(this.status);
+		});
+	};
+	confirmation() {
+		this.confirmflag = true;
+		this.message.emit(this.confirmflag);
+		console.log('@@@@@@@@@@ inside bestfit @@@@@@@@@@@');
+	}
 }

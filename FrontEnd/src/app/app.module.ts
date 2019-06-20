@@ -53,6 +53,9 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
 import { SimulationnavigationComponent } from './components/simulationnavigation/simulationnavigation.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { TanksdetailComponent } from './pages/tanksdetail/tanksdetail.component';
+import { OutputsComponent } from './pages/outputs/outputs.component';
 
 
 
@@ -111,6 +114,9 @@ import { SimulationnavigationComponent } from './components/simulationnavigation
     TabDirective,
     MouseDirective,
     SimulationnavigationComponent,
+    HomepageComponent,
+    TanksdetailComponent,
+    OutputsComponent,
     
     
   ],
