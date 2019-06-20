@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: repeat(6, minmax(50px, 150px));
   column-gap: 50px;
-  grid-template-rows: 40px 195px 235px 235px 40px 275px 124px;
+  grid-template-rows: 40px 120px 235px 310px 40px 275px 124px;
   width: 100%;
   height: 100%;
   justify-content: center;

@@ -3,10 +3,10 @@
   margin: 0px auto;
   display: grid;
 
-  border: 1px solid rgb(150, 150, 150);
+
   grid-template-columns: repeat(33, minmax(10px, 30px));
   column-gap: 10px;
-  grid-template-rows: 1003px 44px;
+  grid-template-rows: 1003px 44px 40px;
 
   grid-template-areas:
     ". . . c c c c c c c c c c c c c c c c c c c c c c c c c c c . . ."
@@ -41,4 +41,10 @@
   /*   grid-column: 15/-15;
         grid-row: 5/6;*/
   grid-area: n;
+}
+
+#blank-row1 {
+  grid-column: 1/-1;
+  grid-row: 3/3;
+  background-color: transparent;
 }

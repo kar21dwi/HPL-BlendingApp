@@ -21,17 +21,20 @@
 #nirparameter {
   grid-column: 1/2;
 
-  background-color: rgba(155, 155, 155, .26);
+  background-color: rgb(180, 180, 180);
+
 }
 
 #nirmodel {
   grid-column: 2/3;
 
-  background-color: rgb(119, 114, 114);
+  background-color: rgb(229, 237, 240);
+
 }
 
 #nirreal {
   grid-column: 3/-1;
 
-  background-color: rgb(88, 77, 77);
+  background-color: rgb(196, 213, 221);
+
 }

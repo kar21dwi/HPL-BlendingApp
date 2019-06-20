@@ -21,7 +21,7 @@
 #udinput {
   grid-column: 1/-1;
   grid-row: 1/1;
-  background-color: lightcyan;
+  background-color: rgb(179, 202, 193);
 }
 
 #blank-row1 {
@@ -33,6 +33,6 @@
 #udquality {
   grid-column: 1/-1;
   grid-row: 3/3;
-  background-color: lightcyan;
+  background-color: rgb(179, 202, 193);
 
 }
