@@ -1,3 +1,16 @@
-<p>
-  outputs works!
-</p>
+
+
+<!--************************************page-4***************************-->
+<ng-container>
+<div class="container-4">
+    
+
+  <div id="output-parameter">
+  <app-outputparameters (message)="receivemessage($event)" (copymessage)="receivecopymessage($event)"></app-outputparameters>
+  </div>
+  
+  <div *ngIf = "confirmationflag" id = "tankqualityblur"> 
+  </div>
+  
+</div>
+</ng-container>

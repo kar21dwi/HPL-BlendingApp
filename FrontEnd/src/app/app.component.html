@@ -1,71 +1,16 @@
-<ng-container *ngIf="!simulationflag">
-  <div class="container">
-    <div *ngIf="flag" (click)="closeblurwindow()" id="tankqualityblur"></div>
+<ng-container>
 
-    <div id="navbar">
-      <app-navigationbar></app-navigationbar>
-    </div>
-
-    <div id="tankpage">
-      <app-alltanks></app-alltanks>
-    </div>
-
-    <div (click)="simulationpage()" id="simulate-button"></div>
-
-  </div>
-</ng-container>
-
-<!-- ***************************page-2************************************* -->
-
-<ng-container *ngIf="simulationflag && !nextclickflag">
-  <div class="container-2">
-    <div id="navbar-simulate">
-    <app-simulationnavigation></app-simulationnavigation>
-    </div>
-
-    <div id="tankpage-simulate">
-      <app-alltanks [simulationflag]="simulationflag"></app-alltanks>
-    </div>
-
-    <div (click)="nextpage()" id="next-page">
-    </div>
+<div class="nav-container" *ngIf = "!simulationflag">
+<div id="navbar" > <app-navigationbar></app-navigationbar>
 </div>
-</ng-container>
-
-<!--***********************************3rd page*******************************-->
-<ng-container *ngIf="nextclickflag && !nextoutputclick || copyflag">
-  <div class="container-3">
-    <div id="navbar-simulate">
-    <app-simulationnavigation></app-simulationnavigation>
-    </div>
-
-    <div id="input-parameter">
-     <app-inputparameters></app-inputparameters>
-    </div>
-
-      <div (click)="nextpageoutput()" id="input-next-page">
-    
-    </div>
-   
- 
 </div>
-</ng-container>
 
-
-
-<!--************************************page-4***************************-->
-<ng-container *ngIf="nextoutputclick && !copyflag" >
-<div class="container-4">
-    <div id="navbar-simulate">
-    <app-simulationnavigation></app-simulationnavigation>
-    </div>
-
-  <div id="output-parameter">
-  <app-outputparameters (message)="receivemessage($event)" (copymessage)="receivecopymessage($event)"></app-outputparameters>
-  </div>
-  
-  <div *ngIf = "confirmationflag" id = "tankqualityblur"> 
-  </div>
-  
+<div class="nav-container" *ngIf = "simulationflag">
+<div id="navbar"><app-simulationnavigation></app-simulationnavigation>
 </div>
+</div>
+
 </ng-container>
+
+
+<router-outlet style="z-index: 2;"></router-outlet>

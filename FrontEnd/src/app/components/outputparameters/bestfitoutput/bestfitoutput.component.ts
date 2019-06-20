@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 @Component({
 	selector: 'app-bestfitoutput',
@@ -11,12 +12,12 @@ export class BestfitoutputComponent implements OnInit {
 	buttonstatus = false;
 	status;
 	confirmflag = false;
+	copyflag = false;
 
 	@Output() message = new EventEmitter();
 	@Output() copymessage = new EventEmitter();
-	copyflag: any;
 
-	constructor(private api: ApiService) {
+	constructor(private api: ApiService, private router: Router) {
 		this.api.simulatebutton.subscribe((x) => {
 			this.buttonstatus = x;
 			if (this.buttonstatus) {
@@ -44,8 +45,11 @@ export class BestfitoutputComponent implements OnInit {
 		this.message.emit(this.confirmflag);
 	}
 	copy() {
-		this.copyflag = 'bf';
-		this.copymessage.emit(this.copyflag);
-		console.log('@@@@@@@@@@ inside bestfit @@@@@@@@@@@');
+		let parameter: NavigationExtras = {
+			queryParams: {
+				id: 'bf'
+			}
+		};
+		this.router.navigate([ 'inputs' ], parameter);
 	}
 }

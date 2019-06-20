@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class InputparametersComponent implements OnInit {
 	//givechildcomponents = 0;
 	nextclicked = false;
 	nextoutputclick = false;
+	@Input() newud: any;
 
 	constructor(private api: ApiService) {}
 

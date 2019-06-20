@@ -1,23 +1,23 @@
-/*--------------------------------------------------------------*/
-.container-2 {
+/*-------------------*************************page-3 ************************-------------------------------------------*/
+.container-3 {
   margin: 0px auto;
   display: grid;
 
   border: 1px solid rgb(150, 150, 150);
   grid-template-columns: repeat(33, minmax(10px, 30px));
   column-gap: 10px;
-  grid-template-rows: 750px 44px;
+  grid-template-rows: 1003px 44px;
 
   grid-template-areas:
-    "c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c c"
-    ". . . . . . . . . . . . . . s s s s s . . . . . . . . . . . . . .";
+    ". . . c c c c c c c c c c c c c c c c c c c c c c c c c c c . . ."
+    ". . . . . . . . . . . . . . n n n n n . . . . . . . . . . . . . .";
 
   width: 100%;
   height: 100%;
   justify-content: center;
 }
 
-.container-2>div {
+.container-3>div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,16 +28,17 @@
 }
 
 
-#tankpage-simulate {
+
+#input-parameter {
   /*   grid-column: 9/-9;
-      grid-row: 3/4;*/
+        grid-row: 3/4;*/
 
   grid-area: c;
   background-color: transparent;
 }
 
-#next-page {
+#input-next-page {
   /*   grid-column: 15/-15;
-      grid-row: 5/6;*/
-  grid-area: s;
+        grid-row: 5/6;*/
+  grid-area: n;
 }

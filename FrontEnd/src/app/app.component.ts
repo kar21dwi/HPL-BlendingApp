@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { ApiService } from './api.service';
 
 //new line add
@@ -9,7 +9,7 @@ import { ApiService } from './api.service';
 	styleUrls: [ './app.component.css' ],
 	providers: [ ApiService ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterContentChecked {
 	tanks = [
 		{
 			id: '',
@@ -43,22 +43,23 @@ export class AppComponent {
 	constructor(private api: ApiService) {}
 
 	ngOnInit() {
-		this.api.getmainpageclickconfirmation.subscribe(
+		this.api.simulateflagstatus.subscribe(
 			(data) => {
-				this.flag = data;
+				console.log('*****************akfd;akwblsiu');
+
+				this.simulationflag = data;
+				console.log(this.simulationflag);
 			},
 			(error) => {
 				console.log(error);
 			}
 		);
 	}
+	ngAfterContentChecked() {}
 	closeblurwindow() {
 		this.api.sendMainPageClickConfirmation(0);
 	}
 
-	simulationpage() {
-		this.simulationflag = true;
-	}
 	nextpage() {
 		this.nextclickflag = true;
 	}

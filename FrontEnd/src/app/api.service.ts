@@ -36,7 +36,7 @@ export class ApiService {
 	private getuserqualitysource = new BehaviorSubject<any>(0);
 	public getuserquality = this.getuserqualitysource.asObservable();
 
-	private simulatebuttonstatus = new BehaviorSubject<any>(0);
+	private simulatebuttonstatus = new BehaviorSubject<boolean>(false);
 	public simulatebutton = this.simulatebuttonstatus.asObservable();
 
 	private tabpressstatussource = new BehaviorSubject<any>(0);
@@ -50,6 +50,12 @@ export class ApiService {
 
 	private getnextoutputclickstatussource = new BehaviorSubject<any>(0);
 	public getnextoutputclickstatus = this.getnextoutputclickstatussource.asObservable();
+
+	private getcopystatussource = new BehaviorSubject<any>(0);
+	public getcopystatus = this.getcopystatussource.asObservable();
+
+	private simulateflagstatussource = new BehaviorSubject<any>(0);
+	public simulateflagstatus = this.simulateflagstatussource.asObservable();
 
 	// private getmodelchildsource = new BehaviorSubject<any>(0);
 	//public getchildcomponents = this.getmodelchildsource.asObservable();
@@ -202,7 +208,7 @@ export class ApiService {
 	sendUserQuality(message: any) {
 		this.getuserqualitysource.next(message);
 	}
-	sendSimulateButton(message: any) {
+	sendSimulateButton(message: boolean) {
 		this.simulatebuttonstatus.next(message);
 	}
 	sendTabPressStatus(message: any) {
@@ -216,5 +222,11 @@ export class ApiService {
 	}
 	sendnextoutputclickstatus(message: any) {
 		this.getnextoutputclickstatussource.next(message);
+	}
+	sendcopystatus(message: any) {
+		this.getcopystatussource.next(message);
+	}
+	sendSimulateFlag(message: any) {
+		this.simulateflagstatussource.next(message);
 	}
 }

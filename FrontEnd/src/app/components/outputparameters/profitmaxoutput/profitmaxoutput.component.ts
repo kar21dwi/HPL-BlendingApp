@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 @Component({
 	selector: 'app-profitmaxoutput',
@@ -13,7 +14,7 @@ export class ProfitmaxoutputComponent implements OnInit {
 	confirmflag = false;
 	@Output() message = new EventEmitter();
 
-	constructor(private api: ApiService) {
+	constructor(private api: ApiService, private router: Router) {
 		this.api.simulatebutton.subscribe((x) => {
 			this.buttonstatus = x;
 			if (this.buttonstatus) {
@@ -40,5 +41,14 @@ export class ProfitmaxoutputComponent implements OnInit {
 		this.confirmflag = true;
 		this.message.emit(this.confirmflag);
 		console.log('@@@@@@@@@@ inside bestfit @@@@@@@@@@@');
+	}
+
+	copy() {
+		let parameter: NavigationExtras = {
+			queryParams: {
+				id: 'pm'
+			}
+		};
+		this.router.navigate([ 'inputs' ], parameter);
 	}
 }

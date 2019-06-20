@@ -56,6 +56,7 @@ import { SimulationnavigationComponent } from './components/simulationnavigation
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { TanksdetailComponent } from './pages/tanksdetail/tanksdetail.component';
 import { OutputsComponent } from './pages/outputs/outputs.component';
+import { InputscreenComponent } from './pages/inputscreen/inputscreen.component';
 
 
 
@@ -117,6 +118,7 @@ import { OutputsComponent } from './pages/outputs/outputs.component';
     HomepageComponent,
     TanksdetailComponent,
     OutputsComponent,
+    InputscreenComponent,
     
     
   ],

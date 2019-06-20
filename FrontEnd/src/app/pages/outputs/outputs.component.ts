@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-outputs',
-  templateUrl: './outputs.component.html',
-  styleUrls: ['./outputs.component.css']
+	selector: 'app-outputs',
+	templateUrl: './outputs.component.html',
+	styleUrls: [ './outputs.component.css' ]
 })
 export class OutputsComponent implements OnInit {
+	confirmationflag = false;
 
-  constructor() { }
+	constructor() {}
 
-  ngOnInit() {
-  }
-
+	ngOnInit() {}
+	receivemessage($event) {
+		this.confirmationflag = $event;
+		console.log(this.confirmationflag);
+	}
 }
