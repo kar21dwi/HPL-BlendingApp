@@ -66,4 +66,9 @@ export class AlltanksComponent implements OnInit {
 			}
 		);
 	};
+	dropdown = () => {
+		console.log($('#td1').toggleClass('transform-active'));
+		$('#td1').toggleClass('transform');
+		console.log('xdfgchjb');
+	};
 }

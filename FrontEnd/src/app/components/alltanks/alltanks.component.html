@@ -3,28 +3,89 @@
 
     <div *ngIf="flag==1" id="tankqualityavg"></div>
 
-    <div *ngIf="flag==2" id="tankqualityreal"></div>
+    <div *ngIf="!flag" id="tankqualityreal"></div>
 
-    <div id="tank1">
-      <app-tankno1></app-tankno1>
+    <div id="tm1">
+       <div id ="td1" style = " height:100px; width:100px ;background-color:red; z-index:5;">
+  
+  
+    </div> 
     </div>
-    <div id="tank2">
-      <app-tankno2></app-tankno2>
+    <div id="tb1" (click)="dropdown()">
+    
+
     </div>
-    <div id="tank3">
-      <app-tankno3></app-tankno3>
+   
+
+    
+    
+    <div id="tm2">
+    
     </div>
-    <div id="tank4">
-      <app-tankno4></app-tankno4>
+    <div id="tb2">
+      
     </div>
-    <div id="tank5">
-      <app-tankno5></app-tankno5>
+     <div id="td2">
+      
     </div>
+
+     <div id="tm3">
+    
+    </div>
+    <div id="tb3">
+      
+    </div>
+     <div id="td3">
+      
+    </div>
+     <div id="tm4">
+    
+    </div>
+    <div id="tb4">
+      
+    </div>
+     <div id="td4">
+      
+    </div>
+     <div id="tm5">
+    
+    </div>
+    <div id="tb5">
+      
+    </div>
+     <div id="td5">
+      
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
 </ng-container>
 
 
-<!-- ***************************for the page no 1  ***************************************** -->
+
+<!-- ***************************for the page no 2  ***************************************** -->
 
 <ng-container *ngIf="simulationflag">
 <div class="container-2">
@@ -47,7 +108,7 @@
         <app-tankno5 [simulationflag]="simulationflag"></app-tankno5>
 </div>
 
-<!--**********************************************************-->
+
 <div id="t1l">
 
         
