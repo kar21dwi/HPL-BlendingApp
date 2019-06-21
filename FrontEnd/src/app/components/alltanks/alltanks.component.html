@@ -3,129 +3,136 @@
 
     <div *ngIf="flag==1" id="tankqualityavg"></div>
 
-    <div *ngIf="!flag" id="tankqualityreal"></div>
+    <div *ngIf="flag==2" id="tankqualityreal"></div>
 
     <div id="tm1">
-       <div id ="td1" style = " height:100px; width:100px ;background-color:red; z-index:5;">
-  
-  
-    </div> 
-    </div>
-    <div id="tb1" (click)="dropdown()">
-    
 
     </div>
-   
 
-    
-    
+    <!-- <div id ="td1" style = " height:100px; width:100px ;background-color:red; z-index:5;">
+  
+  
+        </div> -->
+
+
+    <div id="accordion" style="position: relative;">
+
+      <div id="accordion-bar" (click)="dropdown()" style="position: absolute; top: 0px; height: 44px; width: 100%;">
+        <h2 style="color: #6d6d6d; position: absolute; padding-left: 10px; bottom: -10px;"> A </h2>
+      </div>
+
+      <div style="position: absolute; top: 40px; width: 100%;">
+        <div style="height: 30px;">
+          <p style="padding: 5px 0px 5px 5px;">Level :</p>
+        </div>
+        <div style="height: 30px;">
+          <p style="padding: 5px 0px 5px 5px;">Weight :</p>
+        </div>
+        <div class="dropdownelement" (click)="linkclick(1)" style="height: 30px;">
+          <p style="padding: 5px 0px 5px 5px; color: #3a71b8; font-family: Open Sans Semibold;">Average Quality</p>
+        </div>
+        <div class="dropdownelement" (click)="linkclick(2)" style="height: 30px;">
+          <p style="padding: 5px 0px 5px 5px; color: #3a71b8; font-family: Open Sans Semibold;">Real Quality</p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+
     <div id="tm2">
-    
+
     </div>
     <div id="tb2">
-      
+
     </div>
-     <div id="td2">
-      
+    <div id="td2">
+
     </div>
 
-     <div id="tm3">
-    
+    <div id="tm3">
+
     </div>
     <div id="tb3">
-      
+
     </div>
-     <div id="td3">
-      
+    <div id="td3">
+
     </div>
-     <div id="tm4">
-    
+    <div id="tm4">
+
     </div>
     <div id="tb4">
-      
+
     </div>
-     <div id="td4">
-      
+    <div id="td4">
+
     </div>
-     <div id="tm5">
-    
+    <div id="tm5">
+
     </div>
     <div id="tb5">
-      
+
     </div>
-     <div id="td5">
-      
+    <div id="td5">
+
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
   </div>
+
+
 </ng-container>
+
 
 
 
 <!-- ***************************for the page no 2  ***************************************** -->
 
 <ng-container *ngIf="simulationflag">
-<div class="container-2">
+  <div class="container-2">
 
-<div id="maincolumn"></div>
+    <div id="maincolumn"></div>
 
-<div id="t1">
-        <app-tankno1 [simulationflag]="simulationflag"></app-tankno1>
-</div>
-<div id="t2">
-        <app-tankno2 [simulationflag]="simulationflag"></app-tankno2>
-</div>
-<div id="t3">
-        <app-tankno3 [simulationflag]="simulationflag"></app-tankno3>
-</div>
-<div id="t4">
-        <app-tankno4 [simulationflag]="simulationflag"></app-tankno4>
-</div>
-<div id="t5">
-        <app-tankno5 [simulationflag]="simulationflag"></app-tankno5>
-</div>
+    <div id="t1">
+      <app-tankno1 [simulationflag]="simulationflag"></app-tankno1>
+    </div>
+    <div id="t2">
+      <app-tankno2 [simulationflag]="simulationflag"></app-tankno2>
+    </div>
+    <div id="t3">
+      <app-tankno3 [simulationflag]="simulationflag"></app-tankno3>
+    </div>
+    <div id="t4">
+      <app-tankno4 [simulationflag]="simulationflag"></app-tankno4>
+    </div>
+    <div id="t5">
+      <app-tankno5 [simulationflag]="simulationflag"></app-tankno5>
+    </div>
 
 
-<div id="t1l">
+    <div id="t1l">
 
-        
-</div>
-<div id="t2l">
-        
-</div>
-<div id="t3l">
-        
-</div>
-<div id="t4l">
-        
-</div>
-<div id="t5l">
-        
-</div>
-</div>
+
+    </div>
+    <div id="t2l">
+
+    </div>
+    <div id="t3l">
+
+    </div>
+    <div id="t4l">
+
+    </div>
+    <div id="t5l">
+
+    </div>
+  </div>
 
 </ng-container>
 

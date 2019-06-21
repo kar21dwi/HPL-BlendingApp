@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NavigationbarComponent } from './components/navigationbar/navigationbar.component';
 import { AlltanksComponent } from './components/alltanks/alltanks.component';
 import { InputparametersComponent } from './components/inputparameters/inputparameters.component';
@@ -48,94 +48,89 @@ import { ModelnirblendqualityComponent } from './components/inputparameters/blen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClickOutsideModule } from 'ng4-click-outside';
 import { TabpressDirective, TabDirective, MouseDirective } from './tabpress.directive';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatTabsModule} from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { SimulationnavigationComponent } from './components/simulationnavigation/simulationnavigation.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { TanksdetailComponent } from './pages/tanksdetail/tanksdetail.component';
 import { OutputsComponent } from './pages/outputs/outputs.component';
 import { InputscreenComponent } from './pages/inputscreen/inputscreen.component';
-
-
-
-
-
-
-
-
-
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationbarComponent,
-    AlltanksComponent,
-    InputparametersComponent,
-    OutputparametersComponent,
-    MonthlyplanningComponent,
-    NewnaphthaComponent,
-    HomeComponent,
-    InputoutputComponent,
-    LoginComponent,
-    Tankno1Component,
-    Tankno2Component,
-    Tankno3Component,
-    Tankno4Component,
-    Tankno5Component,
-    UserdefinedinputsComponent,
-    ModelinputscomparionComponent,
-    InputsComponent,
-    BlendqualityComponent,
-    RunninginputComponent,
-    ProfitmaxinputComponent,
-    BestfitinputComponent,
-    NexthourinputComponent,
-    RunninginputsummaryComponent,
-    ProfitmaxinputsummaryComponent,
-    BestfitinputsummaryComponent,
-    NexthourinputsummaryComponent,
-    UserdefinedoutputComponent,
-    RunningoutputComponent,
-    ProfitmaxoutputComponent,
-    BestfitoutputComponent,
-    NexthouroutputComponent,
-    QualityquantityComponent,
-    ModelblendqualityComponent,
-    BlendcomparisonComponent,
-    RunningqualityComponent,
-    ProfitmaxqualityComponent,
-    BestfitqualityComponent,
-    NexthourqualityComponent,
-    NirblendqualityComponent,
-    ModelnirblendqualityComponent,
-    UserdefinedinputsummaryComponent,
-    TabpressDirective,
-    TabDirective,
-    MouseDirective,
-    SimulationnavigationComponent,
-    HomepageComponent,
-    TanksdetailComponent,
-    OutputsComponent,
-    InputscreenComponent,
-    
-    
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    NgbModule,
-    ClickOutsideModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatToolbarModule,
-    MatTabsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		NavigationbarComponent,
+		AlltanksComponent,
+		InputparametersComponent,
+		OutputparametersComponent,
+		MonthlyplanningComponent,
+		NewnaphthaComponent,
+		HomeComponent,
+		InputoutputComponent,
+		LoginComponent,
+		Tankno1Component,
+		Tankno2Component,
+		Tankno3Component,
+		Tankno4Component,
+		Tankno5Component,
+		UserdefinedinputsComponent,
+		ModelinputscomparionComponent,
+		InputsComponent,
+		BlendqualityComponent,
+		RunninginputComponent,
+		ProfitmaxinputComponent,
+		BestfitinputComponent,
+		NexthourinputComponent,
+		RunninginputsummaryComponent,
+		ProfitmaxinputsummaryComponent,
+		BestfitinputsummaryComponent,
+		NexthourinputsummaryComponent,
+		UserdefinedoutputComponent,
+		RunningoutputComponent,
+		ProfitmaxoutputComponent,
+		BestfitoutputComponent,
+		NexthouroutputComponent,
+		QualityquantityComponent,
+		ModelblendqualityComponent,
+		BlendcomparisonComponent,
+		RunningqualityComponent,
+		ProfitmaxqualityComponent,
+		BestfitqualityComponent,
+		NexthourqualityComponent,
+		NirblendqualityComponent,
+		ModelnirblendqualityComponent,
+		UserdefinedinputsummaryComponent,
+		TabpressDirective,
+		TabDirective,
+		MouseDirective,
+		SimulationnavigationComponent,
+		HomepageComponent,
+		TanksdetailComponent,
+		OutputsComponent,
+		InputscreenComponent
+	],
+	imports: [
+		BrowserModule,
+		FormsModule,
+		HttpClientModule,
+		AppRoutingModule,
+		NgbModule,
+		ClickOutsideModule,
+		BrowserAnimationsModule,
+		MatButtonModule,
+		MatCheckboxModule,
+		MatToolbarModule,
+		MatTabsModule,
+		MatExpansionModule,
+		MatFormFieldModule,
+		MatInputModule
+	],
+	providers: [],
+	bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}

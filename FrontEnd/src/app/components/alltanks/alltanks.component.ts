@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class AlltanksComponent implements OnInit {
 	alltankslevels = 0;
 	flag = 0;
 	@Input() simulationflag: boolean;
+	panelOpenState = false;
 
 	constructor(private api: ApiService) {
 		// this.getsuctionblending();
@@ -67,8 +68,25 @@ export class AlltanksComponent implements OnInit {
 		);
 	};
 	dropdown = () => {
+		/*
 		console.log($('#td1').toggleClass('transform-active'));
 		$('#td1').toggleClass('transform');
 		console.log('xdfgchjb');
+*/
+
+		const content = document.getElementById('accordion');
+
+		console.log(content.style.maxHeight);
+
+		if (content.style.maxHeight == '159px') {
+			content.style.maxHeight = '44px';
+		} else {
+			content.style.maxHeight = '159px';
+		}
 	};
+
+	linkclick(i) {
+		this.flag = i;
+		this.api.sendMainPageClickConfirmation(this.flag);
+	}
 }
