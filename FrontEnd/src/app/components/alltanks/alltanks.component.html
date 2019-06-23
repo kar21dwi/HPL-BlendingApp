@@ -5,7 +5,7 @@
 
     <div *ngIf="flag==2" id="tankqualityreal"></div>
 
-    <div id="tm1">
+    <div appTabpress id="tm1">
 
     </div>
 
@@ -18,29 +18,28 @@
     <div id="accordion" style="position: relative;">
 
       <div id="accordion-bar" (click)="dropdown()" style="position: absolute; top: 0px; height: 44px; width: 100%;">
-        <h2 style="color: #6d6d6d; position: absolute; padding-left: 10px; bottom: -10px;"> A </h2>
+        <h2 style="color: #6d6d6d; position: absolute; padding-left: 10px; bottom: -10px;"> A
+        </h2>
       </div>
 
       <div style="position: absolute; top: 40px; width: 100%;">
-        <div style="height: 30px;">
-          <p style="padding: 5px 0px 5px 5px;">Level :</p>
+        <div style="height: 30px; padding: 5px;">
+          <p>Level :</p>
         </div>
-        <div style="height: 30px;">
-          <p style="padding: 5px 0px 5px 5px;">Weight :</p>
+        <div style="height: 30px; padding: 5px;">
+          <p>Weight :</p>
         </div>
-        <div class="dropdownelement" (click)="linkclick(1)" style="height: 30px;">
-          <p style="padding: 5px 0px 5px 5px; color: #3a71b8; font-family: Open Sans Semibold;">Average Quality</p>
+        <div class="dropdownelement" (click)="linkclick(1)" style="padding: 5px; height: 30px;">
+          <p style="color: #3a71b8; font-family: Open Sans Semibold;">Average Quality</p>
         </div>
-        <div class="dropdownelement" (click)="linkclick(2)" style="height: 30px;">
-          <p style="padding: 5px 0px 5px 5px; color: #3a71b8; font-family: Open Sans Semibold;">Real Quality</p>
+        <div class="dropdownelement" (click)="linkclick(2)" style="padding: 5px; height: 30px;">
+          <p style="color: #3a71b8; font-family: Open Sans Semibold;">Real Quality</p>
         </div>
-
       </div>
 
     </div>
 
-
-
+    <!-- ** ** ** ** **-->
 
 
 

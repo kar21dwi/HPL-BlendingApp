@@ -1,146 +1,141 @@
-import { Directive, ElementRef, HostListener, NgModule, Input, Output, EventEmitter } from '@angular/core';
+import {
+	Directive,
+	ElementRef,
+	Renderer2,
+	HostListener,
+	NgModule,
+	Input,
+	Output,
+	EventEmitter,
+	OnInit
+} from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import Swal from 'sweetalert2';
 declare var jquery: any;
 declare var $: any;
 
 export enum KEY_CODE {
-  TAB = 9,
+	TAB = 9
 }
 
 @Directive({
-  selector: '[appTabpress]',
+	selector: '[appTabpress]'
 })
-export class TabpressDirective {
+export class TabpressDirective implements OnInit {
+	constructor(private el: ElementRef, private api: ApiService, private renderer: Renderer2) {}
+	ngOnInit() {}
 
+	/*
 
-  constructor(el: ElementRef, private api: ApiService) { 
-    
-  }
+	@HostListener('click')
+	abc() {
+		console.log('clicked');
+		this.renderer.setStyle(this.el.nativeElement, 'top', '-152px');
+		this.renderer.setStyle(this.el.nativeElement, 'width', '70px');
+		this.renderer.setStyle(this.el.nativeElement, 'height', '70px');
+	}
 
+	@HostListener('mouseenter')
+	ab() {
+		console.log('inside');
+		this.renderer.setStyle(this.el.nativeElement, 'position', 'relative');
+		this.renderer.setStyle(this.el.nativeElement, 'top', '0px');
+		this.renderer.setStyle(this.el.nativeElement, 'width', '150px');
+		this.renderer.setStyle(this.el.nativeElement, 'height', '153px');
+		this.renderer.setStyle(this.el.nativeElement, 'transition', 'all 0.5s ease-out');
+	}*/
 
-  @HostListener('keyup', ['$event']) keyEvent1(event: KeyboardEvent) {
-
-    if (event.keyCode === KEY_CODE.TAB) {
-
-        console.log('pressed tab');
-        this.api.sendTabPressStatus(true);
-
-    }
-      
-  }
-  }
-
-
-
-
+	@HostListener('keyup', [ '$event' ])
+	keyEvent1(event: KeyboardEvent) {
+		if (event.keyCode === KEY_CODE.TAB) {
+			console.log('pressed tab');
+			this.api.sendTabPressStatus(true);
+		}
+	}
+}
 
 @Directive({
-  selector: '[appTab]'
+	selector: '[appTab]'
 })
-
 export class TabDirective {
+	constructor(el: ElementRef, private api: ApiService) {}
 
-  constructor(el: ElementRef, private api: ApiService) {
+	@HostListener('keyup', [ '$event' ])
+	keyEvent2(e: KeyboardEvent) {
+		$('#tank1amt').click();
 
-  }
+		let keyCode = e.keyCode || e.which;
 
-  @HostListener('keyup', ['$event']) keyEvent2(e: KeyboardEvent) {
+		if (keyCode == 9) {
+			for (let j = 1; j < 6; j++) {
+				if ($('#tank' + j + 'amt').val() == '') {
+					$('#tank' + j + 'amt').val(0);
+				}
+			}
+		}
 
+		let sum = 0;
+		let mins;
 
-    $('#tank1amt').click();
+		for (let i = 1; i < 6; i++) {
+			mins = parseInt($('#tank' + i + 'amt').val(), 10) || 0;
+			sum = sum + mins;
+		}
 
+		const id = $(e.currentTarget).attr('id');
 
-    let keyCode = e.keyCode || e.which;
+		const totalstock = $('#totalstock').val();
 
-    if (keyCode == 9) {
-        for (let j = 1; j < 6; j++) {
-            if ($('#tank' + j + 'amt').val() == '') {
-            $('#tank' + j + 'amt').val(0);
-          }
-        }
+		if (sum > totalstock) {
+			let check = true;
+			for (let i = 1; i < 6; i++) {
+				if (check) {
+					if (id == 'tank' + i + 'amt') {
+						let filled = 0;
+						let add: number;
 
-      }
+						for (let j = 1; j < 6; j++) {
+							if (j != i) {
+								add = parseInt($('#tank' + j + 'amt').val(), 10) || 0;
 
+								filled = filled + add;
+								if (add == 0) {
+									$('#tank' + j + 'amt').prop('disabled', true);
+								} else {
+									$('#tank' + j + 'first').prop('disabled', false);
+								}
+							} else {
+								$('#tank' + j + 'first').prop('disabled', false);
+							}
+						}
 
+						$(e.currentTarget).val(totalstock - filled);
 
-
-    let sum = 0;
-    let mins;
-
-    for (let i = 1; i < 6; i++) {
-      mins = parseInt($('#tank' + i + 'amt').val() , 10) || 0;
-      sum = sum + mins;
-    }
-
-    const id = $(e.currentTarget).attr('id');
-    
-    const totalstock = $('#totalstock').val();
-
-    if (sum > totalstock) {
-      let check = true;
-      for (let i = 1; i < 6; i++) {
-        if (check) {
-
-          if (id == 'tank' + i + 'amt') {
-
-            let filled = 0;
-            let add: number;
-
-            for (let j = 1; j < 6; j++) {
-              if (j != i) {
-
-                add = parseInt($('#tank' + j + 'amt').val() , 10) || 0;
-
-                filled = filled + add;
-                if (add == 0) {
-                  $('#tank' + j + 'amt').prop('disabled', true);
-                } else {
-                  $('#tank' + j + 'first').prop('disabled', false);
-                }
-              } else {
-                $('#tank' + j + 'first').prop('disabled', false);
-              }
-
-            }
-
-            $(e.currentTarget).val(totalstock - filled);
-
-            Swal.fire({title: 'Naphtha Stock Transfered',
-            text: 'Maximum transfer limit for the tank: ' + (totalstock - filled),
-            type: 'warning'});
-            check = false;
-
-
-        }
-        }
-
-      }
-    }
-
-  }
-
-  }
+						Swal.fire({
+							title: 'Naphtha Stock Transfered',
+							text: 'Maximum transfer limit for the tank: ' + (totalstock - filled),
+							type: 'warning'
+						});
+						check = false;
+					}
+				}
+			}
+		}
+	}
+}
 
 @Directive({
-    selector: '[appMouse]'
-  })
+	selector: '[appMouse]'
+})
+export class MouseDirective {
+	constructor(el: ElementRef, private api: ApiService) {}
 
-  export class MouseDirective {
-
-    constructor(el: ElementRef, private api: ApiService) { }
-
-    @HostListener('mousedown', ['$event']) mouseEvent(e: MouseEvent) {
-
-     for (let j = 1; j < 6; j++) {
-          if ($('#tank' + j + 'amt').val() == '') {
-          $('#tank' + j + 'amt').val(0);
-        }
-     }
-
-  }
-
-  }
-
-
-
+	@HostListener('mousedown', [ '$event' ])
+	mouseEvent(e: MouseEvent) {
+		for (let j = 1; j < 6; j++) {
+			if ($('#tank' + j + 'amt').val() == '') {
+				$('#tank' + j + 'amt').val(0);
+			}
+		}
+	}
+}

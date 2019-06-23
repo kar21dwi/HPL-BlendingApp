@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 .container {
 	margin: 0px auto;
 	display: grid;
@@ -95,7 +101,7 @@
 	/*   grid-column: 15/-15;
 	  grid-row: 5/6;*/
 	grid-area: tm5;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #aecbe266;
 	border-radius: 5px 5px 0px 0px;
 }
 
@@ -106,7 +112,7 @@
 	grid-row: 4/7;
 
 	background-color: rgb(255, 255, 255);
-	box-shadow: 0px 2.5px 2.5px 0.3px #b9b9b9;
+	box-shadow: 0px 1.0px 1px 0.05px #acacac, 0.3px 1.5px 3.0px 0.8px #cccccc;
 	border-radius: 0px 0px 5px 5px;
 	color: #6d6d6d;
 	max-height: 44px;
@@ -122,7 +128,7 @@
 
 #accordion-bar:hover,
 .dropdownelement:hover {
-	background-color: rgba(231, 231, 231, 0.623);
+	background-color: rgba(231, 231, 231, 0.55);
 	cursor: pointer;
 }
 

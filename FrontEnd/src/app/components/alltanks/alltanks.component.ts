@@ -11,6 +11,7 @@ export class AlltanksComponent implements OnInit {
 	receivednaphtha = 0;
 	alltankslevels = 0;
 	flag = 0;
+	hoverover = false;
 	@Input() simulationflag: boolean;
 	panelOpenState = false;
 
