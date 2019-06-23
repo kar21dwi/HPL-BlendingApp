@@ -14,6 +14,8 @@ export class AlltanksComponent implements OnInit {
 	hoverover = false;
 	@Input() simulationflag: boolean;
 	panelOpenState = false;
+	barclick = false;
+	clickstatus = false;
 
 	constructor(private api: ApiService) {
 		// this.getsuctionblending();
@@ -79,15 +81,32 @@ export class AlltanksComponent implements OnInit {
 
 		console.log(content.style.maxHeight);
 
-		if (content.style.maxHeight == '159px') {
+		if (content.style.maxHeight == '172px') {
 			content.style.maxHeight = '44px';
 		} else {
-			content.style.maxHeight = '159px';
+			content.style.maxHeight = '172px';
 		}
 	};
 
 	linkclick(i) {
 		this.flag = i;
 		this.api.sendMainPageClickConfirmation(this.flag);
+	}
+
+	dropaccord() {
+		const content = document.getElementById('accordion2');
+
+		console.log(content.style.maxHeight);
+
+		if (content.style.maxHeight == '172px') {
+			content.style.maxHeight = '44px';
+		} else {
+			content.style.maxHeight = '172px';
+		}
+	}
+
+	clickstatusfunc() {
+		console.log('dfcgvhj');
+		this.clickstatus = !this.clickstatus;
 	}
 }

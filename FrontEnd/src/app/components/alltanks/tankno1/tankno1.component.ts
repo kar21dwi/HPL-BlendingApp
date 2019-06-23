@@ -13,15 +13,20 @@ export class Tankno1Component implements OnInit {
 	tankselection = false;
 	selectioncount = 0;
 	flag = false;
+	rowselector;
 	@Input() simulationflag: boolean;
-
+	qualitylist: any[] = [ 10, 20, 30, 40 ];
 	constructor(private api: ApiService) {
 		this.api.getselectioncount.subscribe((x) => {
 			this.selectioncount = x;
 		});
 		this.buttondisable();
 	}
-	ngOnInit() {}
+	ngOnInit() {
+		this.api.getrowselectorstatus.subscribe((x) => {
+			this.rowselector = x;
+		});
+	}
 
 	gettankinfo = () => {
 		this.getqualityavg(1);
@@ -98,4 +103,12 @@ export class Tankno1Component implements OnInit {
 		console.log('sdhfjs');
 		this.api.sendMainPageClickConfirmation(2);
 	};
+
+	alertrow(i, event) {
+		if (event.type == 'mouseenter') {
+			this.api.sendRowSelectorStatus(i);
+		} else {
+			this.api.sendRowSelectorStatus(-1);
+		}
+	}
 }

@@ -57,6 +57,9 @@ export class ApiService {
 	private simulateflagstatussource = new BehaviorSubject<any>(0);
 	public simulateflagstatus = this.simulateflagstatussource.asObservable();
 
+	private getrowselectorstatussource = new BehaviorSubject<any>(-1);
+	public getrowselectorstatus = this.getrowselectorstatussource.asObservable();
+
 	// private getmodelchildsource = new BehaviorSubject<any>(0);
 	//public getchildcomponents = this.getmodelchildsource.asObservable();
 
@@ -228,5 +231,8 @@ export class ApiService {
 	}
 	sendSimulateFlag(message: any) {
 		this.simulateflagstatussource.next(message);
+	}
+	sendRowSelectorStatus(message: any) {
+		this.getrowselectorstatussource.next(message);
 	}
 }

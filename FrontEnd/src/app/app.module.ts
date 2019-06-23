@@ -47,7 +47,7 @@ import { NirblendqualityComponent } from './components/inputparameters/blendcomp
 import { ModelnirblendqualityComponent } from './components/inputparameters/blendcomparison/modelnirblendquality/modelnirblendquality.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClickOutsideModule } from 'ng4-click-outside';
-import { TabpressDirective, TabDirective, MouseDirective } from './tabpress.directive';
+import { TabpressDirective, TabDirective, MouseDirective, ListhighlighterDirective } from './tabpress.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -108,6 +108,7 @@ import { MatInputModule } from '@angular/material';
 		TabpressDirective,
 		TabDirective,
 		MouseDirective,
+		ListhighlighterDirective,
 		SimulationnavigationComponent,
 		HomepageComponent,
 		TanksdetailComponent,

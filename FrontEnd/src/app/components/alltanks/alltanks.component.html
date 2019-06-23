@@ -5,7 +5,12 @@
 
     <div *ngIf="flag==2" id="tankqualityreal"></div>
 
-    <div appTabpress id="tm1">
+    <div *ngIf="flag" (click)="flag=0"
+      style="position: fixed; top: 0px; left:0px; width: 100%; height: 100%; background-color: rgba(0,0,0,0.55); z-index: 2; ">
+    </div>
+
+
+    <div id="tm1">
 
     </div>
 
@@ -41,14 +46,47 @@
 
     <!-- ** ** ** ** **-->
 
+    <div id="accord-container">
+
+      <div id="accordion2" [style.maxHeight]="barclick ? '172px' : '44px'">
+
+        <div id="accordion2-bar" (click)="barclick = !barclick">
+          <h2 style="color: #6d6d6d; margin-left: 10px;"> B
+          </h2>
+        </div>
+
+        <div id="content2">
+
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <span>Level :</span>
+          </div>
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <span>Weight :</span>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(1)"
+            style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <p style="color: #3a71b8; font-family: Open Sans Semibold;">Average Quality</p>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(2)"
+            style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <p style="color: #3a71b8; font-family: Open Sans Semibold;">Real Quality</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ** ** ** ** ** -->
+
 
 
     <div id="tm2">
 
     </div>
-    <div id="tb2">
 
-    </div>
     <div id="td2">
 
     </div>
@@ -91,7 +129,7 @@
 
 
 
-<!-- ***************************for the page no 2  ***************************************** -->
+<!-- ***************************for page no 2  ***************************************** -->
 
 <ng-container *ngIf="simulationflag">
   <div class="container-2">

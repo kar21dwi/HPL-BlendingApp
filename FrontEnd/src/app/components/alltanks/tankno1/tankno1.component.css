@@ -49,3 +49,11 @@
 	grid-area: b1;
 	background-color: transparent;
 }
+
+li {
+	margin-bottom: 20px;
+}
+
+.customul {
+	padding: 5px 30px;
+}

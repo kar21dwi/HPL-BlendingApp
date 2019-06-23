@@ -7,18 +7,22 @@
       </ul>
     </ng-container>
   </div>
-  </div>
+</div>
 
 <div *ngIf="simulationflag">
   <div style=" display: grid; grid-template-columns: repeat(1, minmax(30px, 90px)); grid-template-rows: 586px;">
-  
-    <div style="background-color: lightgray; color:#6d6d6d; text-align: center; font-size:14px;">
-      <br><br>
-      2<br><br>
-      86%<br><br>
-      16%<br><br>
-      4%<br><br>
-      0.25<br><br>
+    <div
+      style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center;  background-color: lightgray; color:#6d6d6d; font-size:14px;">
+
+      <ul style="list-style-type: none; margin-top: 20px; padding: 0px">
+        <ng-container *ngFor="let q of qualitylist; index as i">
+
+          <li appListhighlighter [rowno]="rowselector" [currentrow]="i" (mouseenter)="alertrow(i , $event)"
+            (mouseleave)="alertrow(i , $event)" class="customul">
+            {{q}}
+          </li>
+        </ng-container>
+      </ul>
     </div>
   </div>
 
