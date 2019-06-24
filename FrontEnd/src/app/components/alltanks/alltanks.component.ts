@@ -16,6 +16,7 @@ export class AlltanksComponent implements OnInit {
 	panelOpenState = false;
 	barclick = false;
 	clickstatus = false;
+	level = 4500;
 
 	constructor(private api: ApiService) {
 		// this.getsuctionblending();

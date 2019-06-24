@@ -1,14 +1,16 @@
 <ng-container>
 
-<div class="nav-container" *ngIf = "!simulationflag">
-<div id="navbar" style = "position: fixed; top: 0px; width: 100%; height: 80px;"> <app-navigationbar></app-navigationbar>
-</div>
-</div>
+    <div class="nav-container" *ngIf="!simulationflag">
+        <div id="navbar" style="position: fixed; top: 0px; width: 100%; height: 80px; background: transparent;">
+            <app-navigationbar></app-navigationbar>
+        </div>
+    </div>
 
-<div class="nav-container" *ngIf = "simulationflag">
-<div id="navbar" style = "position: fixed; top: 0px; width: 100%; height: 80px;"><app-simulationnavigation></app-simulationnavigation>
-</div>
-</div>
+    <div class="nav-container" *ngIf="simulationflag">
+        <div id="navbar" style="position: fixed; top: 0px; width: 100%; height: 80px;">
+            <app-simulationnavigation></app-simulationnavigation>
+        </div>
+    </div>
 
 </ng-container>
 
