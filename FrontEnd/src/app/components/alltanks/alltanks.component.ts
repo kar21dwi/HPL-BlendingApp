@@ -16,6 +16,9 @@ export class AlltanksComponent implements OnInit {
 	panelOpenState = false;
 	barclick = false;
 	clickstatus = false;
+	level = 13000;
+	weight = 12020;
+	irotate = 0;
 
 	constructor(private api: ApiService) {
 		// this.getsuctionblending();
@@ -108,5 +111,15 @@ export class AlltanksComponent implements OnInit {
 	clickstatusfunc() {
 		console.log('dfcgvhj');
 		this.clickstatus = !this.clickstatus;
+	}
+	clickbar() {
+		this.barclick = !this.barclick;
+		if (this.irotate) {
+			this.irotate = 0;
+		} else {
+			this.irotate = 180;
+		}
+
+		console.log('skjhfdslig');
 	}
 }

@@ -20,6 +20,35 @@ export enum KEY_CODE {
 	TAB = 9
 }
 
+/* ********first page tanks dropwodn directive**************** */
+@Directive({
+	selector: '[appTankdropdown]'
+})
+export class TankdropdownrDirective implements AfterContentChecked {
+	@Input() rowno: number = -1;
+	@Input() currentrow: number = -1;
+	@HostBinding('style.backgroundColor') background: string;
+
+	constructor(private el: ElementRef, private api: ApiService, private renderer: Renderer2) {}
+	ngAfterContentChecked() {
+		/*
+		if (this.rowno == 1) {
+			console.log('inside directive');
+			this.background = 'red';
+		} else {
+			this.background = 'blue';
+		}
+		*/
+		if (this.rowno == this.currentrow) {
+			this.background = '#ececec';
+		} else {
+			this.background = 'transparent';
+		}
+	}
+}
+
+/* ******************************** */
+
 /* ********list highlighter directive**************** */
 
 @Directive({

@@ -19,7 +19,7 @@
   
         </div> -->
 
-
+    <!-- ** ** drop-down tank-1** ** **-->
     <div id="accordion" style="position: relative;">
 
       <div id="accordion-bar" (click)="dropdown()" style="position: absolute; top: 0px; height: 44px; width: 100%;">
@@ -29,7 +29,8 @@
 
       <div style="position: absolute; top: 40px; width: 100%;">
         <div style="height: 30px; padding: 5px;">
-          <p>Level :</p>
+
+
         </div>
         <div style="height: 30px; padding: 5px;">
           <p>Weight :</p>
@@ -46,22 +47,60 @@
 
     <!-- ** ** ** ** **-->
 
+
+
+    <!-- ** ** drop down tank-2** ** **-->
+
     <div id="accord-container">
 
       <div id="accordion2" [style.maxHeight]="barclick ? '172px' : '44px'">
 
-        <div id="accordion2-bar" (click)="barclick = !barclick">
-          <h2 style="color: #6d6d6d; margin-left: 10px;"> B
-          </h2>
+        <div id="accordion2-bar" (click)="clickbar()">
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 15%;">
+            <h2 style="font-size: 20px; font-family: Open Sans Semibold; color:#6d6d6d;">B</h2>
+          </div>
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 70%;font: size 16px;color: #3a71b8; font-family: Open Sans Semibold;">
+            Suction
+          </div>
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 15%;">
+            <div
+              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 53%','transition': 'all 0.2s ease-in'}">
+              <i style="margin-top:7px;" class="material-icons">
+                keyboard_arrow_down
+              </i>
+            </div>
+
+
+          </div>
+
+
         </div>
 
         <div id="content2">
 
           <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
-            <span>Level :</span>
+            <div
+              style=" display:flex; justify-content:flex-start; align-items:center; background-color:transparent;height: 100%; width: 40%;">
+              Level
+
+            </div>
+            <div
+              style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;">
+              : {{level}} mm
+            </div>
           </div>
           <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
-            <span>Weight :</span>
+            <div
+              style="display:flex; justify-content:flex-start; align-items:center;  background-color:transparent;height: 100%; width: 40%;">
+              Weight
+
+            </div>
+            <div
+              style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
+              : {{weight}} MT </div>
           </div>
           <div class="dropdownelement" (click)="linkclick(1)"
             style="height: 30px; display: flex; align-items: center; padding: 8px;">
