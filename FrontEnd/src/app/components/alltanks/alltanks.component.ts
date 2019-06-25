@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import { range } from 'rxjs';
 
 @Component({
 	selector: 'app-alltanks',
@@ -16,13 +17,16 @@ export class AlltanksComponent implements OnInit {
 	panelOpenState = false;
 	barclick = false;
 	clickstatus = false;
-	level = 13000;
+	level = 6005;
 	weight = 12020;
 	irotate = 0;
+	totallevel = 12500;
+	percentlevel = this.level / this.totallevel * 100;
 
 	constructor(private api: ApiService) {
 		// this.getsuctionblending();
 	}
+
 	ngOnInit() {
 		this.api.getmainpageclickconfirmation.subscribe(
 			(data) => {
@@ -82,8 +86,6 @@ export class AlltanksComponent implements OnInit {
 
 		const content = document.getElementById('accordion');
 
-		console.log(content.style.maxHeight);
-
 		if (content.style.maxHeight == '172px') {
 			content.style.maxHeight = '44px';
 		} else {
@@ -99,8 +101,6 @@ export class AlltanksComponent implements OnInit {
 	dropaccord() {
 		const content = document.getElementById('accordion2');
 
-		console.log(content.style.maxHeight);
-
 		if (content.style.maxHeight == '172px') {
 			content.style.maxHeight = '44px';
 		} else {
@@ -109,7 +109,6 @@ export class AlltanksComponent implements OnInit {
 	}
 
 	clickstatusfunc() {
-		console.log('dfcgvhj');
 		this.clickstatus = !this.clickstatus;
 	}
 	clickbar() {
@@ -119,7 +118,5 @@ export class AlltanksComponent implements OnInit {
 		} else {
 			this.irotate = 180;
 		}
-
-		console.log('skjhfdslig');
 	}
 }

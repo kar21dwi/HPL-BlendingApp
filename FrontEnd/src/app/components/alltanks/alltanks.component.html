@@ -10,65 +10,43 @@
     </div>
 
 
-    <div id="tm1">
-
-    </div>
-
     <!-- <div id ="td1" style = " height:100px; width:100px ;background-color:red; z-index:5;">
   
   
         </div> -->
 
-    <!-- ** ** drop-down tank-1** ** **-->
-    <div id="accordion" style="position: relative;">
+    <!-- ** ** ** Starting of the Drop-Down for the tank-1 ** ** ** */  -->
 
-      <div id="accordion-bar" (click)="dropdown()" style="position: absolute; top: 0px; height: 44px; width: 100%;">
-        <h2 style="color: #6d6d6d; position: absolute; padding-left: 10px; bottom: -10px;"> A
-        </h2>
-      </div>
-
-      <div style="position: absolute; top: 40px; width: 100%;">
-        <div style="height: 30px; padding: 5px;">
-
-
-        </div>
-        <div style="height: 30px; padding: 5px;">
-          <p>Weight :</p>
-        </div>
-        <div class="dropdownelement" (click)="linkclick(1)" style="padding: 5px; height: 30px;">
-          <p style="color: #3a71b8; font-family: Open Sans Semibold;">Average Quality</p>
-        </div>
-        <div class="dropdownelement" (click)="linkclick(2)" style="padding: 5px; height: 30px;">
-          <p style="color: #3a71b8; font-family: Open Sans Semibold;">Real Quality</p>
-        </div>
-      </div>
-
+    <div id="tm1">
+      <div id="th1" [style.height]="percentlevel+'%'"></div>
     </div>
-
-    <!-- ** ** ** ** **-->
-
-
-
-    <!-- ** ** drop down tank-2** ** **-->
 
     <div id="accord-container">
 
-      <div id="accordion2" [style.maxHeight]="barclick ? '172px' : '44px'">
+      <div id="accordion" [style.maxHeight]="barclick ? '172px' : '44px'">
 
-        <div id="accordion2-bar" (click)="clickbar()">
+        <div id="accordion-bar" (click)="clickbar()">
+
+          <div
+            style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+            <h2>A</h2>
+          </div>
+
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 50%;">
+
+            <span>
+              Suction
+            </span>
+
+          </div>
+
           <div
             style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
-            <h2 style="margin: 0; font-size: 24px; font-family: Open Sans Semibold; color:#6d6d6d;">B</h2>
-          </div>
-          <div
-            style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 50%; ">
-            <span
-              style="margin-top: 4px; font-size: 16px; color: rgb(149, 178, 202); font-family: Open Sans Semibold; ">Suction</span>
-          </div>
-          <div
-            style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+
             <div
               [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
               <i style="margin-top:8px;" class="material-icons">
                 keyboard_arrow_down
               </i>
@@ -80,36 +58,34 @@
 
         </div>
 
-        <div id="content2">
+        <!-- ** ** **  Starting of Tank-1 inside dropdown content ** ** -->
+
+        <div id="content">
 
           <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
-            <div
-              style=" display:flex; justify-content:flex-start; align-items:center; background-color:transparent;height: 100%; width: 40%;">
+            <div id="tankslevel">
               Level
 
             </div>
-            <div
-              style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;">
+            <div id="lavelvalue">
               : {{level}} mm
             </div>
           </div>
           <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
-            <div
+            <div id="tanksweight"
               style="display:flex; justify-content:flex-start; align-items:center;  background-color:transparent;height: 100%; width: 40%;">
               Weight
 
             </div>
-            <div
+            <div id="weightvalue"
               style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
               : {{weight}} MT </div>
           </div>
-          <div class="dropdownelement" (click)="linkclick(1)"
-            style="height: 30px; display: flex; align-items: center; padding: 8px;">
-            <p style="color: #3a71b8; font-family: Open Sans Semibold;">Average Quality</p>
+          <div class="dropdownelement" (click)="linkclick(1)">
+            <p>Average Quality</p>
           </div>
-          <div class="dropdownelement" (click)="linkclick(2)"
-            style="height: 30px; display: flex; align-items: center; padding: 8px;">
-            <p style="color: #3a71b8; font-family: Open Sans Semibold;">Real Quality</p>
+          <div class="dropdownelement" (click)="linkclick(2)">
+            <p>Real Quality</p>
           </div>
 
         </div>
@@ -118,14 +94,349 @@
 
     </div>
 
+    <!-- ** ** ** Ending of the Drop-Down for the tank-1 ** ** **  -->
+    <!-- ** ** ** Ending of Tank-1 inside dropdown content ** ** ** -->
+
+    <!-- ** ** ** Starting of the Drop-Down for the tank-2 ** ** ** */  -->
+
+    <div id="tm2">
+      <div id="th2" [style.height]="percentlevel+'%'"></div>
+    </div>
+
+    <div id="accord-container2">
+
+      <div id="accordion" [style.maxHeight]="barclick ? '172px' : '44px'">
+
+        <div id="accordion2-bar" (click)="clickbar()">
+
+          <div
+            style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+            <h2>B</h2>
+          </div>
+
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 50%;">
+
+            <span>
+              Receiving
+            </span>
+
+          </div>
+
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+
+            <div
+              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+              <i style="margin-top:8px;" class="material-icons">
+                keyboard_arrow_down
+              </i>
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <!-- ** ** **  Starting of Tank-2 inside dropdown content ** ** -->
+
+        <div id="content2">
+
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <div id="tankslevel">
+              Level
+
+            </div>
+            <div id="lavelvalue">
+              : {{level}} mm
+            </div>
+          </div>
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <div id="tanksweight"
+              style="display:flex; justify-content:flex-start; align-items:center;  background-color:transparent;height: 100%; width: 40%;">
+              Weight
+
+            </div>
+            <div id="weightvalue"
+              style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
+              : {{weight}} MT </div>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(1)">
+            <p>Average Quality</p>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(2)">
+            <p>Real Quality</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ** ** ** Ending of the Drop-Down for the tank-2 ** ** **  -->
+    <!-- ** ** ** Ending of Tank-2 inside dropdown content ** ** ** -->
+
+
+    <!-- ** ** ** Starting of the Drop-Down for the tank-3 ** ** ** */  -->
+
+    <div id="tm3">
+      <div id="th3" [style.height]="percentlevel+'%'"></div>
+    </div>
+
+    <div id="accord-container3">
+
+      <div id="accordion" [style.maxHeight]="barclick ? '172px' : '44px'">
+
+        <div id="accordion3-bar" (click)="clickbar()">
+
+          <div
+            style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+            <h2>C</h2>
+          </div>
+
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 50%;">
+
+            <span>
+              Blending
+            </span>
+
+          </div>
+
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+
+            <div
+              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+              <i style="margin-top:8px;" class="material-icons">
+                keyboard_arrow_down
+              </i>
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <!-- ** ** **  Starting of Tank-3 inside dropdown content ** ** -->
+
+        <div id="content3">
+
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <div id="tankslevel">
+              Level
+
+            </div>
+            <div id="lavelvalue">
+              : {{level}} mm
+            </div>
+          </div>
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <div id="tanksweight"
+              style="display:flex; justify-content:flex-start; align-items:center;  background-color:transparent;height: 100%; width: 40%;">
+              Weight
+
+            </div>
+            <div id="weightvalue"
+              style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
+              : {{weight}} MT </div>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(1)">
+            <p>Average Quality</p>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(2)">
+            <p>Real Quality</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ** ** ** Ending of the Drop-Down for the tank-3 ** ** **  -->
+    <!-- ** ** ** Ending of Tank-3 inside dropdown content ** ** ** -->
+
+
+    <!-- ** ** ** Starting of the Drop-Down for the tank-4 ** ** ** */  -->
+
+    <div id="tm4">
+      <div id="th4" [style.height]="percentlevel+'%'"></div>
+    </div>
+
+    <div id="accord-container4">
+
+      <div id="accordion" [style.maxHeight]="barclick ? '172px' : '44px'">
+
+        <div id="accordion4-bar" (click)="clickbar()">
+
+          <div
+            style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+            <h2>D</h2>
+          </div>
+
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 50%;">
+
+            <span>
+
+            </span>
+
+          </div>
+
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+
+            <div
+              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+              <i style="margin-top:8px;" class="material-icons">
+                keyboard_arrow_down
+              </i>
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <!-- ** ** **  Starting of Tank-4 inside dropdown content ** ** -->
+
+        <div id="content4">
+
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <div id="tankslevel">
+              Level
+
+            </div>
+            <div id="lavelvalue">
+              : {{level}} mm
+            </div>
+          </div>
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <div id="tanksweight"
+              style="display:flex; justify-content:flex-start; align-items:center;  background-color:transparent;height: 100%; width: 40%;">
+              Weight
+
+            </div>
+            <div id="weightvalue"
+              style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
+              : {{weight}} MT </div>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(1)">
+            <p>Average Quality</p>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(2)">
+            <p>Real Quality</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ** ** ** Ending of the Drop-Down for the tank-4 ** ** **  -->
+    <!-- ** ** ** Ending of Tank-4 inside dropdown content ** ** ** -->
+
+
+    <!-- ** ** ** Starting of the Drop-Down for the tank-4 ** ** ** */  -->
+
+    <div id="tm5">
+      <div id="th5" [style.height]="percentlevel+'%'"></div>
+    </div>
+
+    <div id="accord-container5">
+
+      <div id="accordion" [style.maxHeight]="barclick ? '172px' : '44px'">
+
+        <div id="accordion5-bar" (click)="clickbar()">
+
+          <div
+            style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+            <h2>E</h2>
+          </div>
+
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 50%;">
+
+            <span>
+
+            </span>
+
+          </div>
+
+          <div
+            style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
+
+            <div
+              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+              <i style="margin-top:8px;" class="material-icons">
+                keyboard_arrow_down
+              </i>
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+        <!-- ** ** **  Starting of Tank-4 inside dropdown content ** ** -->
+
+        <div id="content5">
+
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <div id="tankslevel">
+              Level
+
+            </div>
+            <div id="lavelvalue">
+              : {{level}} mm
+            </div>
+          </div>
+          <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
+            <div id="tanksweight"
+              style="display:flex; justify-content:flex-start; align-items:center;  background-color:transparent;height: 100%; width: 40%;">
+              Weight
+
+            </div>
+            <div id="weightvalue"
+              style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
+              : {{weight}} MT </div>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(1)">
+            <p>Average Quality</p>
+          </div>
+          <div class="dropdownelement" (click)="linkclick(2)">
+            <p>Real Quality</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ** ** ** Ending of the Drop-Down for the tank-5 ** ** **  -->
+    <!-- ** ** ** Ending of Tank-5 inside dropdown content ** ** ** -->
+
+
+
+
+
 
     <!-- ** ** ** ** ** -->
 
 
 
-    <div id="tm2">
-
-    </div>
 
     <div id="td2">
 

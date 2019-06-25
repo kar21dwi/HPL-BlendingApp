@@ -12,7 +12,10 @@
 
 	grid-template-rows: 35px 117px 153px 44px 85px 43px 27px;
 
-	grid-template-areas: "b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1""b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2""tm1 tm1 tm1 . . tm2 tm2 tm2 . . tm3 tm3 tm3 . . tm4 tm4 tm4 . . tm5 tm5 tm5""tb1 tb1 tb1 . . tb2 tb2 tb2 . . tb3 tb3 tb3 . . tb4 tb4 tb4 . . tb5 tb5 tb5";
+	grid-template-areas: "b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1 b1"
+		"b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2 b2"
+		"tm1 tm1 tm1 . . tm2 tm2 tm2 . . tm3 tm3 tm3 . . tm4 tm4 tm4 . . tm5 tm5 tm5"
+		"tb1 tb1 tb1 . . tb2 tb2 tb2 . . tb3 tb3 tb3 . . tb4 tb4 tb4 . . tb5 tb5 tb5";
 
 	width: 100%;
 	height: 100%;
@@ -74,8 +77,12 @@
 	  grid-row: 3/4;*/
 
 	grid-area: tm2;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #f2f2f2;
 	border-radius: 5px 5px 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 #tm3 {
@@ -103,30 +110,30 @@
 	border-radius: 5px 5px 0 0;
 }
 
-#accordion {
-	/* grid-column: 1/-1;*/
-	grid-area: tb1;
-	grid-column: 1/4;
-	grid-row: 4/7;
-
-	background-color: rgb(255, 255, 255);
-	box-shadow: 0 1.0px 1px 0.05px #acacac, 0.3px 1.5px 3.0px 0.8px #cccccc;
-	border-radius: 0 0 5px 5px;
-	color: #6d6d6d;
-	max-height: 44px;
-	overflow: hidden;
-	transition: max-height 0.2s ease-in;
-}
+/* ** ** ** common properties for  all five tanks ** ** ** */
 
 #accordion-bar,
 #accordion2-bar,
-.dropdownelement {
+#accordion3-bar,
+#accordion4-bar,
+#accordion5-bar {
 	background-color: transparent;
 	transition: background-color 0.2s ease-out;
 }
 
+.dropdownelement {
+	background-color: transparent;
+	transition: background-color 0.2s ease-out;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	padding: 8px;
+}
 #accordion-bar:hover,
 #accordion2-bar:hover,
+#accordion3-bar:hover,
+#accordion4-bar:hover,
+#accordion5-bar:hover,
 .dropdownelement:hover {
 	background-color: rgba(231, 231, 231, 0.55);
 	cursor: pointer;
@@ -134,22 +141,11 @@
 
 p {
 	margin: 0;
+	color: #3a71b8;
+	font-family: Open Sans Semibold;
 }
 
-/* ************************* */
-
-#accord-container {
-	display: flex;
-	grid-area: tb2;
-	grid-row: 4/8;
-	grid-column: 6/9;
-	flex-direction: column;
-	justify-content: flex-start;
-}
-
-#accordion2 {
-	/*   grid-column: 9/-9;
-	  grid-row: 3/4;*/
+#accordion {
 	width: 100%;
 	background-color: rgb(255, 255, 255);
 	box-shadow: 0 1.0px 1px 0.05px #acacac, 0.3px 1.5px 3.0px 0.8px #cccccc;
@@ -160,7 +156,11 @@ p {
 	transition: max-height 0.2s ease-in;
 }
 
-#accordion2-bar {
+#accordion-bar,
+#accordion2-bar,
+#accordion3-bar,
+#accordion4-bar,
+#accordion5-bar {
 	width: 100%;
 	height: 44px;
 
@@ -169,7 +169,11 @@ p {
 	align-items: center;
 }
 
-#content2 {
+#content,
+#content2,
+#content3,
+#content4,
+#content5 {
 	width: 100%;
 	height: 128px;
 	display: flex;
@@ -177,36 +181,125 @@ p {
 	justify-content: flex-start;
 }
 
-/* ******************************* */
+h2 {
+	margin: 0;
+	font-size: 24px;
+	font-family: Open Sans Semibold;
+	color: #6d6d6d;
+}
+span {
+	margin-top: 4px;
+	font-size: 16px;
+	color: rgb(149, 178, 202);
+	font-family: Open Sans Semibold;
+}
+#tankslevel {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	background-color: transparent;
+	height: 100%;
+	width: 40%;
+}
+#levelvalue {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	background-color: transparent;
+	height: 100%;
+	width: 60%;
+}
 
-#tb3 {
-	/*  grid-column: 1/-1;
-	  grid-row: 2/3;*/
+/* ** ** ** End of common properties for  all five tanks ** ** ** */
 
+/* ** ** ** Starting of the Drop-Down for the tank-1 ** ** ** */
+#accord-container {
+	display: flex;
+	grid-area: tb1;
+	grid-column: 1/4;
+	grid-row: 4/7;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+#th1 {
+	background: #dfeaf3;
+	width: 100%;
+	bottom: 0px;
+}
+
+/* ** ** ** Ending of the Drop-Down for the tank-1 ** ** ** */
+
+/* ** ** ** Starting of the Drop-Down for the tank-2 ** ** ** */
+
+#accord-container2 {
+	display: flex;
+	grid-area: tb2;
+	grid-row: 4/7;
+	grid-column: 6/9;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+#th2 {
+	background: #dfeaf3;
+	width: 100%;
+	bottom: 0px;
+}
+
+/* ** ** ** Ending of the Drop-Down for the tank-1 ** ** ** */
+
+/* ** ** ** Starting of the Drop-Down for the tank-3 ** ** ** */
+
+#accord-container3 {
+	display: flex;
 	grid-area: tb3;
-
-	background-color: rgb(255, 255, 255);
-	box-shadow: 0 2.5px 2.5px 0.3px #b9b9b9;
-	border-radius: 0 0 5px 5px;
+	grid-row: 4/7;
+	grid-column: 11/14;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+#th3 {
+	background: #dfeaf3;
+	width: 100%;
+	bottom: 0px;
 }
 
-#tb4 {
-	/*  grid-column: 1/-1;
-	grid-row: 4/5;*/
+/* ** ** ** Ending of the Drop-Down for the tank-3 ** ** ** */
+
+/* ** ** ** Starting of the Drop-Down for the tank-4 ** ** ** */
+
+#accord-container4 {
+	display: flex;
 	grid-area: tb4;
-	background-color: rgb(255, 255, 255);
-	box-shadow: 0 2.5px 2.5px 0.3px #b9b9b9;
-	border-radius: 0 0 5px 5px;
+	grid-row: 4/7;
+	grid-column: 16 /19;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+#th4 {
+	background: #dfeaf3;
+	width: 100%;
+	bottom: 0px;
 }
 
-#tb5 {
-	/*   grid-column: 15/-15;
-	  grid-row: 5/6;*/
+/* ** ** ** Ending of the Drop-Down for the tank-4 ** ** ** */
+
+/* ** ** ** Starting of the Drop-Down for the tank-5 ** ** ** */
+
+#accord-container5 {
+	display: flex;
 	grid-area: tb5;
-	background-color: rgb(255, 255, 255);
-	box-shadow: 0 2.5px 2.5px 0.3px #b9b9b9;
-	border-radius: 0 0 5px 5px;
+	grid-row: 4/7;
+	grid-column: 21/-1;
+	flex-direction: column;
+	justify-content: flex-start;
 }
+#th5 {
+	background: #dfeaf3;
+	width: 100%;
+	bottom: 0px;
+}
+
+/* ** ** ** Ending of the Drop-Down for the tank-5 ** ** ** */
 
 /* ------------------testing----------------------*/
 
