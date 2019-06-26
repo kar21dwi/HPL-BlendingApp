@@ -1,100 +1,221 @@
 .container {
-  margin: 0px auto;
-  display: grid;
-  grid-template-columns: repeat(107, minmax(3.33333px, 10px));
-  grid-template-rows: 40px 394px 40px 304px 40px 185px;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
+	margin: 0px auto;
+	display: grid;
+	grid-template-columns: repeat(107, minmax(3.33333px, 10px));
+	grid-template-rows: 40px 394px 40px 304px 40px 185px;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
 }
 
-.container>div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  color: white;
-  font-family: Open Sans;
+.container > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 16px;
+	color: white;
+	font-family: Open Sans;
 }
-
 
 #blank-row1 {
-  grid-column: 1/-1;
-  grid-row: 1/1;
-  background-color: transparent;
+	grid-column: 1/-1;
+	grid-row: 1/1;
+	background-color: transparent;
 }
-
+/*
 #rninput {
-  grid-column: 30/45;
-  grid-row: 2/2;
-  background-color: lightgrey;
+	grid-column: 30/45;
+	grid-row: 2/2;
+	background-color: lightgrey;
+}
+*/
+/* ************ RUNNING INPUT ****************** */
 
+#rninput-container {
+	display: flex;
+	grid-column: 30/45;
+	grid-row: 2/2;
+	background-color: transparent;
+	flex-direction: column;
+	justify-content: flex-start;
+	text-align: center;
 }
 
-#bfinput {
-  grid-column: 51/66;
-  grid-row: 2/2;
-  background-color: lightgrey;
+/* **** ***** ***** *****    */
+/* ************ BESTFIT INPUT ****************** */
 
+#bfinput-container {
+	display: flex;
+	grid-column: 51/66;
+	grid-row: 2/2;
+	background-color: transparent;
+	flex-direction: column;
+	justify-content: flex-start;
+	text-align: center;
 }
+
+/* ************ BESTFIT QUALITY ****************** */
+
+#bfquality-container {
+	display: flex;
+	grid-column: 51/66;
+	grid-row: 4/4;
+	background-color: transparent;
+	flex-direction: column;
+	justify-content: flex-start;
+	text-align: center;
+}
+
+/* **** ***** ***** *****    */
+/* **** ***** ***** *****    */
+
+/* common css for all column */
+
+#rninputaccordion,
+#bfinputaccordion,
+#bfqualityaccordion {
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0 1.0px 1px 0.05px #acacac, 0.3px 1.5px 3.0px 0.8px #cccccc;
+	border-radius: 0 0 5px 5px;
+	color: #6d6d6d;
+	text-align: center;
+
+	/*overflow: hidden;*/
+	transition: max-height 0.2s ease-in;
+}
+#rninputaccordion-bar,
+#bfinputaccordion-bar,
+#bfqualityaccordion-bar {
+	width: 100%;
+	height: 40px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#rninput-content,
+#bfinput-content {
+	width: 100%;
+	height: 354px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	border: 1px solid;
+	text-align: center;
+}
+#bfquality-content {
+	width: 100%;
+	height: 264px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	border: 1px solid;
+	text-align: center;
+}
+#rninputaccordion-bar:hover,
+#bfinputaccordion-bar:hover,
+#bfqualityaccordion-bar:hover {
+	background-color: rgba(231, 231, 231, 0.55);
+	cursor: pointer;
+}
+p {
+	margin: 0;
+	color: #3a71b8;
+	font-family: Open Sans Semibold;
+}
+h2 {
+	margin: 0;
+	font-size: 16px;
+	font-family: Open Sans Semibold;
+	color: #6d6d6d;
+}
+span {
+	margin-top: 4px;
+	font-size: 16px;
+	color: rgb(149, 178, 202);
+	font-family: Open Sans Semibold;
+}
+ul {
+	list-style-type: none;
+}
+.item1 {
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(208, 240, 234);
+	height: 100%;
+	width: 40%;
+}
+
+.item1 > div {
+	background-color: rgb(199, 154, 95);
+	margin: 2px;
+	height: 30px;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	font-size: 14px;
+	text-align: center;
+	flex-wrap: nowrap;
+
+	font-family: Open sans;
+}
+
+/* end of common css for all the columns */
+/*********************************************************************** */
 
 #pminput {
-  grid-column: 72/87;
-  grid-row: 2/2;
-  background-color: lightgrey;
+	grid-column: 72/87;
+	grid-row: 2/2;
+	background-color: lightgrey;
 }
 
 #nhinput {
-  grid-column: 93/-1;
-  grid-row: 2/2;
-  background-color: lightgrey;
+	grid-column: 93/-1;
+	grid-row: 2/2;
+	background-color: lightgrey;
 }
 
 #udinputquality {
-  grid-column: 1/26;
-  grid-row: 2/5;
-  background-color: transparent;
+	grid-column: 1/26;
+	grid-row: 2/5;
+	background-color: transparent;
 }
 
 #blank-row2 {
-  grid-column: 1/-1;
-  grid-row: 3/3;
-  background-color: transparent;
+	grid-column: 1/-1;
+	grid-row: 3/3;
+	background-color: transparent;
 }
 
 #rnquality {
-  grid-column: 30/45;
-  grid-row: 4/4;
-  background-color: lightgrey;
-}
-
-#bfquality {
-  grid-column: 51/66;
-  grid-row: 4/4;
-  background-color: lightgrey;
+	grid-column: 30/45;
+	grid-row: 4/4;
+	background-color: lightgrey;
 }
 
 #pmquality {
-  grid-column: 72/87;
-  grid-row: 4/4;
-  background-color: lightgrey;
+	grid-column: 72/87;
+	grid-row: 4/4;
+	background-color: lightgrey;
 }
 
 #nhquality {
-  grid-column: 93/-1;
-  grid-row: 4/4;
-  background-color: lightgrey;
+	grid-column: 93/-1;
+	grid-row: 4/4;
+	background-color: lightgrey;
 }
 
 #blank-row3 {
-  grid-column: 1/-1;
-  grid-row: 5/5;
-  background-color: transparent;
-
+	grid-column: 1/-1;
+	grid-row: 5/5;
+	background-color: transparent;
 }
 
 #blendquality {
-  grid-column: 1/26;
-  grid-row: 6/6;
-  background-color: lightgrey;
+	grid-column: 1/26;
+	grid-row: 6/6;
+	background-color: lightgrey;
 }

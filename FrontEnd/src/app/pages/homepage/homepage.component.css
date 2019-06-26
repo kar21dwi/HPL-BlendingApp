@@ -23,9 +23,6 @@
 	color: white;
 	background-color: rgb(150, 150, 150);
 	font-family: Open Sans;
-	border: 1px solid;
-	border-radius: 5px 5px 5px 5px;
-	letter-spacing: 1px;
 }
 
 #tankpage {
@@ -50,6 +47,9 @@
 	font-family: Open Sans semiBold;
 	color: #6d6d6d;
 	cursor: pointer;
+	border-radius: 5px 5px 5px 5px;
+	letter-spacing: 1px;
+	border: 1px solid;
 }
 #simulate-button:hover {
 	background-color: rgba(231, 231, 231, 0.55);

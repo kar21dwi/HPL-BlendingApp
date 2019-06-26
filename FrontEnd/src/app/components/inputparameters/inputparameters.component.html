@@ -1,37 +1,225 @@
-
 <div class="container">
-<div id ="rninput">
-<app-runninginput></app-runninginput>
+  <!--<div id="rninput">
+    <app-runninginput></app-runninginput>
 
-</div>
-<div id ="bfinput">
-<app-bestfitinput></app-bestfitinput>
-</div>
-<div id ="pminput">
-<app-profitmaxinput></app-profitmaxinput>
-</div>
-<div id ="nhinput">
-<app-nexthourinput></app-nexthourinput>
-</div>
-<div id ="rnquality">
-<app-runningquality></app-runningquality>
-</div>
-  <div id ="bfquality">
-<app-bestfitquality></app-bestfitquality>
-</div>
-<div id ="pmquality">
-<app-profitmaxquality></app-profitmaxquality>
-</div>
-<div id ="nhquality">
-<app-nexthourquality></app-nexthourquality>
-</div>
-<div id ="udinputquality">
-    <h2 style = "position:absolute; top: 115px; left: 150px; color:#6d6d6d; "> {{newud.id}}</h2>
-<app-userdefinedinputs></app-userdefinedinputs>
-</div>
-<div id ="blendquality">
-<app-blendcomparison></app-blendcomparison>
-</div>
+  </div>
+  -->
+  <!-- ** ** **  Starting dropdown with data for the RNinput ** ** ** -->
+  <div id="rninput-container">
+
+    <div id="rninputaccordion" [style.maxHeight]="barclick ? '394px' : '40px'">
+
+      <div id="rninputaccordion-bar" (click)="clickbar()">
+
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 80%;">
+
+          <h2>
+            Running Input
+          </h2>
+
+        </div>
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 20%;">
+
+          <div
+            [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+            <i style="margin-top:8px;" class="material-icons">
+              keyboard_arrow_down
+            </i>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div id="rninput-content">
+
+        <div style="height: 354px; display: flex; ">
+          <div style="display:flex;  background-color:rgb(221, 195, 195);height: 100%; width: 33%;">
+
+          </div>
+          <div class="item1">
+            <div>3</div>
+            <div> 5</div>
+            <div>0.75</div>
+            <div>4556</div>
+            <div>366</div>
+            <div>235</div>
+            <div>52</div>
+            <div>834</div>
+            <div>0.28</div>
+            <div>8</div>
+            <div>1.2</div>
+          </div>
+
+          <div style="display:flex;  background-color:rgb(168, 223, 168); height: 100%; width: 33%; ">
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+  <!-- ** ** **  Ending dropdown with data for the RNinput ** ** ** -->
+
+  <!-- ** ** **  Starting dropdown with data for the BFinput ** ** ** -->
+  <div id="bfinput-container">
+
+    <div id="bfinputaccordion" [style.maxHeight]="barclick ? '394px' : '40px'">
+
+      <div id="bfinputaccordion-bar" (click)="clickbar()">
+
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 80%;">
+
+          <h2>
+            Best Fit Input
+          </h2>
+
+        </div>
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 20%;">
+
+          <div
+            [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+            <i style="margin-top:8px;" class="material-icons">
+              keyboard_arrow_down
+            </i>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div id="bfinput-content">
+
+        <div style="height: 354px; display: flex; ">
+          <div style="display:flex;  background-color:transparent;height: 100%; width: 33%;">
+
+          </div>
+          <div class="item1">
+            <div>3</div>
+            <div> 5</div>
+            <div>0.75</div>
+            <div>4556</div>
+            <div>366</div>
+            <div>235</div>
+            <div>52</div>
+            <div>834</div>
+            <div>0.28</div>
+            <div>8</div>
+            <div>1.2</div>
+          </div>
+
+          <div style="display:flex;  background-color:transparent; height: 100%; width: 33%; ">
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+  <!-- ** ** **  Ending dropdown with data for the BFinput ** ** ** -->
+
+
+
+  <!-- ******************************************************************  -->
+
+  <!-- ** ** **  Starting dropdown with data for the BFquality ** ** ** -->
+  <div id="bfquality-container">
+
+    <div id="bfqualityaccordion" [style.maxHeight]="barclick ? '304px' : '40px'">
+
+      <div id="bfqualityaccordion-bar" (click)="clickbar()">
+
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 80%;">
+
+          <h2>
+            Best Fit Quality
+          </h2>
+
+        </div>
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 20%;">
+
+          <div
+            [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+            <i style="margin-top:8px;" class="material-icons">
+              keyboard_arrow_down
+            </i>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div id="bfquality-content">
+
+        <div style="height: 304px; display: flex; ">
+          <div style="display:flex;  background-color:rgb(221, 195, 195);height: 100%; width: 30%;">
+
+          </div>
+          <div class="item1">
+            <div>824 %</div>
+            <div> 4 %</div>
+            <div>4 %</div>
+            <div>10 %</div>
+            <div>1.02</div>
+            <div>.62gm/cc</div>
+            <div>45 &#8451;</div>
+            <div>127 &#8451;</div>
+
+          </div>
+
+          <div style="display:flex;  background-color:rgb(168, 223, 168); height: 100%; width: 30%; ">
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+  <!-- ** ** **  Ending dropdown with data for the BFquality ** ** ** -->
+
+  <div id="bfinput">
+    <app-bestfitinput></app-bestfitinput>
+  </div>
+  <div id="pminput">
+    <app-profitmaxinput></app-profitmaxinput>
+  </div>
+  <div id="nhinput">
+    <app-nexthourinput></app-nexthourinput>
+  </div>
+  <div id="rnquality">
+    <app-runningquality></app-runningquality>
+  </div>
+  <div id="bfquality">
+    <app-bestfitquality></app-bestfitquality>
+  </div>
+  <div id="pmquality">
+    <app-profitmaxquality></app-profitmaxquality>
+  </div>
+  <div id="nhquality">
+    <app-nexthourquality></app-nexthourquality>
+  </div>
+  <div id="udinputquality">
+    <h2 style="position:absolute; top: 115px; left: 150px; color:#6d6d6d; "> {{newud.id}}</h2>
+    <app-userdefinedinputs></app-userdefinedinputs>
+  </div>
+  <div id="blendquality">
+    <app-blendcomparison></app-blendcomparison>
+  </div>
 </div>
 
 <!--<hr>

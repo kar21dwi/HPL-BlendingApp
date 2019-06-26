@@ -11,6 +11,8 @@ export class InputparametersComponent implements OnInit {
 	nextclicked = false;
 	nextoutputclick = false;
 	@Input() newud: any;
+	barclick: true;
+	irotate = 0;
 
 	constructor(private api: ApiService) {}
 
@@ -30,4 +32,22 @@ export class InputparametersComponent implements OnInit {
 		}
 	};
 	givechild = () => {};
+
+	dropdown = () => {
+		const content = document.getElementById('accordion');
+
+		if (content.style.maxHeight == '172px') {
+			content.style.maxHeight = '44px';
+		} else {
+			content.style.maxHeight = '172px';
+		}
+	};
+
+	clickbar() {
+		if (this.irotate) {
+			this.irotate = 0;
+		} else {
+			this.irotate = 180;
+		}
+	}
 }
