@@ -96,11 +96,9 @@ export class Tankno1Component implements OnInit {
 	};
 
 	showqualityavg = () => {
-		console.log('ksjfgdkh');
 		this.api.sendMainPageClickConfirmation(1);
 	};
 	showqualityreal = () => {
-		console.log('sdhfjs');
 		this.api.sendMainPageClickConfirmation(2);
 	};
 

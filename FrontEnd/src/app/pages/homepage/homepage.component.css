@@ -23,6 +23,9 @@
 	color: white;
 	background-color: rgb(150, 150, 150);
 	font-family: Open Sans;
+	border: 1px solid;
+	border-radius: 5px 5px 5px 5px;
+	letter-spacing: 1px;
 }
 
 #tankpage {
@@ -37,4 +40,17 @@
 	/*   grid-column: 15/-15;
       grid-row: 5/6;*/
 	grid-area: s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+	height: 100%;
+	width: 100%;
+	font-size: 24px;
+	font-family: Open Sans semiBold;
+	color: #6d6d6d;
+	cursor: pointer;
+}
+#simulate-button:hover {
+	background-color: rgba(231, 231, 231, 0.55);
 }
