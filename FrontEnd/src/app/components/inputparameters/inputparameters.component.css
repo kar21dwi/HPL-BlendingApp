@@ -103,6 +103,7 @@
 	justify-content: flex-start;
 	border: 1px solid;
 	text-align: center;
+	border-radius: 0 0 5px 5px;
 }
 #bfquality-content {
 	width: 100%;
@@ -112,6 +113,7 @@
 	justify-content: flex-start;
 	border: 1px solid;
 	text-align: center;
+	border-radius: 0 0 5px 5px;
 }
 #rninputaccordion-bar:hover,
 #bfinputaccordion-bar:hover,
@@ -142,12 +144,20 @@ ul {
 .item1 {
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(208, 240, 234);
+	background-color: rgb(204, 166, 166);
 	height: 100%;
 	width: 40%;
 }
+.item2 {
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(204, 166, 166);
+	height: 100%;
+	width: 50%;
+}
 
-.item1 > div {
+.item1 > div,
+.item2 > div {
 	background-color: rgb(199, 154, 95);
 	margin: 2px;
 	height: 30px;
