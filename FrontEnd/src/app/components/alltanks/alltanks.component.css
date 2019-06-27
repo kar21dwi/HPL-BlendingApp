@@ -52,15 +52,15 @@
 #tankqualityavg {
 	grid-column: 10/15;
 	grid-row: 2/6;
-	z-index: 3;
-	background-color: white;
+	z-index: 4;
+	background-color: transparent;
 	border-radius: 5px 5px 5px 5px;
 }
 
 #tankqualityreal {
 	grid-column: 10/15;
 	grid-row: 3/5;
-	z-index: 3;
+	z-index: 4;
 	background-color: white;
 	border-radius: 5px 5px 5px 5px;
 }
@@ -209,9 +209,9 @@ h2 {
 }
 span {
 	margin-top: 4px;
-	font-size: 16px;
+	font-size: 14px;
 	color: rgb(149, 178, 202);
-	font-family: Open Sans Semibold;
+	font-family: Open Sans;
 }
 #tankslevel {
 	display: flex;
@@ -262,6 +262,7 @@ span {
 	background: #dfeaf3;
 	width: 100%;
 	bottom: 0px;
+	z-index: 2;
 }
 
 /* ** ** ** Ending of the Drop-Down for the tank-1 ** ** ** */

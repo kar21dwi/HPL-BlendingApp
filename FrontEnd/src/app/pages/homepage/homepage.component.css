@@ -1,3 +1,4 @@
+@import "../../../../node_modules/node-waves/dist/waves.min.css";
 .container {
 	margin: 0px auto;
 	display: grid;
@@ -33,7 +34,7 @@
 	background-color: transparent;
 }
 
-#simulate-button {
+.container > div.simulate-button {
 	/*   grid-column: 15/-15;
       grid-row: 5/6;*/
 	grid-area: s;

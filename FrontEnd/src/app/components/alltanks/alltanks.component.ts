@@ -15,15 +15,19 @@ export class AlltanksComponent implements OnInit {
 	hoverover = false;
 	@Input() simulationflag: boolean;
 	panelOpenState = false;
-	barclick = false;
+	barclick = [ 0, 0 ];
 	clickstatus = false;
-	level = 6005;
+	level = [ 11000, 10000, 3000, 4000, 8700 ];
 	weight = 12020;
-	irotate = 0;
+	irotate = [ 0, 0 ];
 	totallevel = 12500;
-	percentlevel = this.level / this.totallevel * 100;
+	percentlevel = [ 0, 0, 0, 0, 0 ];
+	tankno = 0;
 
 	constructor(private api: ApiService) {
+		for (var i = 0; i < 5; i++) {
+			this.percentlevel[i] = this.level[i] / this.totallevel * 100;
+		}
 		// this.getsuctionblending();
 	}
 
@@ -77,46 +81,22 @@ export class AlltanksComponent implements OnInit {
 			}
 		);
 	};
-	dropdown = () => {
-		/*
-		console.log($('#td1').toggleClass('transform-active'));
-		$('#td1').toggleClass('transform');
-		console.log('xdfgchjb');
-*/
 
-		const content = document.getElementById('accordion');
-
-		if (content.style.maxHeight == '172px') {
-			content.style.maxHeight = '44px';
-		} else {
-			content.style.maxHeight = '172px';
-		}
-	};
-
-	linkclick(i) {
+	linkclick(i, j) {
 		this.flag = i;
-		this.api.sendMainPageClickConfirmation(this.flag);
-	}
-
-	dropaccord() {
-		const content = document.getElementById('accordion2');
-
-		if (content.style.maxHeight == '172px') {
-			content.style.maxHeight = '44px';
-		} else {
-			content.style.maxHeight = '172px';
-		}
+		this.tankno = j;
 	}
 
 	clickstatusfunc() {
 		this.clickstatus = !this.clickstatus;
 	}
-	clickbar() {
-		this.barclick = !this.barclick;
-		if (this.irotate) {
-			this.irotate = 0;
+	clickbar(i) {
+		if (this.barclick[i] == 1) {
+			this.barclick[i] = 0;
+			this.irotate[i] = 0;
 		} else {
-			this.irotate = 180;
+			this.barclick[i] = 1;
+			this.irotate[i] = 180;
 		}
 	}
 }

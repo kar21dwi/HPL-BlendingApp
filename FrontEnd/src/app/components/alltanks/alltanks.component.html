@@ -1,12 +1,24 @@
 <ng-container *ngIf="!simulationflag">
   <div class="container">
 
-    <div *ngIf="flag==1" id="tankqualityavg"></div>
+    <div *ngIf="flag==1" id="tankqualityavg">
+      <app-tankno1 *ngIf="tankno==1"></app-tankno1>
+      <app-tankno2 *ngIf="tankno==2"></app-tankno2>
+      <app-tankno3 *ngIf="tankno==3"></app-tankno3>
+      <app-tankno4 *ngIf="tankno==4"></app-tankno4>
+      <app-tankno5 *ngIf="tankno==5"></app-tankno5>
+    </div>
 
-    <div *ngIf="flag==2" id="tankqualityreal"></div>
+    <div *ngIf="flag==2" id="tankqualityreal">
+      <app-tankno1 *ngIf="tankno==1"></app-tankno1>
+      <app-tankno2 *ngIf="tankno==2"></app-tankno2>
+      <app-tankno3 *ngIf="tankno==3"></app-tankno3>
+      <app-tankno4 *ngIf="tankno==4"></app-tankno4>
+      <app-tankno5 *ngIf="tankno==5"></app-tankno5>
+    </div>
 
     <div *ngIf="flag" (click)="flag=0"
-      style="position: fixed; top: 0px; left:0px; width: 100%; height: 100%; background-color: rgba(0,0,0,0.55); z-index: 2; ">
+      style="position: fixed; top: 0px; left:0px; width: 100%; height: 100%; background-color: rgba(0,0,0,0.55); z-index: 3; ">
     </div>
 
 
@@ -18,14 +30,14 @@
     <!-- ** ** ** Starting of the Drop-Down for the tank-1 ** ** ** */  -->
 
     <div id="tm1">
-      <div id="th1" [style.height]="percentlevel+'%'"></div>
+      <div id="th1" [style.height]="percentlevel[0]+'%'"></div>
     </div>
 
     <div id="accord-container">
 
-      <div id="accordion" [style.maxHeight]="barclick ? '172px' : '44px'">
+      <div id="accordion" [style.maxHeight]="barclick[0] ? '172px' : '44px'">
 
-        <div id="accordion-bar" (click)="clickbar()">
+        <div id="accordion-bar" (click)="clickbar(0)">
 
           <div
             style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
@@ -45,9 +57,9 @@
             style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
 
             <div
-              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+              [ngStyle]="{'transform': 'rotate('+irotate[0]+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
 
-              <i style="margin-top:8px; transform: scale(0.9)" class="material-icons">
+              <i style="margin-top:8px; transform: scale(0.9);" class="material-icons">
                 keyboard_arrow_down
               </i>
             </div>
@@ -68,7 +80,7 @@
 
             </div>
             <div id="lavelvalue">
-              : {{level}} mm
+              : {{level[0]}} mm
             </div>
           </div>
           <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
@@ -80,10 +92,10 @@
               style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
               :{{weight}} MT </div>
           </div>
-          <div class="dropdownelement" (click)="linkclick(1)">
+          <div class="dropdownelement" (click)="linkclick(1,1)">
             <p>Average Quality</p>
           </div>
-          <div class="dropdownelement" (click)="linkclick(2)">
+          <div class="dropdownelement" (click)="linkclick(2,1)">
             <p>Real Quality</p>
           </div>
 
@@ -99,14 +111,14 @@
     <!-- ** ** ** Starting of the Drop-Down for the tank-2 ** ** ** */  -->
 
     <div id="tm2">
-      <div id="th2" [style.height]="percentlevel+'%'"></div>
+      <div id="th2" [style.height]="percentlevel[1]+'%'"></div>
     </div>
 
     <div id="accord-container2">
 
-      <div id="accordion2" [style.maxHeight]="barclick ? '172px' : '44px'">
+      <div id="accordion2" [style.maxHeight]="barclick[1] ? '172px' : '44px'">
 
-        <div id="accordion2-bar" (click)="clickbar()">
+        <div id="accordion2-bar" (click)="clickbar(1)">
 
           <div
             style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
@@ -126,9 +138,9 @@
             style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
 
             <div
-              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+              [ngStyle]="{'transform': 'rotate('+irotate[1]+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
 
-              <i style="margin-top:8px;" class="material-icons">
+              <i style="margin-top:8px;transform: scale(0.9); " class="material-icons">
                 keyboard_arrow_down
               </i>
             </div>
@@ -149,7 +161,7 @@
 
             </div>
             <div id="lavelvalue">
-              : {{level}} mm
+              : {{level[1]}} mm
             </div>
           </div>
           <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
@@ -162,10 +174,10 @@
               style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
               :{{weight}} MT </div>
           </div>
-          <div class="dropdownelement" (click)="linkclick(1)">
+          <div class="dropdownelement" (click)="linkclick(1,2)">
             <p>Average Quality</p>
           </div>
-          <div class="dropdownelement" (click)="linkclick(2)">
+          <div class="dropdownelement" (click)="linkclick(2,2)">
             <p>Real Quality</p>
           </div>
 
@@ -182,14 +194,13 @@
     <!-- ** ** ** Starting of the Drop-Down for the tank-3 ** ** ** */  -->
 
     <div id="tm3">
-      <div id="th3" [style.height]="percentlevel+'%'"></div>
+      <div id="th3" [style.height]="percentlevel[2]+'%'"></div>
     </div>
-
     <div id="accord-container3">
 
-      <div id="accordion3" [style.maxHeight]="barclick ? '172px' : '44px'">
+      <div id="accordion3" [style.maxHeight]="barclick[2] ? '172px' : '44px'">
 
-        <div id="accordion3-bar" (click)="clickbar()">
+        <div id="accordion3-bar" (click)="clickbar(2)">
 
           <div
             style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
@@ -209,9 +220,9 @@
             style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
 
             <div
-              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+              [ngStyle]="{'transform': 'rotate('+irotate[2]+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
 
-              <i style="margin-top:8px;" class="material-icons">
+              <i style="margin-top:8px;transform: scale(0.9);" class="material-icons">
                 keyboard_arrow_down
               </i>
             </div>
@@ -232,7 +243,7 @@
 
             </div>
             <div id="lavelvalue">
-              : {{level}} mm
+              : {{level[2]}} mm
             </div>
           </div>
           <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
@@ -245,10 +256,10 @@
               style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
               :{{weight}} MT </div>
           </div>
-          <div class="dropdownelement" (click)="linkclick(1)">
+          <div class="dropdownelement" (click)="linkclick(1,3)">
             <p>Average Quality</p>
           </div>
-          <div class="dropdownelement" (click)="linkclick(2)">
+          <div class="dropdownelement" (click)="linkclick(2,3)">
             <p>Real Quality</p>
           </div>
 
@@ -265,14 +276,14 @@
     <!-- ** ** ** Starting of the Drop-Down for the tank-4 ** ** ** */  -->
 
     <div id="tm4">
-      <div id="th4" [style.height]="percentlevel+'%'"></div>
+      <div id="th4" [style.height]="percentlevel[3]+'%'"></div>
     </div>
 
     <div id="accord-container4">
 
-      <div id="accordion4" [style.maxHeight]="barclick ? '172px' : '44px'">
+      <div id="accordion4" [style.maxHeight]="barclick[3] ? '172px' : '44px'">
 
-        <div id="accordion4-bar" (click)="clickbar()">
+        <div id="accordion4-bar" (click)="clickbar(3)">
 
           <div
             style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
@@ -292,9 +303,9 @@
             style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
 
             <div
-              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+              [ngStyle]="{'transform': 'rotate('+irotate[3]+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
 
-              <i style="margin-top:8px;" class="material-icons">
+              <i style="margin-top:8px; transform: scale(0.9);" class="material-icons">
                 keyboard_arrow_down
               </i>
             </div>
@@ -315,7 +326,7 @@
 
             </div>
             <div id="lavelvalue">
-              : {{level}} mm
+              : {{level[3]}} mm
             </div>
           </div>
           <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
@@ -328,10 +339,10 @@
               style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
               :{{weight}} MT </div>
           </div>
-          <div class="dropdownelement" (click)="linkclick(1)">
+          <div class="dropdownelement" (click)="linkclick(1,4)">
             <p>Average Quality</p>
           </div>
-          <div class="dropdownelement" (click)="linkclick(2)">
+          <div class="dropdownelement" (click)="linkclick(2,4)">
             <p>Real Quality</p>
           </div>
 
@@ -348,14 +359,14 @@
     <!-- ** ** ** Starting of the Drop-Down for the tank-4 ** ** ** */  -->
 
     <div id="tm5">
-      <div id="th5" [style.height]="percentlevel+'%'"></div>
+      <div id="th5" [style.height]="percentlevel[4]+'%'"></div>
     </div>
 
     <div id="accord-container5">
 
-      <div id="accordion5" [style.maxHeight]="barclick ? '172px' : '44px'">
+      <div id="accordion5" [style.maxHeight]="barclick[4] ? '172px' : '44px'">
 
-        <div id="accordion5-bar" (click)="clickbar()">
+        <div id="accordion5-bar" (click)="clickbar(4)">
 
           <div
             style="display :flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
@@ -375,9 +386,9 @@
             style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 25%;">
 
             <div
-              [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+              [ngStyle]="{'transform': 'rotate('+irotate[4]+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
 
-              <i style="margin-top:8px;" class="material-icons">
+              <i style="margin-top:8px;transform: scale(0.9);" class="material-icons">
                 keyboard_arrow_down
               </i>
             </div>
@@ -398,7 +409,7 @@
 
             </div>
             <div id="lavelvalue">
-              : {{level}} mm
+              : {{level[4]}} mm
             </div>
           </div>
           <div style="height: 30px; display: flex; align-items: center; padding: 8px;">
@@ -411,10 +422,10 @@
               style="display:flex; justify-content:flex-start; align-items:center; background-color:transparent; height: 100%; width: 60%;font-size: 1vw; ">
               :{{weight}} MT </div>
           </div>
-          <div class="dropdownelement" (click)="linkclick(1)">
+          <div class="dropdownelement" (click)="linkclick(1,5)">
             <p>Average Quality</p>
           </div>
-          <div class="dropdownelement" (click)="linkclick(2)">
+          <div class="dropdownelement" (click)="linkclick(2,5)">
             <p>Real Quality</p>
           </div>
 

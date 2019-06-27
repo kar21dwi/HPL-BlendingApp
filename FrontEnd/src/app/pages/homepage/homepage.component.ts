@@ -13,21 +13,13 @@ export class HomepageComponent implements OnInit {
 
 	constructor(private api: ApiService, private router: Router) {}
 
-	ngOnInit() {
-		this.api.getmainpageclickconfirmation.subscribe(
-			(data) => {
-				this.flag = data;
-			},
-			(error) => {
-				console.log(error);
-			}
-		);
-	}
+	ngOnInit() {}
 	closeblurwindow() {
 		this.api.sendMainPageClickConfirmation(0);
 	}
 	simulationpage() {
-		console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+		//console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+
 		this.simulateflag = true;
 		console.log(this.simulateflag);
 		this.api.sendSimulateFlag(this.simulateflag);
