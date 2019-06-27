@@ -68,8 +68,12 @@
 #tm1 {
 	/* grid-column: 1/-1;*/
 	grid-area: tm1;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #f2f2f2;
 	border-radius: 5px 5px 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 #tm2 {
@@ -90,24 +94,36 @@
 	  grid-row: 2/3;*/
 
 	grid-area: tm3;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #f2f2f2;
 	border-radius: 5px 5px 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 #tm4 {
 	/*  grid-column: 1/-1;
 	grid-row: 4/5;*/
 	grid-area: tm4;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #f2f2f2;
 	border-radius: 5px 5px 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 #tm5 {
 	/*   grid-column: 15/-15;
 	  grid-row: 5/6;*/
 	grid-area: tm5;
-	background-color: #aecbe266;
+	background-color: #f2f2f2;
 	border-radius: 5px 5px 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 /* ** ** ** common properties for  all five tanks ** ** ** */
@@ -183,7 +199,6 @@ p {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	border: 1px solid;
 }
 
 h2 {
@@ -226,11 +241,6 @@ span {
 	flex-direction: column;
 	justify-content: flex-start;
 }
-#th1 {
-	background: #dfeaf3;
-	width: 100%;
-	bottom: 0px;
-}
 
 /* ** ** ** Ending of the Drop-Down for the tank-1 ** ** ** */
 
@@ -244,7 +254,11 @@ span {
 	flex-direction: column;
 	justify-content: flex-start;
 }
-#th2 {
+#th1,
+#th2,
+#th3,
+#th4,
+#th5 {
 	background: #dfeaf3;
 	width: 100%;
 	bottom: 0px;
@@ -262,11 +276,6 @@ span {
 	flex-direction: column;
 	justify-content: flex-start;
 }
-#th3 {
-	background: #dfeaf3;
-	width: 100%;
-	bottom: 0px;
-}
 
 /* ** ** ** Ending of the Drop-Down for the tank-3 ** ** ** */
 
@@ -280,11 +289,6 @@ span {
 	flex-direction: column;
 	justify-content: flex-start;
 }
-#th4 {
-	background: #dfeaf3;
-	width: 100%;
-	bottom: 0px;
-}
 
 /* ** ** ** Ending of the Drop-Down for the tank-4 ** ** ** */
 
@@ -297,11 +301,6 @@ span {
 	grid-column: 21/-1;
 	flex-direction: column;
 	justify-content: flex-start;
-}
-#th5 {
-	background: #dfeaf3;
-	width: 100%;
-	bottom: 0px;
 }
 
 /* ** ** ** Ending of the Drop-Down for the tank-5 ** ** ** */

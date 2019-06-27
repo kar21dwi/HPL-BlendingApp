@@ -1,64 +1,133 @@
-
-
 <div class="container">
-
-<div id ="inputsummary">
-
-
-</div>
-
-<div id ="rninputsummary">
-<app-runninginputsummary></app-runninginputsummary>
+  <!--
+  <div id="inputsummary">
 
 
+  </div>
+  -->
+  <!-- ** ** ** Starting of INPUTSUMMARY parameter ** ** ** -->
+  <!--
+<div id="rninput-container">
 
-</div>
-<div id ="bfinputsummary">
-<app-bestfitinputsummary></app-bestfitinputsummary>
+    <div id="rninputaccordion" [style.maxHeight]="barclick ? '394px' : '40px'">
+
+      <div id="rninputaccordion-bar" (click)="clickbar()">
+
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 80%;">
+
+          <h2>
+            Running Input
+          </h2>
+
+        </div>
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 20%;">
+
+          <div
+            [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+            <i style="margin-top:8px;" class="material-icons">
+              keyboard_arrow_down
+            </i>
+          </div>
 
 
-</div>
-<div id ="pminputsummary">
-<app-profitmaxinputsummary></app-profitmaxinputsummary>
+        </div>
+
+      </div>
+      <div id="rninput-content">
+
+        <div style="height: 354px; display: flex; ">
+          <div style="display:flex;  background-color:rgb(221, 195, 195);height: 100%; width: 33%;">
+
+          </div>
+          <div class="item1">
+            <div>3</div>
+            <div> 5</div>
+            <div>0.75</div>
+            <div>4556</div>
+            <div>366</div>
+            <div>235</div>
+            <div>52</div>
+            <div>834</div>
+            <div>0.28</div>
+            <div>8</div>
+            <div>1.2</div>
+          </div>
+
+          <div style="display:flex;  background-color:rgb(168, 223, 168); height: 100%; width: 33%; ">
+          </div>
+        </div>
+
+      </div>
 
 
-</div>
-<div id ="nhinputsummary">
-<app-nexthourinputsummary></app-nexthourinputsummary>
+
+    </div>
+  </div>
 
 
-</div>
-
-<div id ="udinputsummary">
-<app-userdefinedinputsummary></app-userdefinedinputsummary>
 
 
-</div>
+  -->
 
-<div id ="outputparameter">
-</div>
 
-<div id ="udoutputparameter">
-<app-userdefinedoutput (message)="receivemessage($event)"></app-userdefinedoutput>
+  <!-- ** ** ** Ending of INPUTSUMMARY parameter ** ** ** -->
 
-</div>
-<div id ="rnoutputparameter">
-<app-runningoutput (message)="receivemessage($event)"></app-runningoutput>
+  <div id="rninputsummary">
+    <app-runninginputsummary></app-runninginputsummary>
 
-</div>
-<div id ="bfoutputparameter">
-<app-bestfitoutput (message)="receivemessage($event)" (copymessage)="receivecopymessage($event)"></app-bestfitoutput>
-</div>
 
-<div id ="pmoutputparameter">
-<app-profitmaxoutput (message)="receivemessage($event)"></app-profitmaxoutput>
-</div>
 
-<div id ="nhoutputparameter">
-<app-nexthouroutput></app-nexthouroutput>
-</div>
-<div *ngIf = "flag" id = "outputconfirmation" style=" position: sticky; top: 240px;">
-</div>
+  </div>
+  <div id="bfinputsummary">
+    <app-bestfitinputsummary></app-bestfitinputsummary>
+
+
+  </div>
+  <div id="pminputsummary">
+    <app-profitmaxinputsummary></app-profitmaxinputsummary>
+
+
+  </div>
+  <div id="nhinputsummary">
+    <app-nexthourinputsummary></app-nexthourinputsummary>
+
+
+  </div>
+
+  <div id="udinputsummary">
+    <app-userdefinedinputsummary></app-userdefinedinputsummary>
+
+
+  </div>
+
+  <div id="outputparameter">
+  </div>
+
+  <div id="udoutputparameter">
+    <app-userdefinedoutput (message)="receivemessage($event)"></app-userdefinedoutput>
+
+  </div>
+  <div id="rnoutputparameter">
+    <app-runningoutput (message)="receivemessage($event)"></app-runningoutput>
+
+  </div>
+  <div id="bfoutputparameter">
+    <app-bestfitoutput (message)="receivemessage($event)" (copymessage)="receivecopymessage($event)">
+    </app-bestfitoutput>
+  </div>
+
+  <div id="pmoutputparameter">
+    <app-profitmaxoutput (message)="receivemessage($event)"></app-profitmaxoutput>
+  </div>
+
+  <div id="nhoutputparameter">
+    <app-nexthouroutput></app-nexthouroutput>
+  </div>
+  <div *ngIf="flag" id="outputconfirmation" style=" position: sticky; top: 240px;">
+  </div>
 
 </div>
 
@@ -103,14 +172,3 @@
   
 </div>
 -->
-   
-
-    
-
-
-
-
-
-
-
-
