@@ -385,49 +385,79 @@ ul {
 #t3 {
 	grid-column: 57/66;
 	grid-row: 3/3;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #t4 {
 	grid-column: 77/86;
 	grid-row: 3/3;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #t5 {
 	grid-column: 97/-1;
 	grid-row: 3/3;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #t1l {
 	grid-column: 17/26;
 	grid-row: 2/2;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #f2f2f2;
+	border-radius: 5px 5px 5px 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	overflow: hidden;
 }
 
 #t2l {
 	grid-column: 37/46;
 	grid-row: 2/2;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #f2f2f2;
+	border-radius: 5px 5px 5px 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	overflow: hidden;
 }
 
 #t3l {
 	grid-column: 57/66;
 	grid-row: 2/2;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #f2f2f2;
+	border-radius: 5px 5px 5px 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	overflow: hidden;
 }
 
 #t4l {
 	grid-column: 77/86;
 	grid-row: 2/2;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #f2f2f2;
+	border-radius: 5px 5px 5px 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	overflow: hidden;
 }
 
 #t5l {
 	grid-column: 97/-1;
 	grid-row: 2/2;
-	background-color: rgba(174, 203, 226, 0.4);
+	background-color: #f2f2f2;
+	border-radius: 5px 5px 5px 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	overflow: hidden;
 }
 
 #blank-row2 {
@@ -472,4 +502,5 @@ ul {
 	text-align: center;
 	flex-wrap: nowrap;
 	color: #393939;
+	font-family: Open sans Semibold;
 }
