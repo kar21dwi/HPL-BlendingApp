@@ -373,13 +373,13 @@ ul {
 #t1 {
 	grid-column: 17/26;
 	grid-row: 3/3;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #t2 {
 	grid-column: 37/46;
 	grid-row: 3/3;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #t3 {
@@ -453,7 +453,7 @@ ul {
 	width: 100%;
 }
 .item > div {
-	height: 35px;
+	height: 29.5px;
 
 	display: flex;
 	flex-direction: column;
