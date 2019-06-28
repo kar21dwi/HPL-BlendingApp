@@ -3,18 +3,18 @@
 
     <div *ngIf="flag==1" id="tankqualityavg">
       <app-tankno1 (message)="flag=0" [qualityflag]="flag" *ngIf="tankno==1"></app-tankno1>
-      <app-tankno2 *ngIf="tankno==2"></app-tankno2>
-      <app-tankno3 *ngIf="tankno==3"></app-tankno3>
-      <app-tankno4 *ngIf="tankno==4"></app-tankno4>
-      <app-tankno5 *ngIf="tankno==5"></app-tankno5>
+      <app-tankno2 (message)="flag=0" [qualityflag]="flag" *ngIf="tankno==2"></app-tankno2>
+      <app-tankno3 (message)="flag=0" [qualityflag]="flag" *ngIf="tankno==3"></app-tankno3>
+      <app-tankno4 (message)="flag=0" [qualityflag]="flag" *ngIf="tankno==4"></app-tankno4>
+      <app-tankno5 (message)="flag=0" [qualityflag]="flag" *ngIf="tankno==5"></app-tankno5>
     </div>
 
     <div *ngIf="flag==2" id="tankqualityreal">
-      <app-tankno1 *ngIf="tankno==1" (message)="flag=0"  [qualityflag]="flag"></app-tankno1>
-      <app-tankno2 *ngIf="tankno==2"></app-tankno2>
-      <app-tankno3 *ngIf="tankno==3"></app-tankno3>
-      <app-tankno4 *ngIf="tankno==4"></app-tankno4>
-      <app-tankno5 *ngIf="tankno==5"></app-tankno5>
+      <app-tankno1 *ngIf="tankno==1" (message)="flag=0" [qualityflag]="flag"></app-tankno1>
+      <app-tankno2 *ngIf="tankno==2" (message)="flag=0" [qualityflag]="flag"></app-tankno2>
+      <app-tankno3 *ngIf="tankno==3" (message)="flag=0" [qualityflag]="flag"></app-tankno3>
+      <app-tankno4 *ngIf="tankno==4" (message)="flag=0" [qualityflag]="flag"></app-tankno4>
+      <app-tankno5 *ngIf="tankno==5" (message)="flag=0" [qualityflag]="flag"></app-tankno5>
     </div>
 
     <div *ngIf="flag" (click)="flag=0"
@@ -495,7 +495,39 @@
 <ng-container *ngIf="simulationflag">
   <div class="container-2">
 
-    <div id="maincolumn"></div>
+    <div id="maincolumn">
+      <div style="height: 100%; width: 100%;display: flex; align-items: flex-start;padding-top:5px;">
+
+        <div class="item">
+
+          <div id="heading">Status</div>
+          <div>Level</div>
+          <div>Weight</div>
+
+          <div id="heading">Average Quality</div>
+          <div>Paraffin</div>
+          <div>Olefins</div>
+          <div>Aromatics</div>
+          <div>IN/IP Ratio</div>
+          <div>Density</div>
+          <div>IBP</div>
+          <div>FBP</div>
+          <div>Sulfur</div>
+          <div>Color</div>
+          <div>RVP</div>
+
+          <div id="heading">Real Quality</div>
+          <div>Paraffin</div>
+          <div>Aromatics</div>
+          <div>IN/IP Ratio</div>
+          <div>Density</div>
+
+
+
+
+        </div>
+      </div>
+    </div>
 
     <div id="t1">
       <app-tankno1 [simulationflag]="simulationflag"></app-tankno1>

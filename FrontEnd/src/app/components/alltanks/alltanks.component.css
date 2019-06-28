@@ -370,12 +370,6 @@ ul {
 	background-color: transparent;
 }
 
-#maincolumn {
-	grid-column: 1/13;
-	grid-row: 3/3;
-	background-color: rgb(179, 202, 193);
-}
-
 #t1 {
 	grid-column: 17/26;
 	grid-row: 3/3;
@@ -446,3 +440,36 @@ ul {
 }
 
 /*--------------------------------------------------------------------------------------------------------*/
+#maincolumn {
+	grid-column: 1/13;
+	grid-row: 3/3;
+	background-color: transparent;
+}
+.item {
+	display: flex;
+	flex-direction: column;
+	background-color: transparent;
+	height: 100%;
+	width: 100%;
+}
+.item > div {
+	height: 35px;
+
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	padding-left: 10px;
+	align-items: flex-start;
+	font-size: 14px;
+	text-align: center;
+	flex-wrap: nowrap;
+	color: #6d6d6d;
+
+	font-family: Open sans;
+}
+#heading {
+	font-size: 14px;
+	text-align: center;
+	flex-wrap: nowrap;
+	color: #393939;
+}

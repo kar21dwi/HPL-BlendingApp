@@ -1,4 +1,98 @@
+/* ** ** ** page-1 css ** ** ** */
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+}
 .container {
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(1, minmax(70px, 210px));
+
+	grid-template-rows: 399px;
+}
+
+.tank1-avgquality {
+	margin: 5px;
+	grid-column: 1/-1;
+	grid-row: 1/-1;
+	background-color: white;
+	display: flex;
+	border-radius: 5px 5px 5px 5px;
+}
+#tank11 {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.item1 {
+	display: flex;
+	flex-direction: column;
+	background-color: transparent;
+
+	height: 100%;
+	width: 50%;
+}
+.item2 {
+	display: flex;
+	flex-direction: column;
+	background-color: transparent;
+
+	height: 100%;
+	width: 50%;
+}
+
+.item1 > div,
+.item2 > div {
+	background-color: transparent;
+
+	height: 30px;
+
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	padding-left: 10px;
+	align-items: flex-start;
+	font-size: 14px;
+	text-align: center;
+	flex-wrap: nowrap;
+	color: #6d6d6d;
+
+	font-family: Open sans;
+}
+
+/* ** ** ** ** for the REAl QUALITY  ** ** ** */
+
+.container2 {
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(1, minmax(70px, 210px));
+
+	grid-template-rows: 197px;
+}
+
+.tank1-realquality {
+	margin: 5px;
+	grid-column: 1/-1;
+	grid-row: 1/-1;
+	background-color: white;
+	display: flex;
+
+	border-radius: 5px 5px 5px 5px;
+}
+#tank12 {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+/*.container {
 	margin: 0px auto;
 	display: grid;
 	grid-template-columns: repeat(1, minmax(50px, 144.3px));
@@ -19,7 +113,7 @@
 }
 
 #tank4info {
-	/* grid-column: 1/-1;*/
+	
 	border-radius: 0px 0px 5px 5px;
 	grid-area: ti;
 	background-color: rgb(255, 255, 255);
@@ -37,7 +131,7 @@
 }
 
 #blank-row1 {
-	/* grid-column: 1/-1;*/
+	
 	grid-area: b1;
 	background-color: transparent;
 }
@@ -49,3 +143,4 @@ li {
 .customul {
 	padding: 5px 30px;
 }
+*/

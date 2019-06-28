@@ -1,4 +1,134 @@
-<div *ngIf="!simulationflag" class="container">
+<div *ngIf="qualityflag==1" class="container">
+  <div class="tank1-avgquality">
+    <div id="tank11">
+      <div
+        style="height: 8%; width: 100%; display: flex; background-color:transparent;font-size: 16px;color: #393939;font-family: Open Sans;">
+        <div style="display: flex;height: 100%; width: 80%;padding:8px 8px 0px;align-items:center;"><span> Tank
+            D</span>
+        </div>
+        <div
+          style="display: flex;height: 100%; width: 20%; padding:8px 8px 0px;align-items:center;justify-content:flex-end; transform: scale(0.9); opacity:.6">
+          <i style="cursor: pointer;" (click)="message.emit('false')" class="material-icons">
+            clear
+          </i>
+        </div>
+
+      </div>
+      <div style="height:8%;width: 100%; display: flex; align-items: center;">
+        <div style="display: flex;height: 100%; width: 100%; color:#393939; padding-left:8px;"><span> Average
+            Quality</span>
+        </div>
+      </div>
+      <div style="height: 84%; width: 100%;display: flex; align-items: center;background-color:transparent;">
+
+
+        <div class="item1">
+          <div>Paraffin</div>
+          <div>Olefins</div>
+          <div>Aromatics</div>
+          <div>Nephthene</div>
+          <div>IN/IP Ratio</div>
+          <div>Density</div>
+          <div>IBP</div>
+          <div>FBP</div>
+          <div>Sulfur</div>
+          <div>Colour</div>
+          <div>RVP</div>
+        </div>
+
+
+        <div class="item2">
+          <div>: 82%</div>
+          <div>: 2%</div>
+          <div>: 4%</div>
+          <div>: 12%</div>
+          <div>: 1.05</div>
+          <div>: 0.64 gg/cc</div>
+          <div>: 45 &#8451;</div>
+          <div>: 127 &#8451;</div>
+          <div>: 30 ppm</div>
+          <div>: 14.5</div>
+          <div>: 12.6</div>
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ** ** ** for the Real Quality ** ** ** -->
+
+<div *ngIf="qualityflag==2" class="container2">
+  <div class="tank1-realquality">
+    <div id="tank12">
+
+      <div style="height: 17%; width: 100%; display: flex;font-size: 16px;color: #393939;font-family: Open Sans;">
+
+        <div style="display: flex;height: 100%; width: 80%;padding:8px 8px 0px;align-items:center;"><span> Tank
+            D</span>
+        </div>
+        <div
+          style="display: flex;height: 100%; width: 20%; padding:8px 8px 0px;align-items:center;justify-content:flex-end; transform: scale(0.9); opacity:.6">
+          <i style="cursor: pointer;" (click)="message.emit('false')" class="material-icons">
+            clear
+          </i>
+        </div>
+
+      </div>
+
+
+      <div style="height:17%;width: 100%; display: flex; align-items: center;">
+        <div style="display: flex;height: 100%; width: 100%; color:#393939; padding-left:8px;"><span> Real
+            Quality</span>
+        </div>
+      </div>
+
+
+      <div style="height: 66%; width: 100%;display: flex; align-items: center;">
+
+        <div class="item1">
+          <div>Paraffin</div>
+          <div>Aromatics</div>
+          <div>IN/IP Ratio</div>
+          <div>Density</div>
+
+        </div>
+
+
+        <div class="item2">
+          <div>: 82%</div>
+          <div>: 4%</div>
+          <div>: 1.23</div>
+          <div>: 0.64 gg/cc</div>
+
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div *ngIf="!simulationflag" class="container">
   <div id="tank4info" (click)="increaseheight()">
     <ng-container *ngIf="flag">
       <ul style="position: relative; color:#6d6d6d; right: 20%">
@@ -27,7 +157,7 @@
   </div>
 
 </div>
-
+-->
 <!--<h3> tankno4 </h3>
 
 <button class="btn btn-warning" [disabled]="buttondisable()" (click)="gettankinfo()">tankinfo No 4</button> <br>

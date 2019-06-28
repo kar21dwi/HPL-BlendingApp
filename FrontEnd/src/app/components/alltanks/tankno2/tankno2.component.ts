@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 @Component({
 	selector: 'app-tankno2',
@@ -14,6 +14,8 @@ export class Tankno2Component implements OnInit {
 	flag = false;
 	rowselector;
 	@Input() simulationflag: boolean;
+	@Input() qualityflag: 0;
+	@Output() message = new EventEmitter();
 	qualitylist: any[] = [ 10, 20, 30, 40 ];
 
 	constructor(private api: ApiService) {
