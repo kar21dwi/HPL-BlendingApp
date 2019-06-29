@@ -135,6 +135,8 @@
 #accordion5-bar {
 	background-color: transparent;
 	transition: background-color 0.2s ease-out;
+	position: relative;
+	overflow: hidden;
 }
 
 .dropdownelement {
@@ -144,6 +146,8 @@
 	display: flex;
 	align-items: center;
 	padding: 8px;
+	position: relative;
+	overflow: hidden;
 }
 #accordion-bar:hover,
 #accordion2-bar:hover,

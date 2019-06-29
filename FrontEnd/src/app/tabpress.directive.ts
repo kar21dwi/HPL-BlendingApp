@@ -9,8 +9,10 @@ import {
 	EventEmitter,
 	OnInit,
 	HostBinding,
-	AfterContentChecked
+	AfterContentChecked,
+	Inject
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { ApiService } from 'src/app/api.service';
 import Swal from 'sweetalert2';
 declare var jquery: any;
@@ -19,6 +21,31 @@ declare var $: any;
 export enum KEY_CODE {
 	TAB = 9
 }
+
+/* ********ripple effect directive**************** */
+@Directive({
+	selector: '[appRippleeffect]'
+})
+export class RippleeffectDirective {
+	constructor(private el: ElementRef, private api: ApiService, private renderer: Renderer2) {}
+
+	@HostListener('click', [ '$event' ])
+	clickripple(event: MouseEvent) {
+		console.log(this.el);
+		const parent = this.el.nativeElement;
+		const circle = document.createElement('div');
+		parent.appendChild(circle);
+
+		const d = parent.clientWidth / 2;
+		circle.style.width = circle.style.height = d + 'px';
+		circle.style.left = event.clientX - parent.offsetLeft - d / 2 + 'px';
+		circle.style.top = event.clientY - parent.offsetTop - d / 2 + 'px';
+
+		circle.classList.add('ripple');
+	}
+}
+
+/* ******************************** */
 
 /* ********first page tanks dropwodn directive**************** */
 @Directive({

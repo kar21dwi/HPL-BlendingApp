@@ -1,4 +1,13 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	AfterContentChecked,
+	AfterContentInit,
+	DoCheck,
+	ChangeDetectorRef,
+	AfterViewInit,
+	AfterViewChecked
+} from '@angular/core';
 import { ApiService } from './api.service';
 
 //new line add
@@ -9,7 +18,7 @@ import { ApiService } from './api.service';
 	styleUrls: [ './app.component.css' ],
 	providers: [ ApiService ]
 })
-export class AppComponent implements OnInit, AfterContentChecked {
+export class AppComponent implements OnInit, AfterViewChecked {
 	tanks = [
 		{
 			id: '',
@@ -40,7 +49,11 @@ export class AppComponent implements OnInit, AfterContentChecked {
 	confirmationflag = false;
 	copyflag: any;
 
-	constructor(private api: ApiService) {}
+	constructor(private api: ApiService, private cd: ChangeDetectorRef) {}
+
+	ngAfterViewChecked() {
+		this.cd.detectChanges();
+	}
 
 	ngOnInit() {
 		this.api.simulateflagstatus.subscribe(
@@ -55,7 +68,7 @@ export class AppComponent implements OnInit, AfterContentChecked {
 			}
 		);
 	}
-	ngAfterContentChecked() {}
+
 	closeblurwindow() {
 		this.api.sendMainPageClickConfirmation(0);
 	}

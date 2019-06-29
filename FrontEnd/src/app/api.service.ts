@@ -54,7 +54,7 @@ export class ApiService {
 	private getcopystatussource = new BehaviorSubject<any>(0);
 	public getcopystatus = this.getcopystatussource.asObservable();
 
-	private simulateflagstatussource = new BehaviorSubject<any>(0);
+	private simulateflagstatussource = new BehaviorSubject<any>(false);
 	public simulateflagstatus = this.simulateflagstatussource.asObservable();
 
 	private getrowselectorstatussource = new BehaviorSubject<any>(-1);

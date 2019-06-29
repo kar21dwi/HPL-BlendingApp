@@ -50,7 +50,21 @@
 	border-radius: 5px 5px 5px 5px;
 	letter-spacing: 1px;
 	border: 1px solid;
+	position: relative;
+	overflow: hidden;
 }
 #simulate-button:hover {
 	background-color: rgba(231, 231, 231, 0.55);
+}
+
+:host ::ng-deep .ripple {
+	position: absolute;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.164);
+	transform: scale(3);
+	opacity: 0;
+
+	transition-property: transform, opacity;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-out;
 }
