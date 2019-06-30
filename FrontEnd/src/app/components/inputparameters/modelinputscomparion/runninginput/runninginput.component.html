@@ -1,4 +1,68 @@
 
+<div class="container">
+  <div class="input">
+
+
+    <div id="inputaccordion" [style.maxHeight]="barclick ? '394px' : '40px'">
+
+      <div id="inputaccordion-bar" (click)="clickbar()">
+
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 80%;">
+
+          <h2>
+            Running Input
+          </h2>
+
+        </div>
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 20%;">
+
+          <div
+            [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+            <i style="margin-top:8px;" class="material-icons">
+              keyboard_arrow_down
+            </i>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div id="input-content">
+
+        <div style="height: 354px; display: flex; ">
+          <div style="display:flex;  background-color:rgb(221, 195, 195);height: 100%; width: 33%;">
+
+          </div>
+          <div class="item1">
+            <div>3</div>
+            <div> 5</div>
+            <div>0.75</div>
+            <div>4556</div>
+            <div>366</div>
+            <div>235</div>
+            <div>52</div>
+            <div>834</div>
+            <div>0.28</div>
+            <div>8</div>
+            <div>1.2</div>
+          </div>
+
+          <div style="display:flex;  background-color:rgb(168, 223, 168); height: 100%; width: 33%; ">
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+</div>
+
 
 <!--
 

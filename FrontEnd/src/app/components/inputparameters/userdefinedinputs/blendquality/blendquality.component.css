@@ -1,0 +1,78 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+}
+.container {
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(1, minmax(82.33px, 250px));
+
+	grid-template-rows: 304px;
+}
+
+.inputparameter {
+	grid-column: 1/-1;
+	grid-row: 1/-1;
+	background-color: transparent;
+	display: flex;
+
+	flex-direction: column;
+}
+h2 {
+	margin: 0;
+	font-size: 14px;
+	font-family: Open Sans Semibold;
+	color: #6d6d6d;
+	display: flex;
+	padding: 13px 0px 15px 5px;
+}
+.item1 {
+	display: flex;
+	flex-direction: column;
+	background-color: transparent;
+	height: 100%;
+	width: 100%;
+	margin-left: 3px;
+}
+
+.item2 {
+	display: flex;
+	flex-direction: column;
+	background-color: transparent;
+	height: 100%;
+	width: 100%;
+}
+
+.item1 > div {
+	background-color: transparent;
+	margin: 2px;
+	height: 30px;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	align-items: flex-start;
+	font-size: 14px;
+	text-align: center;
+	flex-wrap: nowrap;
+	color: #6d6d6d;
+
+	font-family: Open sans;
+}
+.item2 > div {
+	background-color: transparent;
+	margin: 2px;
+	height: 30px;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	font-size: 14px;
+	text-align: center;
+	flex-wrap: nowrap;
+	color: #6d6d6d;
+	font-family: Open sans;
+}

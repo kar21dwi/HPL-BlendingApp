@@ -1,3 +1,83 @@
+<div class="container">
+  <div class="input">
+
+
+    <div id="inputaccordion" [style.maxHeight]="barclick ? '394px' : '40px'">
+
+      <div id="inputaccordion-bar" (click)="clickbar()">
+
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent; height: 100%; width: 80%;">
+
+          <h2>
+            Next Hour Input
+          </h2>
+
+        </div>
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 20%;">
+
+          <div
+            [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+            <i style="margin-top:8px;" class="material-icons">
+              keyboard_arrow_down
+            </i>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div id="input-content">
+
+        <div style="height: 354px; display: flex; ">
+          <div style="display:flex;  background-color:rgb(221, 195, 195);height: 100%; width: 33%;">
+
+          </div>
+          <div class="item1">
+            <div>3</div>
+            <div> 5</div>
+            <div>0.75</div>
+            <div>4556</div>
+            <div>366</div>
+            <div>235</div>
+            <div>52</div>
+            <div>834</div>
+            <div>0.28</div>
+            <div>8</div>
+            <div>1.2</div>
+          </div>
+
+          <div style="display:flex;  background-color:rgb(168, 223, 168); height: 100%; width: 33%; ">
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+<!--<hr>
+<h4> 1.2.2 profitmaxinput </h4><br>
+  SuctionTank = {{profitmaxinput.Suction_Tank_No_PM}}<br>
+  BlendingTank = {{profitmaxinput.Blending_Tank_No_PM}} <br>
+  BlendRatio = {{profitmaxinput.Blend_Ratio_PM}} <br>
+  NapthaLoad = {{profitmaxinput.Naphtha_Load_PM}} <br>
+  LPGLoad = {{profitmaxinput.LPG_Load_PM}}<br>
+  C5 Load = {{profitmaxinput.C5_Load_PM}}<br>
+  C6 Load = {{profitmaxinput.C6_Load_PM}}<br>
+  Naphtha Heater = {{profitmaxinput.Naphtha_Heater_PM}}<br>
+  COT = {{profitmaxinput.COT_PM}}<br>
+  BGF PDI = {{profitmaxinput.GF_PDI_PM}}<br>
+  CGC SUC Pressure = {{profitmaxinput.Suc_Pressure_PM}} <br>
+  -->
+
 <!--<hr>
 <h4> 1.2.4 nexthourinput </h4><br>
 Suction Tank =  {{nexthourinput.suctiontank}} <br>
