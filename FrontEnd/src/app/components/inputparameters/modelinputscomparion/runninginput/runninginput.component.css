@@ -15,7 +15,7 @@
 .input {
 	grid-column: 1/-1;
 	grid-row: 1/-1;
-	background-color: rgb(57, 58, 47);
+	background-color: transparent;
 	display: flex;
 }
 
@@ -27,7 +27,7 @@
 	color: #6d6d6d;
 	text-align: center;
 
-	/*overflow: hidden;*/
+	overflow: hidden;
 	transition: max-height 0.2s ease-in;
 }
 #inputaccordion-bar {
@@ -44,7 +44,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	border: 1px solid;
+
 	text-align: center;
 	border-radius: 0 0 5px 5px;
 }
@@ -72,21 +72,21 @@ ul {
 .item1 {
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(204, 166, 166);
+	background-color: transparent;
 	height: 100%;
 	width: 40%;
 }
 .item2 {
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(204, 166, 166);
+	background-color: transparent;
 	height: 100%;
 	width: 50%;
 }
 
 .item1 > div,
 .item2 > div {
-	background-color: rgb(199, 154, 95);
+	background-color: transparent;
 	margin: 2px;
 	height: 30px;
 	width: 90%;

@@ -43,13 +43,13 @@
 #pminput {
 	grid-column: 72/87;
 	grid-row: 2/2;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #nhinput {
 	grid-column: 93/-1;
 	grid-row: 2/2;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #udinputquality {
@@ -67,19 +67,19 @@
 #rnquality {
 	grid-column: 30/45;
 	grid-row: 4/4;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #pmquality {
 	grid-column: 72/87;
 	grid-row: 4/4;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #nhquality {
 	grid-column: 93/-1;
 	grid-row: 4/4;
-	background-color: lightgrey;
+	background-color: transparent;
 }
 
 #blank-row3 {
@@ -91,5 +91,5 @@
 #blendquality {
 	grid-column: 1/26;
 	grid-row: 6/6;
-	background-color: lightgrey;
+	background-color: transparent;
 }

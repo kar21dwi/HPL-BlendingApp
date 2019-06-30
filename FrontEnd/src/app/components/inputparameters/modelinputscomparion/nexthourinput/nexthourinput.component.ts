@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,AfterContentChecked } from '@angular/core';
+import { Component, OnInit, Input, AfterContentChecked } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 @Component({
   selector: 'app-nexthourinput',
@@ -10,7 +10,10 @@ export class NexthourinputComponent implements OnInit,AfterContentChecked {
   check = true;
   flag = true;
   confirm = 0;
+  barclick = 0;
+  irotate = 0;
   @Input() nextclicked : boolean;
+
 
   constructor(private api: ApiService) { }
 
@@ -61,5 +64,14 @@ export class NexthourinputComponent implements OnInit,AfterContentChecked {
 
   }
 
+}
+clickbar() {
+  if (this.barclick == 1) {
+    this.barclick = 0;
+    this.irotate = 0;
+  } else {
+    this.barclick = 1;
+    this.irotate = 180;
+  }
 }
 }
