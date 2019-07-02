@@ -2,7 +2,7 @@
   <div class="quality">
 
 
-    <div id="qualityaccordion" [style.maxHeight]="barclick ? '394px' : '40px'">
+    <div id="qualityaccordion" [style.maxHeight]="barclick ? '394px' : '47px'">
 
       <div id="qualityaccordion-bar" (click)="clickbar()">
 
@@ -20,7 +20,7 @@
           <div
             [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
 
-            <i style="margin-top:8px;cursor: pointer;" class="material-icons">
+            <i style="margin-top:8px;cursor: pointer;transform: scale(0.9);" class="material-icons">
               keyboard_arrow_down
             </i>
           </div>
