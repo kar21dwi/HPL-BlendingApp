@@ -23,7 +23,7 @@
 	width: 100%;
 	background-color: rgb(255, 255, 255);
 	box-shadow: 0 1.0px 1px 0.05px #acacac, 0.3px 1.5px 3.0px 0.8px #cccccc;
-	border-radius: 0 0 5px 5px;
+	border-radius: 5px;
 	color: #6d6d6d;
 	text-align: center;
 

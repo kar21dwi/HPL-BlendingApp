@@ -12,6 +12,8 @@ export class NexthouroutputComponent implements OnInit {
 	buttonstatus = false;
 	flag = true;
 	confirm = false;
+	barclick = 1;
+	irotate = 0;
 
 	constructor(private api: ApiService, private router: Router) {
 		this.api.simulatebutton.subscribe((x) => {
@@ -55,5 +57,14 @@ export class NexthouroutputComponent implements OnInit {
 			}
 		};
 		this.router.navigate([ 'inputs' ], parameter);
+	}
+	clickbar() {
+		if (this.barclick == 1) {
+			this.barclick = 0;
+			this.irotate = 0;
+		} else {
+			this.barclick = 1;
+			this.irotate = 180;
+		}
 	}
 }

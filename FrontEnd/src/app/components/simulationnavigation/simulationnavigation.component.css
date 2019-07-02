@@ -4,7 +4,7 @@
 	box-sizing: border-box;
 }
 
-.main {
+.main-container {
 	display: flex;
 	position: fixed;
 	background: transparent;
@@ -29,7 +29,7 @@
 #main {
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(223, 206, 235);
+	background-color: transparent;
 	height: 100%;
 	width: 70%;
 }
@@ -39,4 +39,11 @@
 	background-color: transparent;
 	height: 100%;
 	width: 15%;
+}
+h3 {
+	font-size: 12px;
+	font-family: Open sans;
+	color: #9d9d9d;
+
+	margin: 0px;
 }

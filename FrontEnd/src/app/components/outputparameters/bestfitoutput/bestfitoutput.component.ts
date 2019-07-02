@@ -13,6 +13,8 @@ export class BestfitoutputComponent implements OnInit {
 	status;
 	confirmflag = false;
 	copyflag = false;
+	barclick = 1;
+	irotate = 0;
 
 	@Output() message = new EventEmitter();
 	@Output() copymessage = new EventEmitter();
@@ -51,5 +53,14 @@ export class BestfitoutputComponent implements OnInit {
 			}
 		};
 		this.router.navigate([ 'inputs' ], parameter);
+	}
+	clickbar() {
+		if (this.barclick == 1) {
+			this.barclick = 0;
+			this.irotate = 0;
+		} else {
+			this.barclick = 1;
+			this.irotate = 180;
+		}
 	}
 }

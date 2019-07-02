@@ -1,4 +1,77 @@
 <div class="container">
+
+  <div id="inputsummary">
+
+
+    <div id="outputsummaryaccordion" [style.maxHeight]="barclick ? '665px' : '44px'">
+
+      <div id="outputsummaryaccordion-bar" (click)="clickbar()">
+
+        <div
+          style=" display:flex; justify-content:flex-start;cursor: pointer; align-items:center;padding-left:10px; background-color:transparent; height: 100%; width: 80%;">
+
+          <h2>
+            Input Summary
+          </h2>
+
+        </div>
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 20%;">
+
+          <div
+            [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+            <i style="margin-top:8px;cursor: pointer;transform: scale(0.8);" class="material-icons">
+              keyboard_arrow_down
+            </i>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div id="output-content">
+
+        <div style="height: 621px; display: flex; ">
+
+          <div class="item2">
+            <div>Suction Tank</div>
+            <div>Blending Tank</div>
+            <div>Blend Ratio</div>
+            <div>Naphtha Load</div>
+            <div>LPG Load</div>
+            <div>C5 Load</div>
+            <div>C6 Load</div>
+            <div>COT</div>
+            <div>GF PDI</div>
+            <div>HeaterCount</div>
+            <div>CGC Pressure</div>
+            <div style="font-size: 14px;
+            font-family: Open Sans Semibold;
+            color: #6d6d6d;"> Blend Quality </div>
+            <div>Paraffin</div>
+            <div> Olefins</div>
+            <div>Aromatics</div>
+            <div>Naphathene</div>
+            <div>IN/IP Ratio</div>
+            <div>Density</div>
+            <div>IBP</div>
+            <div>FBP</div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
   <!--
   <div id="inputsummary">
 
@@ -104,6 +177,58 @@
   </div>
 
   <div id="outputparameter">
+    <div id="outputsummaryaccordion" [style.maxHeight]="barclick ? '275px' : '44px'">
+
+      <div id="outputsummaryaccordion-bar" (click)="clickbar()">
+
+        <div
+          style=" display:flex; justify-content:flex-start;cursor: pointer; align-items:center;padding-left:10px; background-color:transparent; height: 100%; width: 90%;">
+
+          <h2>
+            Output Parameters
+          </h2>
+
+        </div>
+        <div
+          style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 10%;">
+
+          <div
+            [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+            <i style="margin-top:8px;cursor: pointer;transform: scale(0.8);" class="material-icons">
+              keyboard_arrow_down
+            </i>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div id="output-content">
+
+        <div style="height: 621px; display: flex; ">
+
+          <div class="item2">
+            <div>Ethylene</div>
+            <div>propylene</div>
+            <div>RPG</div>
+            <div>C4 Mix</div>
+            <div>Fuel Gas</div>
+            <div>Benzen</div>
+            <div>1,3 - Butadiene</div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+
+
+
+    </div>
   </div>
 
   <div id="udoutputparameter">

@@ -12,15 +12,79 @@ Benzene = {{userdefinedoutput.Benzene_UD}} <br>
 
 
 <div class="container">
-<div id="name"></div>
-<div id="output" >
+    <div id="name">
 
-</div>
-<div id="confirm">
-<div class = "containerconfirmation" style = "background-color: transparent; display: grid; grid-template-columns: minmax(13.33px, 40px) minmax(23.33px, 70px) minmax(13.33px, 40px) ; grid-template-rows: 44px;">
-<div style= "display = flex; background-color: transparent; grid-coloum: 1/2;"></div>
-<div style= "display = flex; background-color: rgb(179, 202, 193); grid-coloum: 2/3;" (click)="confirmation()"></div>
-<div style= "display = flex; background-color: transparent; grid-coloum: 3/-1;"></div>
-</div>
-</div>
+
+
+        <div id="outputsummaryaccordion" [style.maxHeight]="barclick ? '275px' : '44px'">
+
+            <div id="outputsummaryaccordion-bar" (click)="clickbar()">
+
+                <div
+                    style=" display:flex; justify-content:flex-start;cursor: pointer; align-items:center;padding-left:10px; background-color:transparent; height: 100%; width: 80%;">
+
+                    <h2>
+                        Running
+                    </h2>
+
+                </div>
+                <div
+                    style=" display:flex; justify-content:center; align-items:center; background-color:transparent;height: 100%; width: 20%;">
+
+                    <div
+                        [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+                        <i style="margin-top:8px;cursor: pointer;transform: scale(0.8);" class="material-icons">
+                            keyboard_arrow_down
+                        </i>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div id="outputsummary-content">
+                <div style="display:flex; height: 100%; width: 25%; ">
+                </div>
+                <div style="height:100%; width:50%; display: flex; ">
+
+                    <div class="item2">
+                        <div>1243</div>
+                        <div>945</div>
+                        <div>432</div>
+                        <div>215</div>
+                        <div>76</div>
+                        <div>35</div>
+                        <div>152</div>
+
+                    </div>
+
+
+
+                </div>
+                <div style="display:flex; height: 100%; width: 25%; ">
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+    <div id="confirm">
+        <div class="containerconfirmation"
+            style="background-color: transparent; display: grid; grid-template-columns: minmax(13.33px, 40px) minmax(23.33px, 70px) minmax(13.33px, 40px) ; grid-template-rows: 44px;">
+            <div style="display : flex; background-color: transparent; grid-column: 1/2;"></div>
+            <div style="display : flex; background-color: transparent; grid-column: 2/3;" (click)="confirmation()">
+                <i class="material-icons" style="padding: 8px 5px 5px 25px;color: #6d6d6d; cursor: pointer;">
+                    check
+                </i>
+            </div>
+            <div style="display : flex; background-color: transparent; grid-column: 3/-1;"></div>
+        </div>
+    </div>
 </div>

@@ -11,6 +11,8 @@ export class OutputparametersComponent implements OnInit {
 	@Output() message = new EventEmitter();
 	@Output() copymessage = new EventEmitter();
 	copyflag: any;
+	barclick = 1;
+	irotate = 0;
 
 	constructor() {}
 
@@ -26,5 +28,14 @@ export class OutputparametersComponent implements OnInit {
 	receivecopymessage($event) {
 		this.copyflag = $event;
 		this.copymessage.emit(this.copyflag);
+	}
+	clickbar() {
+		if (this.barclick == 1) {
+			this.barclick = 0;
+			this.irotate = 0;
+		} else {
+			this.barclick = 1;
+			this.irotate = 180;
+		}
 	}
 }

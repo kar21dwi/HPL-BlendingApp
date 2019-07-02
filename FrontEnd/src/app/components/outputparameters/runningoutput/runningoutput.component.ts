@@ -12,6 +12,8 @@ export class RunningoutputComponent implements OnInit {
 	buttonstatus = false;
 	status;
 	confirmflag = false;
+	barclick = 1;
+	irotate = 0;
 	@Output() message = new EventEmitter();
 	constructor(private api: ApiService, private router: Router) {
 		this.api.simulatebutton.subscribe((x) => {
@@ -48,5 +50,14 @@ export class RunningoutputComponent implements OnInit {
 			}
 		};
 		this.router.navigate([ 'inputs' ], parameter);
+	}
+	clickbar() {
+		if (this.barclick == 1) {
+			this.barclick = 0;
+			this.irotate = 0;
+		} else {
+			this.barclick = 1;
+			this.irotate = 180;
+		}
 	}
 }
