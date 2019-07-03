@@ -29,11 +29,26 @@
     <app-nexthourquality></app-nexthourquality>
   </div>
   <div id="udinputquality">
-   <!-- <h2 style="position:absolute; top: 115px; left: 150px; color:#6d6d6d; "> {{newud.id}}</h2> -->
+    <!-- <h2 style="position:absolute; top: 115px; left: 150px; color:#6d6d6d; "> {{newud.id}}</h2> -->
     <app-userdefinedinputs></app-userdefinedinputs>
   </div>
   <div id="blendquality">
     <app-blendcomparison></app-blendcomparison>
+  </div>
+  <div id="blank-row1" (click)="clickbar()">
+    <div
+      [ngStyle]="{'transform': 'rotate('+irotate[0]+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+
+      <i style="padding-left: 1035px;padding-top: 10px;transform: scale(0.9);" class="material-icons">
+        keyboard_arrow_down
+      </i>
+    </div>
+    <!--
+    <div
+      [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+      <i class="fa fa-caret-down" aria-hidden="true" style="padding-left: 1035px;padding-top: 10px;"></i>
+    </div>
+    -->
   </div>
 </div>
 

@@ -20,7 +20,7 @@
 #blank-row1 {
 	grid-column: 1/-1;
 	grid-row: 1/1;
-	background-color: transparent;
+	background-color: rgba(201, 186, 159, 0.555);
 }
 
 #rninput {

@@ -38,11 +38,12 @@
 	flex-direction: column;
 	background-color: transparent;
 	height: 100%;
-	width: 15%;
+	width: 10%;
+	margin-right: 20px;
 }
 h3 {
 	font-size: 12px;
-	font-family: Open sans;
+	font-family: Open sans Light;
 	color: #9d9d9d;
 
 	margin: 0px;
