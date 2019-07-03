@@ -13,6 +13,7 @@ export class InputscreenComponent implements OnInit {
 	constructor(private route: ActivatedRoute, private router: Router) {}
 
 	ngOnInit() {
+		console.log(this.router.url);
 		this.route.queryParams.subscribe((v) => {
 			this.newud = v;
 		});

@@ -9,6 +9,7 @@ import {
 	AfterViewChecked
 } from '@angular/core';
 import { ApiService } from './api.service';
+import { Routes, Router } from '@angular/router';
 
 //new line add
 
@@ -49,7 +50,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 	confirmationflag = false;
 	copyflag: any;
 
-	constructor(private api: ApiService, private cd: ChangeDetectorRef) {}
+	constructor(private api: ApiService, private cd: ChangeDetectorRef, private router: Router) {}
 
 	ngAfterViewChecked() {
 		this.cd.detectChanges();

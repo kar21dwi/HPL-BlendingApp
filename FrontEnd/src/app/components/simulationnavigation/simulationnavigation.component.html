@@ -16,10 +16,16 @@
         </div>
     </div>
     <div id="main">
+
         <div style="height: 65%; width:100% ;background-color:transparent;display: flex;flex-direction: row;">
             <div style="background-color:transparent;height: 100%; width:10%"></div>
             <div style="height: 100%; width:3%">
-                <div
+                <div [ngStyle]="{'color': router.url == '/tanksdetails' ? '#db3236' : '#d8d8d8',
+                
+                 'background': router.url == '/tanksdetails' && pagescompleted[0]==0 ? 'transparent' : '#d8d8d8',
+                                  
+                 'width': router.url == '/tanksdetails' ? '16px' : '12px' ,
+                  'height': router.url == '/tanksdetails' ? '16px' : '12px' }"
                     style="border:2px solid;;color: #d8d8d8; width:12px; height:12px; border-radius:50%;margin:27px auto;">
                 </div>
             </div>
@@ -29,8 +35,14 @@
             </div>
             <div style="height: 100%; width:3%">
 
-                <div
-                    style="border:2px solid; background-color:#d8d8d8;  color: #d8d8d8; width:12px; height:12px; border-radius:50%;margin:27px auto;">
+                <div [ngStyle]="{'color': router.url.substr(0,2) == '/i'   ? '#db3236' : '#d8d8d8',
+                
+                    'background': (router.url.substr(0,2) == '/i'  && pagescompleted[1]) || !pagescompleted[1]==0  ? '#d8d8d8' : 'transparent',
+                  
+                                     
+                    'width': router.url.substr(0,2) == '/i'  ? '16px' : '12px' ,
+                     'height': router.url.substr(0,2) == '/i'  ? '16px' : '12px' }"
+                    style="border:2px solid;;color: #d8d8d8; width:12px; height:12px; border-radius:50%;margin:27px auto;">
                 </div>
             </div>
             <div style="background-color:tranparent;height: 100%; width:22.66%">
@@ -38,8 +50,14 @@
                     border-bottom: 1px solid #cccccc;"></div>
             </div>
             <div style="height: 100%; width:3%">
-                <div
-                    style="border:2px solid;color: #db3236; width:16px; height:16px; border-radius:50%;margin:27px auto;">
+                <div [ngStyle]="{'color': router.url == '/outputs' ? '#db3236' : '#d8d8d8',
+                
+                    'background': (router.url != '/outputs' && pagescompleted[2]) || !pagescompleted[2]==0  ? '#d8d8d8' : 'transparent',
+                  
+                                     
+                    'width': router.url == '/outputs' ? '16px' : '12px' ,
+                     'height': router.url == '/outputs' ? '16px' : '12px' }"
+                    style="border:2px solid;;color: #d8d8d8; width:12px; height:12px; border-radius:50%;margin:27px auto;">
                 </div>
             </div>
             <div style="background-color:tranparent;height: 100%; width:22.66%">
@@ -55,23 +73,24 @@
 
         </div>
         <div style="height: 35%; width:100% ;background-color:transparent; display:flex; flex-direction:row;">
-            <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 5px 0px 20px;">
+            <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 5px 0px 25px;">
                 <h3>Select Suction & Blending Tanks</h3>
             </div>
-            <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 0px 0px 40px;">
+            <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 0px 0px 53px;">
                 <h3>Enter Input Parameters</h3>
             </div>
-            <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 0px 0px 40px;">
+            <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 0px 0px 45px;">
                 <h3>Confirm Output Parameters</h3>
             </div>
-            <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 0px 0px 60px;">
+            <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 0px 0px 75px;">
                 <h3>Selection Confirmed</h3>
             </div>
         </div>
 
     </div>
     <div id="cancel">
-        <i style="color:#6d6d6d;padding: 25px 50px;cursor: pointer;transform:scale(0.9);" class="material-icons">
+        <i style="color:#6d6d6d;padding: 25px 50px;cursor: pointer;transform:scale(0.9);"
+            (click)="router.navigate(['']);" class="material-icons">
             clear
         </i>
     </div>

@@ -1,30 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Routes, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+	selector: 'app-home',
+	templateUrl: './home.component.html',
+	styleUrls: [ './home.component.css' ]
 })
 export class HomeComponent implements OnInit {
+	flag = true;
 
-  flag = true;
+	constructor(private router: Router) {}
 
-  constructor() { }
+	ngOnInit() {
+		console.log(this.router.url);
+	}
 
-  ngOnInit() {
-  }
-
-  mainpage() {
-    
-    if (this.flag == false)
-    {
-     this.flag = true;
-    }
-    else
-    {
-     this.flag = false; 
-    }
-
-  }
-
+	mainpage() {
+		if (this.flag == false) {
+			this.flag = true;
+		} else {
+			this.flag = false;
+		}
+	}
 }

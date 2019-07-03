@@ -8,11 +8,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class OutputparametersComponent implements OnInit {
 	displaychildcomponents = 0;
 	flag = false;
+	confirmflag = false;
 	@Output() message = new EventEmitter();
 	@Output() copymessage = new EventEmitter();
 	copyflag: any;
 	barclick = 1;
 	irotate = 0;
+	comment;
 
 	constructor() {}
 
@@ -37,5 +39,9 @@ export class OutputparametersComponent implements OnInit {
 			this.barclick = 1;
 			this.irotate = 180;
 		}
+	}
+
+	savecomment() {
+		this.confirmflag = true;
 	}
 }
