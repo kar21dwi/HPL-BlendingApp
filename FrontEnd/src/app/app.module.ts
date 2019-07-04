@@ -66,6 +66,7 @@ import { InputscreenComponent } from './pages/inputscreen/inputscreen.component'
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
 	declarations: [
@@ -136,7 +137,8 @@ import { MatInputModule } from '@angular/material';
 		MatTabsModule,
 		MatExpansionModule,
 		MatFormFieldModule,
-		MatInputModule
+		MatInputModule,
+		MatTreeModule
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]

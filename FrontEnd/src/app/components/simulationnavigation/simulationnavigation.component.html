@@ -4,13 +4,14 @@
 
         <div style="height: 100%; width:40% ;background-color:transparent;">
             <i style="color:#6d6d6d;padding: 25px 15px 25px 45px;cursor: pointer;transform:scale(0.9);"
-                class="material-icons">
+                class="material-icons" (click)="backwardpage()">
                 keyboard_backspace
             </i>
         </div>
         <div style="background-color:transparent ;height: 100%; width:40%">
-            <i style="color:#6d6d6d; opacity: 0.4; transform: rotate(180deg) scale(0.9); padding:25px 0px 25px 25px;cursor: pointer;"
-                class="material-icons">
+            <i (click)="forwardpage()"
+                style="color:#6d6d6d; opacity: 0.4; transform: rotate(180deg) scale(0.9); padding:25px 0px 25px 25px;cursor: pointer;"
+                class="material-icons" [ngStyle]="{'opacity': finalconfirm && router.url != '/outputs'  ? '1' : '0.4'}">
                 keyboard_backspace
             </i>
         </div>
@@ -52,7 +53,7 @@
             <div style="height: 100%; width:3%">
                 <div [ngStyle]="{'color': router.url == '/outputs' ? '#db3236' : '#d8d8d8',
                 
-                    'background': (router.url != '/outputs' && pagescompleted[2]) || !pagescompleted[2]==0  ? '#d8d8d8' : 'transparent',
+                    'background': (router.url != '/outputs' && pagescompleted[2]) || !pagescompleted[2]==0 || finalconfirm ? '#d8d8d8' : 'transparent',
                   
                                      
                     'width': router.url == '/outputs' ? '16px' : '12px' ,
@@ -65,7 +66,10 @@
                         border-bottom: 1px solid #cccccc;"></div>
             </div>
             <div style="height: 100%; width:3%">
-                <div
+                <div [ngStyle]="{'color': finalconfirm  ? '#db3236' : '#d8d8d8',
+                'width': finalconfirm ? '16px' : '12px' ,
+                     'height': finalconfirm ? '16px' : '12px',
+                     'background': finalconfirm  ? '#db3236' : 'transparent'}"
                     style="border:2px solid;;color: #d8d8d8; width:12px; height:12px; border-radius:50%;margin:27px auto;">
                 </div>
             </div>

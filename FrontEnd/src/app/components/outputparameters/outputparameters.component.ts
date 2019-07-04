@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
 	selector: 'app-outputparameters',
@@ -15,8 +16,9 @@ export class OutputparametersComponent implements OnInit {
 	barclick = 1;
 	irotate = 0;
 	comment;
+	showContent = true;
 
-	constructor() {}
+	constructor(private api: ApiService) {}
 
 	ngOnInit() {}
 	displaychildcom = () => {};
@@ -43,5 +45,10 @@ export class OutputparametersComponent implements OnInit {
 
 	savecomment() {
 		this.confirmflag = true;
+		this.api.sendFinalConfirmStatus(true);
+		console.log('@@@@*************************&*%%^&#%@$' + this.showContent + 'skudglcuysafuodcs');
+		setTimeout(() => (this.showContent = false), 8000);
+		this.message.emit(false);
+		console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@' + this.showContent + 'skudglcuysafuodcs');
 	}
 }

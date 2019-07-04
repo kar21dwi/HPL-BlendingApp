@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Routes, Router } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
 	selector: 'app-simulationnavigation',
@@ -9,12 +10,25 @@ import { Routes, Router } from '@angular/router';
 export class SimulationnavigationComponent implements OnInit, AfterViewChecked {
 	currenturl;
 	pagescompleted = [ 0, 0, 0 ];
+	finalconfirm = false;
+	scroll: any;
 
-	constructor(private router: Router) {}
+	constructor(private router: Router, private api: ApiService) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.api.getfinalconfirm.subscribe(
+			(data) => {
+				this.finalconfirm = data;
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
+	}
 
 	ngAfterViewChecked() {
+		window.addEventListener('scroll', this.scroll, true);
+		console.log(this.scroll);
 		console.log(this.router.url);
 		if (this.router.url == '/inputs') {
 			console.log('zdxfgchbjklmrdtfygujioklrdtfyguhjikl;');
@@ -22,6 +36,25 @@ export class SimulationnavigationComponent implements OnInit, AfterViewChecked {
 		}
 		if (this.router.url == '/outputs') {
 			this.pagescompleted[1] = 1;
+		}
+	}
+	backwardpage() {
+		if (this.router.url == '/tanksdetails') {
+			this.router.navigate([ '' ]);
+		}
+		if (this.router.url == '/inputs') {
+			this.router.navigate([ 'tanksdetails' ]);
+		}
+		if (this.router.url == '/outputs') {
+			this.router.navigate([ 'inputs' ]);
+		}
+	}
+	forwardpage() {
+		if (this.router.url == '/tanksdetails') {
+			this.router.navigate([ 'inputs' ]);
+		}
+		if (this.router.url == '/inputs') {
+			this.router.navigate([ 'outputs' ]);
 		}
 	}
 }

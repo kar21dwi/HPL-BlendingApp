@@ -35,20 +35,19 @@
   <div id="blendquality">
     <app-blendcomparison></app-blendcomparison>
   </div>
-  <div id="blank-row1" (click)="clickbar()">
-    <div
-      [ngStyle]="{'transform': 'rotate('+irotate[0]+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+  <div id="blank-row1">
+    <div style="width: 97% ;height:100%; "></div>
+    <div style=" width: 3% ;height:100%; background:rgba(167, 190, 167, 0.514);">
+      <div (click)="clickbar()" id="qualityaccordion-bar">
+        <div
+          [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
+          <i style="cursor: pointer;transform: scale(1.1); color:black;" class="fa fa-caret-down"
+            aria-hidden="true"></i>
 
-      <i style="padding-left: 1035px;padding-top: 10px;transform: scale(0.9);" class="material-icons">
-        keyboard_arrow_down
-      </i>
+        </div>
+
+      </div>
     </div>
-    <!--
-    <div
-      [ngStyle]="{'transform': 'rotate('+irotate+'deg)', 'transform-origin':'50% 57%','transition': 'all 0.2s ease-in'}">
-      <i class="fa fa-caret-down" aria-hidden="true" style="padding-left: 1035px;padding-top: 10px;"></i>
-    </div>
-    -->
   </div>
 </div>
 

@@ -28,6 +28,9 @@
 	grid-column: 1/-1;
 	grid-row: 1/1;
 	background-color: transparent;
+	display: flex;
+	align-content: flex-end;
+	align-items: flex-end;
 }
 
 #inputsummary {
@@ -254,4 +257,36 @@ ul {
 	transition-property: transform, opacity;
 	transition-duration: 0.5s;
 	transition-timing-function: ease-out;
+}
+
+/*overflow: hidden;*/
+
+#qualityaccordion-bar {
+	width: 100%;
+	height: 40px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#icon {
+	color: rgb(66, 133, 244);
+	font-size: 22px;
+	display: flex;
+	animation: blink 1s ease-in-out infinite;
+	position: sticky;
+	align-content: center;
+	width: 5%;
+	height: 100%;
+	justify-content: center;
+}
+
+@keyframes blink {
+	from,
+	to {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(.9);
+	}
 }

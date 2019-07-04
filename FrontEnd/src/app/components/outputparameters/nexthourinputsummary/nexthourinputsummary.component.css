@@ -65,9 +65,9 @@
 	border-radius: 5px 5px 5px 5px;
 	color: #6d6d6d;
 	text-align: center;
-
 	overflow: hidden;
 	transition: max-height 0.2s ease-in;
+	transition: border-color 0.2s;
 }
 #outputsummaryaccordion-bar {
 	width: 100%;

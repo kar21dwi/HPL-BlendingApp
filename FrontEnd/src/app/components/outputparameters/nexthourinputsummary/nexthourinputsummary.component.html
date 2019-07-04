@@ -8,7 +8,9 @@
   <div class="outputsummary">
 
 
-    <div id="outputsummaryaccordion" [style.maxHeight]="barclick ? '665px' : '44px'">
+    <div id="outputsummaryaccordion" [ngStyle]="{'border': confirmflag  ? '0.8px solid #db3236' : ' 1px transparent'
+    , 'border-color': hideborder && confirmflag  ? 'transparent' : '#db3236'}"
+      [style.maxHeight]="barclick ? '665px' : '44px'">
 
       <div id="outputsummaryaccordion-bar" (click)="clickbar()">
 

@@ -20,7 +20,10 @@
 #blank-row1 {
 	grid-column: 1/-1;
 	grid-row: 1/1;
-	background-color: rgba(201, 186, 159, 0.555);
+	background-color: transparent;
+	display: flex;
+	align-content: flex-end;
+	align-items: flex-end;
 }
 
 #rninput {
@@ -92,4 +95,12 @@
 	grid-column: 1/26;
 	grid-row: 6/6;
 	background-color: transparent;
+}
+#qualityaccordion-bar {
+	width: 100%;
+	height: 40px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

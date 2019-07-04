@@ -60,6 +60,9 @@ export class ApiService {
 	private getrowselectorstatussource = new BehaviorSubject<any>(-1);
 	public getrowselectorstatus = this.getrowselectorstatussource.asObservable();
 
+	private getfinalconfirmsource = new BehaviorSubject<any>(0);
+	public getfinalconfirm = this.getfinalconfirmsource.asObservable();
+
 	// private getmodelchildsource = new BehaviorSubject<any>(0);
 	//public getchildcomponents = this.getmodelchildsource.asObservable();
 
@@ -234,5 +237,8 @@ export class ApiService {
 	}
 	sendRowSelectorStatus(message: any) {
 		this.getrowselectorstatussource.next(message);
+	}
+	sendFinalConfirmStatus(message: any) {
+		this.getfinalconfirmsource.next(message);
 	}
 }
