@@ -54,6 +54,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
 	ngAfterViewChecked() {
 		this.cd.detectChanges();
+		$('router-outlet').animate({ scrollTop: 0 }, 500);
 	}
 
 	ngOnInit() {

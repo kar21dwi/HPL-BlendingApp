@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
+import { animate } from '@angular/animations';
 
 @Component({
 	selector: 'app-simulationnavigation',
@@ -9,9 +10,10 @@ import { ApiService } from 'src/app/api.service';
 })
 export class SimulationnavigationComponent implements OnInit, AfterViewChecked {
 	currenturl;
+	oldurl;
 	pagescompleted = [ 0, 0, 0 ];
 	finalconfirm = false;
-	scroll: any;
+	windowposition = 0;
 
 	constructor(private router: Router, private api: ApiService) {}
 
@@ -27,8 +29,16 @@ export class SimulationnavigationComponent implements OnInit, AfterViewChecked {
 	}
 
 	ngAfterViewChecked() {
-		window.addEventListener('scroll', this.scroll, true);
-		console.log(this.scroll);
+		window.addEventListener('scroll', this.scrollEvent, true);
+		this.currenturl = this.router.url;
+		if (this.currenturl != this.oldurl) {
+			window.scroll({
+				top: 0,
+				behavior: 'smooth'
+			});
+			this.oldurl = this.currenturl;
+		}
+
 		console.log(this.router.url);
 		if (this.router.url == '/inputs') {
 			console.log('zdxfgchbjklmrdtfygujioklrdtfyguhjikl;');
@@ -57,4 +67,8 @@ export class SimulationnavigationComponent implements OnInit, AfterViewChecked {
 			this.router.navigate([ 'outputs' ]);
 		}
 	}
+
+	scrollEvent = (event: any): void => {
+		this.windowposition = window.scrollY;
+	};
 }

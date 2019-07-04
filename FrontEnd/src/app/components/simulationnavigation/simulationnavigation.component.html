@@ -1,14 +1,15 @@
-<div class="main-container">
+<div class="main-container" [style.borderBottom]="windowposition ? 'none' : '0.1px solid #e0e0e0'"
+    [style.boxShadow]="windowposition ? '0px 1.0px 0.8px 0.08px #c2c2c2, 0.3px 1.5px 3.0px 1.8px #dddddd' : 'none'">
     <div id="directions">
         <div style="height: 100%; width:20%"></div>
 
-        <div style="height: 100%; width:40% ;background-color:transparent;">
+        <div style="height: 100%; width:40% ;background-color:transparent;padding-top: 4px;">
             <i style="color:#6d6d6d;padding: 25px 15px 25px 45px;cursor: pointer;transform:scale(0.9);"
                 class="material-icons" (click)="backwardpage()">
                 keyboard_backspace
             </i>
         </div>
-        <div style="background-color:transparent ;height: 100%; width:40%">
+        <div style="background-color:transparent ;height: 100%; width:40%; padding-top: 4px;">
             <i (click)="forwardpage()"
                 style="color:#6d6d6d; opacity: 0.4; transform: rotate(180deg) scale(0.9); padding:25px 0px 25px 25px;cursor: pointer;"
                 class="material-icons" [ngStyle]="{'opacity': finalconfirm && router.url != '/outputs'  ? '1' : '0.4'}">
@@ -78,22 +79,29 @@
         </div>
         <div style="height: 35%; width:100% ;background-color:transparent; display:flex; flex-direction:row;">
             <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 5px 0px 25px;">
-                <h3>Select Suction & Blending Tanks</h3>
+                <h3 [ngStyle]="{'color': router.url == '/tanksdetails' ? '#4e4e4e' : '#9d9d9d'
+                }">
+                    Select
+                    Suction &
+                    Blending Tanks</h3>
             </div>
             <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 0px 0px 53px;">
-                <h3>Enter Input Parameters</h3>
+                <h3 [ngStyle]="{'color': router.url == '/inputs' ? '#4e4e4e' : '#9d9d9d' 
+                }">Enter Input Parameters</h3>
             </div>
             <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 0px 0px 45px;">
-                <h3>Confirm Output Parameters</h3>
+                <h3 [ngStyle]="{'color': router.url == '/outputs' ? '#4e4e4e' : '#9d9d9d' 
+                
+                }">Confirm Output Parameters</h3>
             </div>
             <div style="height: 100%; width:25%; background-color:transparent;padding: 0px 0px 0px 75px;">
-                <h3>Selection Confirmed</h3>
+                <h3 [ngStyle]="{'color': finalconfirm  ? '#db3236' : '#9d9d9d'}">Selection Confirmed</h3>
             </div>
         </div>
 
     </div>
     <div id="cancel">
-        <i style="color:#6d6d6d;padding: 25px 50px;cursor: pointer;transform:scale(0.9);"
+        <i style="color:#6d6d6d;padding: 27px 50px;cursor: pointer;transform:scale(0.9);"
             (click)="router.navigate(['']);" class="material-icons">
             clear
         </i>
